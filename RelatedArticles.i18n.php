@@ -9,21 +9,29 @@
 $messages = array();
 
 $messages['en'] = array(
-	'ra-RelatedArticles' => 'Related articles',
-	'ra-desc'            => 'Extension for presentation of related articles on the sidebar',
+	'relatedarticles-sidebartext' => 'Related pages',
+	'relatedarticles-desc' => 'Adds a link to related pages on the sidebar',
+);
+
+/** Message documentation (Message documentation)
+ * @author Raimond Spekking
+ */
+$messages['qqq'] = array(
+	'relatedarticles-sidebartext' => 'Shown on the sidebar',
+	'relatedarticles-desc' => '{{desc}}',
 );
 
 $messages['de'] = array(
-	'ra-RelatedArticles' => 'Verwandte Artikel',
-	'ra-desc'            => 'Erweiterung für die Ausgabe von verwandten Artikeln auf der Sidebar',
+	'relatedarticles-sidebartext' => 'Verwandte Seiten',
+	'relatedarticles-desc' => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
 );
 
 $messages['fr'] = array(
-	'ra-RelatedArticles' => 'Articoli collegati',
+	'relatedarticles-sidebartext' => 'Articoli collegati',
 );
 
 $messages['it'] = array(
-	'ra-RelatedArticles' => 'Autres articles',
+	'relatedarticles-sidebartext' => 'Autres articles',
 );
 
 

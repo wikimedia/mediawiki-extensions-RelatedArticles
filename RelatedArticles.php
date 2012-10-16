@@ -11,9 +11,10 @@ $wgExtensionMessagesFiles['RelatedArticles'] = $dir . 'RelatedArticles.i18n.php'
 
 $wgExtensionFunctions[] = 'wfSetupRelatedArticles';
 $wgExtensionCredits['parserhook']['RelatedArticles'] = array(
+	'path' => __FILE__,
 	'name' => 'RelatedArticles',
 	'url' => 'http://wikivoyage.org/tech/RelatedArticles-Extension',
-	'author' => 'Roland Unger/Hans Musil',
+	'author' => array( 'Roland Unger', 'Hans Musil' ),
 	'descriptionmsg' => 'ra-desc'
 );
 
@@ -128,7 +129,7 @@ class RelatedArticles {
 		</div>
 		</div>
 		<div id="p-lang" class="portal">
-				<h5><?php $skTemplate->msg( 'ra-RelatedArticles' ) ?></h5>
+				<h5><?php $skTemplate->msg( 'relatedarticles-sidebartext' ) ?></h5>
 				<div class="body">
 						<ul>
 <?php
