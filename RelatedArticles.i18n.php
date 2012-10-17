@@ -21,17 +21,42 @@ $messages['qqq'] = array(
 	'relatedarticles-desc' => '{{desc}}',
 );
 
+/** German (Deutsch) */
 $messages['de'] = array(
 	'relatedarticles-sidebartext' => 'Verwandte Seiten',
 	'relatedarticles-desc' => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
 );
 
+/** French (français) */
 $messages['fr'] = array(
 	'relatedarticles-sidebartext' => 'Articoli collegati',
 );
 
+/** Italian (italiano) */
 $messages['it'] = array(
 	'relatedarticles-sidebartext' => 'Autres articles',
 );
 
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'relatedarticles-sidebartext' => '関連ページ',
+	'relatedarticles-desc' => '関連ページヘのリンクをサイドバーに追加する',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'relatedarticles-sidebartext' => 'Поврзани страници',
+	'relatedarticles-desc' => 'Во страничната лента додава врска за поврзани страници',
+);
+
+/** Telugu (తెలుగు)
+ * @author Veeven
+ */
+$messages['te'] = array(
+	'relatedarticles-sidebartext' => 'సంబంధిత పేజీలు',
+);
 
