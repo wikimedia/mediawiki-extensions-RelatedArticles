@@ -32,9 +32,12 @@ $messages['fr'] = array(
 	'relatedarticles-sidebartext' => 'Articoli collegati',
 );
 
-/** Italian (italiano) */
+/** Italian (italiano)
+ * @author Beta16
+ */
 $messages['it'] = array(
 	'relatedarticles-sidebartext' => 'Autres articles',
+	'relatedarticles-desc' => 'Aggiunge un collegamento alle pagine correlate nella barra laterale',
 );
 
 /** Japanese (日本語)
