@@ -9,38 +9,38 @@
 $messages = array();
 
 $messages['en'] = array(
-	'relatedarticles-sidebartext' => 'Related pages',
-	'relatedarticles-desc' => 'Adds a link to related pages on the sidebar',
+	'relatedarticles-title' => 'Related pages',
+	'relatedarticles-desc'  => 'Adds a link to related pages on the sidebar',
 );
 
 /** Message documentation (Message documentation)
  * @author Raimond Spekking
  */
 $messages['qqq'] = array(
-	'relatedarticles-sidebartext' => 'Shown on the sidebar',
-	'relatedarticles-desc' => '{{desc}}',
+	'relatedarticles-title' => 'Title shown on the sidebar',
+	'relatedarticles-desc'  => '{{desc}}',
 );
 
 /** Asturian (asturianu)
  * @author Xuacu
  */
 $messages['ast'] = array(
-	'relatedarticles-sidebartext' => 'Páxines rellacionaes',
+	'relatedarticles-title' => 'Páxines rellacionaes',
 	'relatedarticles-desc' => 'Amiesta un enllaz a páxines rellacionaes na barra llateral',
 );
 
 /** German (Deutsch)
  */
 $messages['de'] = array(
-	'relatedarticles-sidebartext' => 'Verwandte Seiten',
-	'relatedarticles-desc' => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
+	'relatedarticles-title' => 'Verwandte Seiten',
+	'relatedarticles-desc'  => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
 );
 
 /** Spanish (español)
  * @author Armando-Martin
  */
 $messages['es'] = array(
-	'relatedarticles-sidebartext' => 'Páginas relacionadas',
+	'relatedarticles-title' => 'Páginas relacionadas',
 	'relatedarticles-desc' => 'Añace un enlace a las páginas relacionadas en la barra lateral',
 );
 
@@ -48,7 +48,7 @@ $messages['es'] = array(
  * @author Gomoko
  */
 $messages['fr'] = array(
-	'relatedarticles-sidebartext' => 'Articoli collegati',
+	'relatedarticles-title' => 'Articoli collegati',
 	'relatedarticles-desc' => 'Ajoute un lien aux pages associées dans la barre latérale',
 );
 
@@ -56,7 +56,7 @@ $messages['fr'] = array(
  * @author Toliño
  */
 $messages['gl'] = array(
-	'relatedarticles-sidebartext' => 'Páxinas relacionadas',
+	'relatedarticles-title' => 'Páxinas relacionadas',
 	'relatedarticles-desc' => 'Engade unha ligazón cara ás páxinas relacionadas na barra lateral',
 );
 
@@ -64,7 +64,7 @@ $messages['gl'] = array(
  * @author Michawiki
  */
 $messages['hsb'] = array(
-	'relatedarticles-sidebartext' => 'Přiwuzne strony',
+	'relatedarticles-title' => 'Přiwuzne strony',
 	'relatedarticles-desc' => 'Přidawa wotkaz k přiwuznym stronam na bóčnicy',
 );
 
@@ -72,7 +72,7 @@ $messages['hsb'] = array(
  * @author Beta16
  */
 $messages['it'] = array(
-	'relatedarticles-sidebartext' => 'Autres articles',
+	'relatedarticles-title' => 'Autres articles',
 	'relatedarticles-desc' => 'Aggiunge un collegamento alle pagine correlate nella barra laterale',
 );
 
@@ -80,15 +80,15 @@ $messages['it'] = array(
  * @author Shirayuki
  */
 $messages['ja'] = array(
-	'relatedarticles-sidebartext' => '関連ページ',
-	'relatedarticles-desc' => '関連ページヘのリンクをサイドバーに追加する',
+	'relatedarticles-title' => '関連ページ',
+	'relatedarticles-desc'  => '関連ページヘのリンクをサイドバーに追加する',
 );
 
 /** Korean (한국어)
  * @author 아라
  */
 $messages['ko'] = array(
-	'relatedarticles-sidebartext' => '관련 문서',
+	'relatedarticles-title' => '관련 문서',
 	'relatedarticles-desc' => '사이드바에 관련된 문서의 링크 추가',
 );
 
@@ -96,7 +96,7 @@ $messages['ko'] = array(
  * @author Robby
  */
 $messages['lb'] = array(
-	'relatedarticles-sidebartext' => 'Verbonne Säiten',
+	'relatedarticles-title' => 'Verbonne Säiten',
 	'relatedarticles-desc' => "Setzt e Link op verbonne Säiten an d'Sidebar",
 );
 
@@ -104,15 +104,15 @@ $messages['lb'] = array(
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
-	'relatedarticles-sidebartext' => 'Поврзани страници',
-	'relatedarticles-desc' => 'Во страничната лента додава врска за поврзани страници',
+	'relatedarticles-title' => 'Поврзани страници',
+	'relatedarticles-desc'  => 'Во страничната лента додава врска за поврзани страници',
 );
 
 /** Telugu (తెలుగు)
  * @author Veeven
  */
 $messages['te'] = array(
-	'relatedarticles-sidebartext' => 'సంబంధిత పేజీలు',
+	'relatedarticles-title' => 'సంబంధిత పేజీలు',
 );
 
 /** Simplified Chinese (中文（简体）‎)
