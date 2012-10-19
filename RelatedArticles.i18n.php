@@ -27,9 +27,33 @@ $messages['de'] = array(
 	'relatedarticles-desc' => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
 );
 
+/** Spanish (español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'relatedarticles-sidebartext' => 'Páginas relacionadas',
+	'relatedarticles-desc' => 'Añace un enlace a las páginas relacionadas en la barra lateral',
+);
+
 /** French (français) */
 $messages['fr'] = array(
 	'relatedarticles-sidebartext' => 'Articoli collegati',
+);
+
+/** Galician (galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'relatedarticles-sidebartext' => 'Páxinas relacionadas',
+	'relatedarticles-desc' => 'Engade unha ligazón cara ás páxinas relacionadas na barra lateral',
+);
+
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'relatedarticles-sidebartext' => 'Přiwuzne strony',
+	'relatedarticles-desc' => 'Přidawa wotkaz k přiwuznym stronam na bóčnicy',
 );
 
 /** Italian (italiano)
