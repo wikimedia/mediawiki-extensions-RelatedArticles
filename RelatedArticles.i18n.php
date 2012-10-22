@@ -21,7 +21,8 @@ $messages['qqq'] = array(
 	'relatedarticles-desc' => '{{desc}}',
 );
 
-/** German (Deutsch) */
+/** German (Deutsch)
+ */
 $messages['de'] = array(
 	'relatedarticles-sidebartext' => 'Verwandte Seiten',
 	'relatedarticles-desc' => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
@@ -35,7 +36,8 @@ $messages['es'] = array(
 	'relatedarticles-desc' => 'Añace un enlace a las páginas relacionadas en la barra lateral',
 );
 
-/** French (français) */
+/** French (français)
+ */
 $messages['fr'] = array(
 	'relatedarticles-sidebartext' => 'Articoli collegati',
 );
@@ -72,6 +74,14 @@ $messages['ja'] = array(
 	'relatedarticles-desc' => '関連ページヘのリンクをサイドバーに追加する',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'relatedarticles-sidebartext' => 'Verbonne Säiten',
+	'relatedarticles-desc' => "Setzt e Link op verbonne Säiten an d'Sidebar",
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
@@ -86,4 +96,3 @@ $messages['mk'] = array(
 $messages['te'] = array(
 	'relatedarticles-sidebartext' => 'సంబంధిత పేజీలు',
 );
-
