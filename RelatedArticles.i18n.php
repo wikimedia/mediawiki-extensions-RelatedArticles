@@ -21,6 +21,14 @@ $messages['qqq'] = array(
 	'relatedarticles-desc' => '{{desc}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'relatedarticles-sidebartext' => 'Páxines rellacionaes',
+	'relatedarticles-desc' => 'Amiesta un enllaz a páxines rellacionaes na barra llateral',
+);
+
 /** German (Deutsch)
  */
 $messages['de'] = array(
@@ -72,6 +80,14 @@ $messages['it'] = array(
 $messages['ja'] = array(
 	'relatedarticles-sidebartext' => '関連ページ',
 	'relatedarticles-desc' => '関連ページヘのリンクをサイドバーに追加する',
+);
+
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'relatedarticles-sidebartext' => '관련 문서',
+	'relatedarticles-desc' => '사이드바에 관련된 문서의 링크 추가',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
