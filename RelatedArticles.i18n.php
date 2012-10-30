@@ -45,9 +45,11 @@ $messages['es'] = array(
 );
 
 /** French (français)
+ * @author Gomoko
  */
 $messages['fr'] = array(
 	'relatedarticles-sidebartext' => 'Articoli collegati',
+	'relatedarticles-desc' => 'Ajoute un lien aux pages associées dans la barre latérale',
 );
 
 /** Galician (galego)
