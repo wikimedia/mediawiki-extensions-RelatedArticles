@@ -114,3 +114,11 @@ $messages['mk'] = array(
 $messages['te'] = array(
 	'relatedarticles-sidebartext' => 'సంబంధిత పేజీలు',
 );
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author Yfdyh000
+ */
+$messages['zh-hans'] = array(
+	'relatedarticles-sidebartext' => '相关页面',
+	'relatedarticles-desc' => '添加链接到侧栏上的相关页面',
+);
