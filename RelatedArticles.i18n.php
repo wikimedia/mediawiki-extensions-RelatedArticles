@@ -18,7 +18,7 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'relatedarticles-title' => 'Title shown on the sidebar',
-	'relatedarticles-desc'  => '{{desc}}',
+	'relatedarticles-desc' => '{{desc}}',
 );
 
 /** Asturian (asturianu)
@@ -33,7 +33,7 @@ $messages['ast'] = array(
  */
 $messages['de'] = array(
 	'relatedarticles-title' => 'Verwandte Seiten',
-	'relatedarticles-desc'  => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
+	'relatedarticles-desc' => 'Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar',
 );
 
 /** Spanish (español)
@@ -81,7 +81,7 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'relatedarticles-title' => '関連ページ',
-	'relatedarticles-desc'  => '関連ページヘのリンクをサイドバーに追加する',
+	'relatedarticles-desc' => '関連ページヘのリンクをサイドバーに追加する',
 );
 
 /** Korean (한국어)
@@ -105,7 +105,7 @@ $messages['lb'] = array(
  */
 $messages['mk'] = array(
 	'relatedarticles-title' => 'Поврзани страници',
-	'relatedarticles-desc'  => 'Во страничната лента додава врска за поврзани страници',
+	'relatedarticles-desc' => 'Во страничната лента додава врска за поврзани страници',
 );
 
 /** Telugu (తెలుగు)
@@ -119,6 +119,5 @@ $messages['te'] = array(
  * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
-	'relatedarticles-sidebartext' => '相关页面',
 	'relatedarticles-desc' => '添加链接到侧栏上的相关页面',
 );
