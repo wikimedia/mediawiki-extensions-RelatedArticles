@@ -60,6 +60,14 @@ $messages['gl'] = array(
 	'relatedarticles-desc' => 'Engade unha ligazón cara ás páxinas relacionadas na barra lateral',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'relatedarticles-title' => 'דפים קשורים',
+	'relatedarticles-desc' => 'הוספת קישור לאתרים קשורים לסרגל הצד',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
@@ -106,6 +114,22 @@ $messages['lb'] = array(
 $messages['mk'] = array(
 	'relatedarticles-title' => 'Поврзани страници',
 	'relatedarticles-desc' => 'Во страничната лента додава врска за поврзани страници',
+);
+
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'relatedarticles-title' => 'Halaman berkaitan',
+	'relatedarticles-desc' => 'Menambahkan pautan ke halaman-halaman berkaitan pada palang sisi',
+);
+
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'relatedarticles-title' => "Gerelateerde pagina's",
+	'relatedarticles-desc' => "Voegt een verwijzing toe naar gerelateerde pagina's in de navigatiekolom",
 );
 
 /** Telugu (తెలుగు)
