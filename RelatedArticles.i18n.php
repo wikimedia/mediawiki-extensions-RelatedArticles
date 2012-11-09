@@ -80,7 +80,7 @@ $messages['hsb'] = array(
  * @author Beta16
  */
 $messages['it'] = array(
-	'relatedarticles-title' => 'Autres articles',
+	'relatedarticles-title' => 'Pagine correlate',
 	'relatedarticles-desc' => 'Aggiunge un collegamento alle pagine correlate nella barra laterale',
 );
 
@@ -137,6 +137,14 @@ $messages['nl'] = array(
  */
 $messages['te'] = array(
 	'relatedarticles-title' => 'సంబంధిత పేజీలు',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'relatedarticles-title' => 'Trang liên quan',
+	'relatedarticles-desc' => 'Thêm liên kết đến các trang liên quan vào thanh bên',
 );
 
 /** Simplified Chinese (中文（简体）‎)
