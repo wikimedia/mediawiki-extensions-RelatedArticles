@@ -14,13 +14,14 @@ class RelatedArticles {
 	}
 
 	/**
+	 * @throws MWException
 	 * @return CustomData
 	 */
 	public function getCustomData() {
 		global $wgCustomData;
 
 		if ( !$wgCustomData instanceof CustomData ) {
-			throw new Exception( 'CustomData extension is not properly installed.' );
+			throw new MWException( 'CustomData extension is not properly installed.' );
 		}
 
 		return $wgCustomData;

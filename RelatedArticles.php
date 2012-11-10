@@ -18,6 +18,7 @@ $wgHooks['SkinTemplateOutputPageBeforeExec'][] = array( &$wgRelatedArticles, 'on
 $wgHooks['ParserClearState'][] = array( &$wgRelatedArticles, 'onParserClearState' );
 $wgHooks['ParserBeforeTidy'][] = array( &$wgRelatedArticles, 'onParserBeforeTidy' );
 
+// @TODO Add a global to control these, and then probably use wgExtensionFunctions hook
 // 2 same hooks, with different position though - enable what you want
 // the first one is a "clean" solution, but has its content inserted _before_ the toolbox
 //$wgHooks['SkinBuildSidebar'][] = array( &$wgRelatedArticles, 'onSkinBuildSidebar' );
