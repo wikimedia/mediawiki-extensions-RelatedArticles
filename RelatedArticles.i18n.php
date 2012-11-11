@@ -15,10 +15,11 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author Raimond Spekking
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
 	'relatedarticles-title' => 'Title shown on the sidebar',
-	'relatedarticles-desc' => '{{desc}}',
+	'relatedarticles-desc' => '{{desc|name=Related Articles|url=http://www.mediawiki.org/wiki/Extension:RelatedArticles}}',
 );
 
 /** Asturian (asturianu)
