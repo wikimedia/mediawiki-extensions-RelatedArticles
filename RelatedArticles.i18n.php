@@ -133,6 +133,14 @@ $messages['nl'] = array(
 	'relatedarticles-desc' => "Voegt een verwijzing toe naar gerelateerde pagina's in de navigatiekolom",
 );
 
+/** Russian (русский)
+ * @author Kaganer
+ */
+$messages['ru'] = array(
+	'relatedarticles-title' => 'Связанные страницы',
+	'relatedarticles-desc' => 'Добавляет ссылку на связанные страницы на боковую панель',
+);
+
 /** Telugu (తెలుగు)
  * @author Veeven
  */
