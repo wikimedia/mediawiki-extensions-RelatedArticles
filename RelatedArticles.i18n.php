@@ -148,6 +148,14 @@ $messages['te'] = array(
 	'relatedarticles-title' => 'సంబంధిత పేజీలు',
 );
 
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'relatedarticles-title' => "Пов'язані сторінки",
+	'relatedarticles-desc' => "Додає посилання на пов'язані сторінки на бічну панель",
+);
+
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
  */
