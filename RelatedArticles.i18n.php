@@ -141,6 +141,13 @@ $messages['ru'] = array(
 	'relatedarticles-desc' => 'Добавляет ссылку на связанные страницы на боковую панель',
 );
 
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'relatedarticles-title' => 'ආශ්‍රිත පිටු',
+);
+
 /** Telugu (తెలుగు)
  * @author Veeven
  */
