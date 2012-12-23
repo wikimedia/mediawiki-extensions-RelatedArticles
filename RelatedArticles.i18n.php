@@ -133,6 +133,14 @@ $messages['nl'] = array(
 	'relatedarticles-desc' => "Voegt een verwijzing toe naar gerelateerde pagina's in de navigatiekolom",
 );
 
+/** Polish (polski)
+ * @author Matma Rex
+ */
+$messages['pl'] = array(
+	'relatedarticles-title' => 'Powiązane strony',
+	'relatedarticles-desc' => 'Dodaje link do powiązanych stron w menu bocznym',
+);
+
 /** Russian (русский)
  * @author Kaganer
  */
