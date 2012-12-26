@@ -156,6 +156,13 @@ $messages['si'] = array(
 	'relatedarticles-title' => 'ආශ්‍රිත පිටු',
 );
 
+/** Tamil (தமிழ்)
+ * @author Shanmugamp7
+ */
+$messages['ta'] = array(
+	'relatedarticles-title' => 'தொடர்புடைய பக்கங்கள்',
+);
+
 /** Telugu (తెలుగు)
  * @author Veeven
  */
