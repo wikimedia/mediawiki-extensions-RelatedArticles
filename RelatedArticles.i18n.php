@@ -45,6 +45,14 @@ $messages['es'] = array(
 	'relatedarticles-desc' => 'Añace un enlace a las páginas relacionadas en la barra lateral',
 );
 
+/** Finnish (suomi)
+ * @author VezonThunder
+ */
+$messages['fi'] = array(
+	'relatedarticles-title' => 'Samankaltaiset sivut',
+	'relatedarticles-desc' => 'Lisää sivupalkkiin linkin samankaltaisiin sivuihin',
+);
+
 /** French (français)
  * @author Gomoko
  */
