@@ -149,6 +149,14 @@ $messages['pl'] = array(
 	'relatedarticles-desc' => 'Dodaje link do powiązanych stron w menu bocznym',
 );
 
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'relatedarticles-title' => 'Pagine colegà',
+	'relatedarticles-desc' => 'Gionta un colegament a le pagine colegà dzor la bara lateral',
+);
+
 /** Russian (русский)
  * @author Kaganer
  */
