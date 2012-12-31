@@ -30,6 +30,13 @@ $messages['ast'] = array(
 	'relatedarticles-desc' => 'Amiesta un enllaz a páxines rellacionaes na barra llateral',
 );
 
+/** Czech (česky)
+ * @author Vks
+ */
+$messages['cs'] = array(
+	'relatedarticles-title' => 'Související stránky',
+);
+
 /** German (Deutsch)
  */
 $messages['de'] = array(
@@ -138,7 +145,7 @@ $messages['ms'] = array(
  */
 $messages['nl'] = array(
 	'relatedarticles-title' => "Gerelateerde pagina's",
-	'relatedarticles-desc' => "Voegt een verwijzing toe naar gerelateerde pagina's in de navigatiekolom",
+	'relatedarticles-desc' => "Voegt een koppeling toe naar gerelateerde pagina's in de navigatiekolom",
 );
 
 /** Polish (polski)
