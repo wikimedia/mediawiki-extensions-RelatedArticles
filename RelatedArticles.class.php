@@ -134,7 +134,7 @@ class RelatedArticles {
 		foreach ( (array) $relatedArticlesUrls as $url ) {
 			$relatedArticles[] =
 				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
-					Html::rawElement( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
+					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
 						$url['text']
 					)
 				);
@@ -169,7 +169,7 @@ class RelatedArticles {
 		foreach ( (array) $relatedArticlesUrls as $url ) {
 			$relatedArticles[] =
 				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
-					Html::rawElement( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
+					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
 						$url['text']
 					)
 				);
