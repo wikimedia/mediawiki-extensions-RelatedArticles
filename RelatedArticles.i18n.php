@@ -157,11 +157,20 @@ $messages['pl'] = array(
 );
 
 /** Piedmontese (Piemontèis)
+ * @author Borichèt
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'relatedarticles-title' => 'Pagine colegà',
-	'relatedarticles-desc' => 'Gionta un colegament a le pagine colegà dzor la bara lateral',
+	'relatedarticles-title' => 'Pàgine colegà',
+	'relatedarticles-desc' => 'A gionta na liura a le pàgine colegà ant la bara lateral',
+);
+
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'relatedarticles-title' => 'Pàggene collegate',
+	'relatedarticles-desc' => "Aggiugne 'nu collegamende a le pàggene collegate sus 'a barre laterale",
 );
 
 /** Russian (русский)
