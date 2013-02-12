@@ -108,6 +108,13 @@ $messages['ja'] = array(
 	'relatedarticles-desc' => '関連ページヘのリンクをサイドバーに追加する',
 );
 
+/** Georgian (ქართული)
+ * @author David1010
+ */
+$messages['ka'] = array(
+	'relatedarticles-title' => 'დაკავშირებული გვერდები',
+);
+
 /** Korean (한국어)
  * @author 아라
  */
