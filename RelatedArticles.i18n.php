@@ -195,6 +195,14 @@ $messages['si'] = array(
 	'relatedarticles-title' => 'ආශ්‍රිත පිටු',
 );
 
+/** Swedish (svenska)
+ * @author Ainali
+ */
+$messages['sv'] = array(
+	'relatedarticles-title' => 'Relaterade sidor',
+	'relatedarticles-desc' => 'Lägger till en länk till relaterade sidor i sidofältet',
+);
+
 /** Tamil (தமிழ்)
  * @author Shanmugamp7
  */
