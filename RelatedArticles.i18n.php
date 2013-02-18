@@ -237,5 +237,6 @@ $messages['vi'] = array(
  * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
+	'relatedarticles-title' => '相关页面',
 	'relatedarticles-desc' => '添加链接到侧栏上的相关页面',
 );
