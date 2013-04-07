@@ -240,3 +240,11 @@ $messages['zh-hans'] = array(
 	'relatedarticles-title' => '相关页面',
 	'relatedarticles-desc' => '添加链接到侧栏上的相关页面',
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Simon Shek
+ */
+$messages['zh-hant'] = array(
+	'relatedarticles-title' => '相關頁面',
+	'relatedarticles-desc' => '側欄上添加鏈接到相關頁面',
+);
