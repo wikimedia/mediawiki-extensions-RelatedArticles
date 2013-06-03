@@ -92,6 +92,14 @@ $messages['hsb'] = array(
 	'relatedarticles-desc' => 'Přidawa wotkaz k přiwuznym stronam na bóčnicy',
 );
 
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'relatedarticles-title' => 'Mainaig a pampanid',
+	'relatedarticles-desc' => 'Agnayon ti silpo kadagiti mainaig a panid iti igid a baras',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
@@ -170,6 +178,13 @@ $messages['pl'] = array(
 $messages['pms'] = array(
 	'relatedarticles-title' => 'Pàgine colegà',
 	'relatedarticles-desc' => 'A gionta na liura a le pàgine colegà ant la bara lateral',
+);
+
+/** Brazilian Portuguese (português do Brasil)
+ * @author Luckas
+ */
+$messages['pt-br'] = array(
+	'relatedarticles-title' => 'Páginas relacionadas',
 );
 
 /** tarandíne (tarandíne)
