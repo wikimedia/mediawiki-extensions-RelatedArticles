@@ -52,6 +52,14 @@ $messages['es'] = array(
 	'relatedarticles-desc' => 'Añace un enlace a las páginas relacionadas en la barra lateral',
 );
 
+/** Persian (فارسی)
+ * @author Reza1615
+ */
+$messages['fa'] = array(
+	'relatedarticles-title' => 'صفحات مرتبط',
+	'relatedarticles-desc' => 'اضافه کردن پیوند به صفحات مرتبط در نوار کناری',
+);
+
 /** Finnish (suomi)
  * @author VezonThunder
  */
