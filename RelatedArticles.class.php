@@ -181,7 +181,7 @@ class RelatedArticles {
 			Html::closeElement( 'div' ) .
 			Html::closeElement( 'div' ) .
 			Html::openElement( 'div', array( 'id' => 'p-lang', 'class' => 'portal' ) ) .
-			Html::element( 'h5', array(), wfMessage( 'relatedarticles-title' )->text() ) .
+			Html::element( 'h3', array(), wfMessage( 'relatedarticles-title' )->text() ) .
 			Html::openElement( 'div', array( 'class' => 'body' ) ) .
 			Html::openElement( 'ul', array( 'class' => 'body' ) ) .
 			implode( '', $relatedArticles );
