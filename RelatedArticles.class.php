@@ -180,10 +180,14 @@ class RelatedArticles {
 			Html::closeElement( 'ul' ) .
 			Html::closeElement( 'div' ) .
 			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', array( 'id' => 'p-lang', 'class' => 'portal' ) ) .
+			Html::openElement( 'div', array(
+				'class' => 'portal',
+				'role' => 'navigation',
+				'id' => 'p-relatedarticles',
+			) ) .
 			Html::element( 'h3', array(), wfMessage( 'relatedarticles-title' )->text() ) .
 			Html::openElement( 'div', array( 'class' => 'body' ) ) .
-			Html::openElement( 'ul', array( 'class' => 'body' ) ) .
+			Html::openElement( 'ul' ) .
 			implode( '', $relatedArticles );
 
 		return true;
