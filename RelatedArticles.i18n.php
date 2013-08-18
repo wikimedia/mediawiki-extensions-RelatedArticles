@@ -136,7 +136,7 @@ $messages['ka'] = array(
  */
 $messages['ko'] = array(
 	'relatedarticles-title' => '관련 문서',
-	'relatedarticles-desc' => '사이드바에 관련된 문서의 링크 추가',
+	'relatedarticles-desc' => '사이드바에 관련된 문서의 링크를 추가합니다',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
