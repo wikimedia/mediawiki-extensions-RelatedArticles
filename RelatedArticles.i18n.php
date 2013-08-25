@@ -188,6 +188,14 @@ $messages['pms'] = array(
 	'relatedarticles-desc' => 'A gionta na liura a le pàgine colegà ant la bara lateral',
 );
 
+/** Portuguese (português)
+ * @author Fúlvio
+ */
+$messages['pt'] = array(
+	'relatedarticles-title' => 'Páginas relacionadas',
+	'relatedarticles-desc' => 'Adiciona um link para páginas relacionadas na página lateral',
+);
+
 /** Brazilian Portuguese (português do Brasil)
  * @author Luckas
  */
