@@ -37,6 +37,13 @@ $messages['cs'] = array(
 	'relatedarticles-title' => 'Související stránky',
 );
 
+/** Welsh (Cymraeg)
+ * @author Lloffiwr
+ */
+$messages['cy'] = array(
+	'relatedarticles-title' => 'Tudalennau perthnasol',
+);
+
 /** German (Deutsch)
  */
 $messages['de'] = array(
