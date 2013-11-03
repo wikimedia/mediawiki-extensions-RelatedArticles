@@ -42,6 +42,7 @@ $messages['cs'] = array(
  */
 $messages['cy'] = array(
 	'relatedarticles-title' => 'Tudalennau perthnasol',
+	'relatedarticles-desc' => "Yn ychwanegu cyswllt at dudalennau perthnasol i'r bar llywio",
 );
 
 /** German (Deutsch)
