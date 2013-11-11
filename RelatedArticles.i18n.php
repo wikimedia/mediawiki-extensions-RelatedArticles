@@ -84,6 +84,14 @@ $messages['fr'] = array(
 	'relatedarticles-desc' => 'Ajoute un lien aux pages associées dans la barre latérale',
 );
 
+/** Northern Frisian (Nordfriisk)
+ * @author Murma174
+ */
+$messages['frr'] = array(
+	'relatedarticles-title' => 'Ferbünjen sidjen',
+	'relatedarticles-desc' => 'Ütjwidjet mögelkhaid, am ferbünjen sidjen uun det sidjenmenu uuntuwisin',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
