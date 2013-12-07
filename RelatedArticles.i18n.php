@@ -30,7 +30,7 @@ $messages['ast'] = array(
 	'relatedarticles-desc' => 'Amiesta un enllaz a páxines rellacionaes na barra llateral',
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Vks
  */
 $messages['cs'] = array(
