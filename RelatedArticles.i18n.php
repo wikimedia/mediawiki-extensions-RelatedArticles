@@ -45,6 +45,14 @@ $messages['cy'] = array(
 	'relatedarticles-desc' => "Yn ychwanegu cyswllt at dudalennau perthnasol i'r bar llywio",
 );
 
+/** Danish (dansk)
+ * @author Christian List
+ */
+$messages['da'] = array(
+	'relatedarticles-title' => 'Relaterede sider',
+	'relatedarticles-desc' => 'Tilføjer et link til relaterede sider i venstre side',
+);
+
 /** German (Deutsch)
  */
 $messages['de'] = array(
