@@ -8,6 +8,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgAutoloadClasses['RelatedArticles'] = __DIR__ . '/RelatedArticles.class.php';
 
 // extension & magic words i18n
+$wgMessagesDirs['RelatedArticles'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['RelatedArticles'] = __DIR__ . '/RelatedArticles.i18n.php';
 $wgExtensionMessagesFiles['RelatedArticlesMagic'] = __DIR__ . '/RelatedArticles.i18n.magic.php';
 
