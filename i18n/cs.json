@@ -1,8 +1,10 @@
 {
     "@metadata": {
         "authors": [
-            "Vks"
+            "Vks",
+            "Mormegil"
         ]
     },
-    "relatedarticles-title": "Související stránky"
+    "relatedarticles-title": "Související stránky",
+    "relatedarticles-desc": "Přidává do bočního panelu odkaz na související stránky"
 }
