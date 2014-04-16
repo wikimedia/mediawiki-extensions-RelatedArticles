@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Raimond Spekking",
-            "Shirayuki"
-        ]
-    },
-    "relatedarticles-title": "Title shown on the sidebar",
-    "relatedarticles-desc": "{{desc|name=Related Articles|url=http://www.mediawiki.org/wiki/Extension:RelatedArticles}}"
+	"@metadata": {
+		"authors": [
+			"Raimond Spekking",
+			"Shirayuki"
+		]
+	},
+	"relatedarticles-title": "Title shown on the sidebar",
+	"relatedarticles-desc": "{{desc|name=Related Articles|url=http://www.mediawiki.org/wiki/Extension:RelatedArticles}}"
 }

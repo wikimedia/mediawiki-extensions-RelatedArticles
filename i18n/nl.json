@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Siebrand"
-        ]
-    },
-    "relatedarticles-title": "Gerelateerde pagina's",
-    "relatedarticles-desc": "Voegt een koppeling toe naar gerelateerde pagina's in de navigatiekolom"
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"relatedarticles-title": "Gerelateerde pagina's",
+	"relatedarticles-desc": "Voegt een koppeling toe naar gerelateerde pagina's in de navigatiekolom"
 }

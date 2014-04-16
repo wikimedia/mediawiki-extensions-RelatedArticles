@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Kaganer"
-        ]
-    },
-    "relatedarticles-title": "Связанные страницы",
-    "relatedarticles-desc": "Добавляет ссылку на связанные страницы на боковую панель"
+	"@metadata": {
+		"authors": [
+			"Kaganer"
+		]
+	},
+	"relatedarticles-title": "Связанные страницы",
+	"relatedarticles-desc": "Добавляет ссылку на связанные страницы на боковую панель"
 }

@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Base"
-        ]
-    },
-    "relatedarticles-title": "Пов'язані сторінки",
-    "relatedarticles-desc": "Додає посилання на пов'язані сторінки на бічну панель"
+	"@metadata": {
+		"authors": [
+			"Base"
+		]
+	},
+	"relatedarticles-title": "Пов'язані сторінки",
+	"relatedarticles-desc": "Додає посилання на пов'язані сторінки на бічну панель"
 }
