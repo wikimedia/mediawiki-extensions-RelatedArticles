@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Simon Shek"
+			"Simon Shek",
+			"LNDDYL"
 		]
 	},
 	"relatedarticles-title": "相關頁面",
-	"relatedarticles-desc": "側欄上添加鏈接到相關頁面"
+	"relatedarticles-desc": "側欄上添加連結到相關頁面"
 }
