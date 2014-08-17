@@ -1,7 +1,7 @@
 <?php
 
 class RelatedArticles {
-	var $mRelatedArticlesSet = array();
+	public $mRelatedArticlesSet = array();
 
 	/**
 	 * @param Parser $parser
