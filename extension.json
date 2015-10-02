@@ -1,0 +1,45 @@
+{
+	"name": "RelatedArticles",
+	"version": "1.01",
+	"author": [
+		"Roland Unger",
+		"Hans Musil",
+		"Matthias Mullie"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:RelatedArticles",
+	"descriptionmsg": "relatedarticles-desc",
+	"license-name": "GPL-2.0",
+	"type": "parserhook",
+	"AutoloadClasses": {
+		"RelatedArticles\\Hooks": "includes/Hooks.php"
+	},
+	"ExtensionMessagesFiles": {
+		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"RelatedArticles\\Hooks::onParserFirstCallInit"
+		],
+		"SkinTemplateOutputPageBeforeExec": [
+			"RelatedArticles\\Hooks::onSkinTemplateOutputPageBeforeExec"
+		],
+		"ParserClearState": [
+			"RelatedArticles\\Hooks::onParserClearState"
+		],
+		"ParserBeforeTidy": [
+			"RelatedArticles\\Hooks::onParserBeforeTidy"
+		],
+		"@SkinBuildSidebar": [
+			"RelatedArticles\\Hooks::onSkinBuildSidebar"
+		],
+		"SkinTemplateToolboxEnd": [
+			"RelatedArticles\\Hooks::onSkinTemplateToolboxEnd"
+		]
+	},
+	"MessagesDirs": {
+		"RelatedArticles": [
+			"i18n"
+		]
+	},
+	"manifest_version": 1
+}
