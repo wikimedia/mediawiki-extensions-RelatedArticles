@@ -56,7 +56,11 @@ class RelatedArticles {
 	 */
 	public function onParserBeforeTidy( Parser &$parser, &$text ) {
 		if ( $this->mRelatedArticlesSet ) {
-			$this->getCustomData()->setParserData( $parser->mOutput, 'RelatedArticles', $this->mRelatedArticlesSet );
+			$this->getCustomData()->setParserData(
+				$parser->mOutput,
+				'RelatedArticles',
+				$this->mRelatedArticlesSet
+			);
 		}
 
 		return true;
