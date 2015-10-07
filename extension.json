@@ -4,14 +4,16 @@
 	"author": [
 		"Roland Unger",
 		"Hans Musil",
-		"Matthias Mullie"
+		"Matthias Mullie",
+		"Sam Smith"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:RelatedArticles",
 	"descriptionmsg": "relatedarticles-desc",
 	"license-name": "GPL-2.0",
-	"type": "parserhook",
+	"type": "other",
 	"AutoloadClasses": {
-		"RelatedArticles\\Hooks": "includes/Hooks.php"
+		"RelatedArticles\\Hooks": "includes/Hooks.php",
+		"RelatedArticles\\ReadMoreHooks": "includes/ReadMoreHooks.php"
 	},
 	"ExtensionMessagesFiles": {
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
@@ -34,6 +36,12 @@
 		],
 		"UnitTestsList": [
 			"RelatedArticles\\Hooks::onUnitTestsList"
+		],
+		"MakeGlobalVariablesScript": [
+			"RelatedArticles\\ReadMoreHooks::onMakeGlobalVariablesScript"
+		],
+		"BeforePageDisplay": [
+			"RelatedArticles\\ReadMoreHooks::onBeforePageDisplay"
 		]
 	},
 	"MessagesDirs": {
@@ -41,5 +49,37 @@
 			"i18n"
 		]
 	},
-	"manifest_version": 1
+	"manifest_version": 1,
+	"ResourceModules": {
+		"ext.relatedArticles.readMore.bootstrap": {
+			"scripts": [
+				"resources/ext.relatedArticles.readMore.bootstrap/index.js"
+			],
+			"dependencies": [
+				"mediawiki.api"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.relatedArticles.readMore.minerva": {
+			"scripts": [
+				"resources/ext.relatedArticles.readMore.minerva/index.js"
+			],
+			"styles": [
+				"resources/ext.relatedArticles.readMore.minerva/readMore.less"
+			],
+			"messages": [
+				"relatedarticles-read-more-heading"
+			],
+			"targets": [
+				"mobile"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "RelatedArticles"
+	}
 }

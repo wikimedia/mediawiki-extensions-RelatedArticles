@@ -15,6 +15,7 @@
 
 	"globals": {
 		"mw": false,
-		"$": false
+		"$": false,
+		"jQuery": true
 	}
 }

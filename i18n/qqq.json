@@ -7,5 +7,6 @@
 		]
 	},
 	"relatedarticles-title": "Title shown on the sidebar",
-	"relatedarticles-desc": "{{desc|name=Related Articles|url=https://www.mediawiki.org/wiki/Extension:RelatedArticles}}"
+	"relatedarticles-desc": "{{desc|name=Related Articles|url=https://www.mediawiki.org/wiki/Extension:RelatedArticles}}",
+	"relatedarticles-read-more-heading": "The heading of section, added at the end of the page, that lists the related pages"
 }
