@@ -20,14 +20,11 @@
 		"ParserFirstCallInit": [
 			"RelatedArticles\\Hooks::onParserFirstCallInit"
 		],
-		"SkinTemplateOutputPageBeforeExec": [
-			"RelatedArticles\\Hooks::onSkinTemplateOutputPageBeforeExec"
-		],
 		"ParserClearState": [
 			"RelatedArticles\\Hooks::onParserClearState"
 		],
-		"ParserBeforeTidy": [
-			"RelatedArticles\\Hooks::onParserBeforeTidy"
+		"OutputPageParserOutput": [
+			"RelatedArticles\\Hooks::onOutputPageParserOutput"
 		],
 		"@SkinBuildSidebar": [
 			"RelatedArticles\\Hooks::onSkinBuildSidebar"

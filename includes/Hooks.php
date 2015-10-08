@@ -3,6 +3,7 @@
 namespace RelatedArticles;
 
 use Parser;
+// FIXME: Remove in 30 days (T114915)
 use CustomData;
 use Exception;
 use Title;
@@ -10,13 +11,10 @@ use SkinTemplate;
 use BaseTemplate;
 use Skin;
 use Html;
+use OutputPage;
+use ParserOutput;
 
 class Hooks {
-
-	/**
-	 * @var array The list of related articles
-	 */
-	private static $relatedArticles = array();
 
 	/**
 	 * Handler for the <code>ParserFirstCallInit</code> hook.
@@ -38,18 +36,29 @@ class Hooks {
 	 *
 	 * Appends the arguments to the internal list so that it can be used
 	 * more that once per page.
+	 * We don't use setProperty here is there is no need
+	 * to store it as a page prop in the database, only in the cache.
 	 *
 	 * @todo Test for uniqueness
+	 * @param Parser $parser
 	 *
 	 * @return string Always <code>''</code>
 	 */
-	public static function onFuncRelated() {
+	public static function onFuncRelated( Parser $parser ) {
+		$parserOutput = $parser->getOutput();
+		$relatedArticles = $parserOutput->getExtensionData( 'RelatedArticles' );
+		if ( !$relatedArticles ) {
+			$relatedArticles = array();
+		}
 		$args = func_get_args();
 		array_shift( $args );
 
+		// Add all the related articles passed by the parser function
+		// {{#related:Test with read more|Foo|Bar}}
 		foreach ( $args as $relatedArticle ) {
-			self::$relatedArticles[] = $relatedArticle;
+			$relatedArticles[] = $relatedArticle;
 		}
+		$parserOutput->setExtensionData( 'RelatedArticles', $relatedArticles );
 
 		return '';
 	}
@@ -57,83 +66,59 @@ class Hooks {
 	/**
 	 * Handler for the <code>ParserClearState</code> hook.
 	 *
-	 * Empties the internal list.
+	 * Empties the internal list so that related articles are not passed on to future
+	 * ParserOutput's - note that {{#related:Foo}} appends and can be used multiple times
+	 * in the page.
 	 *
 	 * @param Parser $parser
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onParserClearState( Parser &$parser ) {
-		self::$relatedArticles = array();
+		$parser->getOutput()->setProperty( 'RelatedArticles', array() );
 
 		return true;
 	}
 
+
 	/**
-	 * Gets the global instance of the {@see CustomData} class.
-	 *
-	 * If the instance isn't available, then an exception is thrown.
-	 *
-	 * @throws Exception When the CustomData extension isn't properly installed
-	 * @return CustomData
-	 */
+	* Gets the global instance of the {@see CustomData} class for backwards compatibility.
+	*
+	* FIXME: This can be removed when cache clears. (T114915)
+	* If the instance isn't available, then an exception is thrown.
+	*
+	* @throws Exception When the CustomData extension isn't properly installed
+	* @deprecated
+	* @return CustomData
+	*/
 	public static function getCustomData() {
 		global $wgCustomData;
 
 		if ( !$wgCustomData instanceof CustomData ) {
-			throw new Exception( 'CustomData extension isn\'t properly installed.' );
+			throw new Exception( 'CustomData extension isn\'t properly installed and is needed to view pages in cache.' );
 		}
 
 		return $wgCustomData;
 	}
 
 	/**
-	 * Handler for the <code>ParserBeforeTidy</code> hook.
+	 * Passes the related articles array from the cached parser output object to the output page for rendering
 	 *
-	 * Stores the internal list of articles as custom parser output data
-	 * (see {@see CustomData::setParserData}) so that it can be retrieved
-	 * even when using cached parser output.
-	 *
-	 * @param Parser $parser
-	 * @param string $text
+	 * @param OutputPage $out
+	 * @param ParserOutput $parserOutput
 	 * @return boolean Always <code>true</code>
 	 */
-	public static function onParserBeforeTidy( Parser &$parser, &$text ) {
-		if ( self::$relatedArticles ) {
-			self::getCustomData()->setParserData(
-				$parser->mOutput,
-				'RelatedArticles',
-				self::$relatedArticles
-			);
+	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
+		$related = $parserOutput->getExtensionData( 'RelatedArticles' );
+		// Backwards compatability with old cached pages. In cached pages, related articles will not be in
+		// ParserOutput but will still be in custom data so let's retrieve them from there.
+		// FIXME: Remove in 30 days (T114915)
+		if ( !$related ) {
+			$related = self::getCustomData()->getParserData( $out, 'RelatedArticles' );
 		}
 
-		return true;
-	}
-
-	/**
-	 * Handler for the <code>SkinTemplateOutputPageBeforeExec</code> hook.
-	 *
-	 * Set the list of articles from the custom parser output, if any, that
-	 * has been merged into the page output, as a template variable using
-	 * {@see CustomData::setSkinData}.
-	 *
-	 * This is done to facilitate the <code>SkinTemplateToolboxEnd</code>
-	 * (see {@see Hooks::onSkinTemplateToolboxEnd}) hook handler as it
-	 * isn't passed an instance of either the <code>OutputPage</code> or
-	 * the <code>Skin</code> class.
-	 *
-	 * @param SkinTemplate $skin
-	 * @param QuickTemplate $template
-	 * @return boolean Always <code>true</code>
-	 */
-	public static function onSkinTemplateOutputPageBeforeExec(
-		SkinTemplate &$skin,
-		BaseTemplate &$template
-	) {
-		global $wgOut;
-
-		$customData = self::getCustomData();
-		$relatedArticles = $customData->getPageData( $wgOut, 'RelatedArticles' );
-		$customData->setSkinData( $template, 'RelatedArticles', $relatedArticles );
+		if ( $related ) {
+			$out->setProperty( 'RelatedArticles', $related );
+		}
 
 		return true;
 	}
@@ -183,7 +168,7 @@ class Hooks {
 	/**
 	 * Handler for the <code>SkinBuildSidebar</code> hook.
 	 *
-	 * Retrieves the list of related articles from the cached parser output
+	 * Retrieves the list of related articles
 	 * and adds its HTML representation to the sidebar.
 	 *
 	 * @param Skin $skin
@@ -192,7 +177,7 @@ class Hooks {
 	 */
 	public static function onSkinBuildSidebar( Skin $skin, &$bar ) {
 		$out = $skin->getOutput();
-		$relatedArticles = self::getCustomData()->getParserData( $out, 'RelatedArticles' );
+		$relatedArticles = $out->getProperty( 'RelatedArticles' );
 
 		if ( !$relatedArticles ) {
 			return true;
@@ -230,7 +215,7 @@ class Hooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onSkinTemplateToolboxEnd( BaseTemplate &$skinTpl ) {
-		$relatedArticles = self::getCustomData()->getSkinData( $skinTpl, 'RelatedArticles' );
+		$relatedArticles = $skinTpl->getSkin()->getOutput()->getProperty( 'RelatedArticles' );
 
 		if ( !$relatedArticles ) {
 			return true;
