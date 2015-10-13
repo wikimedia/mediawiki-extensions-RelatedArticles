@@ -1,7 +1,7 @@
 {
-    "@metadata": {
-        "authors": []
-    },
-    "relatedarticles-title": "Related pages",
-    "relatedarticles-desc": "Adds a link to related pages on the sidebar"
+	"@metadata": {
+		"authors": []
+	},
+	"relatedarticles-title": "Related pages",
+	"relatedarticles-desc": "Adds a link to related pages on the sidebar"
 }
