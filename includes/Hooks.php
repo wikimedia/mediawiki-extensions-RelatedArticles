@@ -94,14 +94,21 @@ class Hooks {
 		global $wgCustomData;
 
 		if ( !$wgCustomData instanceof CustomData ) {
-			throw new Exception( 'CustomData extension isn\'t properly installed and is needed to view pages in cache.' );
+			throw new Exception(
+				'CustomData extension isn\'t properly installed and is needed to view pages in cache.'
+			);
 		}
 
 		return $wgCustomData;
 	}
 
 	/**
-	 * Passes the related articles array from the cached parser output object to the output page for rendering
+	 * Passes the related articles list from the cached parser output
+	 * object to the output page for rendering.
+	 *
+	 * The list of related articles will be retrieved using
+	 * <code>ParserOutput#getExtensionData</code> and, if that fails,
+	 * <code>CustomData#getParserData</code>.
 	 *
 	 * @param OutputPage $out
 	 * @param ParserOutput $parserOutput
