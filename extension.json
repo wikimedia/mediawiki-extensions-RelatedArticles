@@ -31,6 +31,9 @@
 		],
 		"SkinTemplateToolboxEnd": [
 			"RelatedArticles\\Hooks::onSkinTemplateToolboxEnd"
+		],
+		"UnitTestsList": [
+			"RelatedArticles\\Hooks::onUnitTestsList"
 		]
 	},
 	"MessagesDirs": {

@@ -74,7 +74,12 @@ class Hooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onParserClearState( Parser &$parser ) {
-		$parser->getOutput()->setProperty( 'RelatedArticles', array() );
+		$parserOutput = $parser->getOutput();
+
+		$parserOutput->setExtensionData( 'RelatedArticles', array() );
+
+		// FIXME: Remove in 30 days (T115698)
+		$parserOutput->unsetProperty( 'RelatedArticles' );
 
 		return true;
 	}
@@ -259,4 +264,18 @@ class Hooks {
 		return true;
 	}
 
+	/**
+	 * Handler for the <code>UnitTestsList</code> hook.
+	 *
+	 * Adds the path to this extension's PHPUnit test suite to the set of
+	 * paths.
+	 *
+	 * @param array $paths
+	 * @return boolean Always <code>true</code>
+	 */
+	public static function onUnitTestsList( array &$paths ) {
+		$paths[] = __DIR__ . '/../tests/phpunit';
+
+		return true;
+	}
 }
