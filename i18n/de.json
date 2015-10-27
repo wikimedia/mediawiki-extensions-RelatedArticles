@@ -1,5 +1,10 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
 	"relatedarticles-title": "Verwandte Seiten",
-	"relatedarticles-desc": "Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar"
+	"relatedarticles-desc": "Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar",
+	"relatedarticles-read-more-heading": "Ähnliche Artikel"
 }
