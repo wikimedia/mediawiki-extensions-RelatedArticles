@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Yfdyh000",
-			"Hudafu"
+			"Hudafu",
+			"Liuxinyu970226"
 		]
 	},
 	"relatedarticles-title": "相关页面",
-	"relatedarticles-desc": "在边栏上添加相关页面的链接"
+	"relatedarticles-desc": "在边栏上添加相关页面的链接",
+	"relatedarticles-read-more-heading": "相关条目"
 }

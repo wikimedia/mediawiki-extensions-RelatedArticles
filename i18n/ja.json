@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Sujiniku"
 		]
 	},
 	"relatedarticles-title": "関連ページ",
-	"relatedarticles-desc": "関連ページヘのリンクをサイドバーに追加する"
+	"relatedarticles-desc": "関連ページヘのリンクをサイドバーに追加する",
+	"relatedarticles-read-more-heading": "関連記事"
 }
