@@ -44,6 +44,9 @@
 		$readMore.append( pageList.$el );
 
 		$container.append( $readMore );
+
+		// the ReadMore code is ready
+		mw.track( 'ext.relatedArticles.logReady', { $readMore: $readMore } );
 	} );
 
 }( jQuery ) );
