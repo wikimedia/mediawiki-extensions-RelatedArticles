@@ -1,8 +1,11 @@
 ( function ( $ ) {
 
-	var relatedArticles = mw.config.get( 'wgRelatedArticles', [] ).slice( 0, 4 ),
+	var relatedArticles = mw.config.get( 'wgRelatedArticles' ) || [],
 		config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
 		module;
+
+	// Limit number of related articles to 4 (more of them increases likelihood of reader ignoring).
+	relatedArticles = relatedArticles.slice( 0, 4 );
 
 	/**
 	 * Retrieves the data required to render a card.
