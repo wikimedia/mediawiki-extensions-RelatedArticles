@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Armando-Martin"
+			"Armando-Martin",
+			"Macofe"
 		]
 	},
 	"relatedarticles-title": "Páginas relacionadas",
-	"relatedarticles-desc": "Añace un enlace a las páginas relacionadas en la barra lateral"
+	"relatedarticles-desc": "Añace un enlace a las páginas relacionadas en la barra lateral",
+	"relatedarticles-read-more-heading": "Artículos relacionados"
 }
