@@ -36,7 +36,9 @@
 			// logs the event, has a sensible default value for
 			// MobileWebWatching.funnel, but it's overwritten
 			// by WatchstarPageList.
-			funnel: MOBILE_WEB_WATCHING_FUNNEL
+			funnel: MOBILE_WEB_WATCHING_FUNNEL,
+
+			api: new mw.Api()
 		} );
 
 		$readMore = $( '<aside class="ra-read-more post-content"></aside>' );
