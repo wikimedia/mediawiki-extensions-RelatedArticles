@@ -1,0 +1,27 @@
+==RelatedArticles 1.1.0==
+761ddf1 Add .gitreview and .gitignore
+2c93d90 Initial commit
+bb5e4ff Reformat code. Remove ?>
+58b1178 Some consistency tweaks:
+046bc1c maintenance
+4c61d5d Fixup documentation
+37fae79 (bug 44761) Fix sanitization for alt text
+f9bae4a RelatedArticles: Heading level in sidebar: h5 to h3
+91603a4 (bug 51870) fix html in toolbox for related articles
+09f973f Migrate to JSON i18n
+6b455b5 Update i18n shim
+ebdbab7 Use public instead of var in classes
+3f33253 MWException -> Exception
+426422b build: Configure banana-checker and jsonlint
+cd055fd Add extension boilerplate
+7995ce4 Use extension registration
+8782824 Remove CustomData dependency
+1ab33e4 build: Updating development dependencies
+397146e Update indentation to use tabs
+4578791 Hygiene: Fix PHPCS errors
+aa30f47 Clear extension data in ParserClearState handler
+81fcc48 build: Updating development dependencies
+7c23636 Add Related Articles section to Minerva
+e4685f0 mw.config.get doesn't work that way.
+816003c Tweak readMore.minerva to reflect upstream changes
+bead2ee Switch default branch to dev

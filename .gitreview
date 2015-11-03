@@ -2,5 +2,5 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/extensions/RelatedArticles.git
-defaultbranch=master
+defaultbranch=dev
 defaultrebase=0
