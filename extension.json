@@ -19,6 +19,9 @@
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
 	},
 	"Hooks": {
+		"ResourceLoaderTestModules": [
+			"RelatedArticles\\ReadMoreHooks::onResourceLoaderTestModules"
+		],
 		"ParserFirstCallInit": [
 			"RelatedArticles\\Hooks::onParserFirstCallInit"
 		],
@@ -51,12 +54,25 @@
 	},
 	"manifest_version": 1,
 	"ResourceModules": {
+		"ext.relatedArticles.readMore": {
+			"scripts": [
+				"resources/ext.relatedArticles.readMore/RelatedPagesGateway.js"
+			],
+			"dependencies": [
+				"oojs"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"ext.relatedArticles.readMore.bootstrap": {
 			"scripts": [
 				"resources/ext.relatedArticles.readMore.bootstrap/index.js"
 			],
 			"dependencies": [
-				"mediawiki.api"
+				"mediawiki.api",
+				"ext.relatedArticles.readMore"
 			],
 			"targets": [
 				"mobile",
@@ -77,6 +93,12 @@
 				"mobile"
 			]
 		}
+	},
+	"config": {
+		"RelatedArticlesUseCirrusSearch": false
+	},
+	"ConfigRegistry": {
+		"relatedarticles": "GlobalVarConfig::newInstance"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",

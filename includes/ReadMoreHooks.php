@@ -4,8 +4,34 @@ namespace RelatedArticles;
 
 use OutputPage;
 use Skin;
+use ConfigFactory;
 
 class ReadMoreHooks {
+	/**
+	 * Register QUnit tests.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+	 *
+	 * @param array $modules
+	 * @param ResourceLoader $rl
+	 * @return bool
+	 */
+	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
+		$boilerplate = array(
+			'localBasePath' => __DIR__ . '/../tests/qunit/',
+			'remoteExtPath' => 'RelatedArticles/tests/qunit',
+			'targets' => array( 'desktop', 'mobile' ),
+		);
+
+		$modules['qunit']['ext.relatedArticles.readMore.tests'] = $boilerplate + array(
+			'scripts' => array(
+				'ext.relatedArticles.readMore/test_RelatedPagesGateway.js',
+			),
+			'dependencies' => array(
+				'ext.relatedArticles.readMore',
+			),
+		);
+		return true;
+	}
 
 	/**
 	 * Handler for the <code>MakeGlobalVariablesScript</code> hook.
@@ -18,7 +44,10 @@ class ReadMoreHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'relatedarticles' );
+
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
+		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
 
 		return true;
 	}
