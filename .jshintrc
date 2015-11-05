@@ -17,6 +17,7 @@
 		"mw": false,
 		"$": false,
 		"jQuery": true,
-		"OO": true
+		"OO": true,
+		"QUnit": true
 	}
 }
