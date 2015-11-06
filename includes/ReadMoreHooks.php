@@ -59,6 +59,7 @@ class ReadMoreHooks {
 	 * to the output when:
 	 *
 	 * <ol>
+	 *   <li><code>$wgRelatedArticlesShowReadMore</code> is truthy</li>
 	 *   <li>
 	 *     The output is being rendered with the
 	 *     <code>SkinMinervaBeta<code> skin, i.e. the user is currently
@@ -72,9 +73,13 @@ class ReadMoreHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'relatedarticles' );
+		$showReadMore = $config->get( 'RelatedArticlesShowReadMore' );
+
 		$title = $out->getContext()->getTitle();
 
 		if (
+			$showReadMore &&
 			get_class( $skin ) === 'SkinMinervaBeta' &&
 			$title->inNamespace( NS_MAIN ) &&
 			!$title->isMainPage()

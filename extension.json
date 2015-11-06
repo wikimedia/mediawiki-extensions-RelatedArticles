@@ -95,6 +95,7 @@
 		}
 	},
 	"config": {
+		"RelatedArticlesShowReadMore": false,
 		"RelatedArticlesUseCirrusSearch": false
 	},
 	"ConfigRegistry": {
