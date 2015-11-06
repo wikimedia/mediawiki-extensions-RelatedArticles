@@ -6,27 +6,20 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jscs' );
 
 	grunt.initConfig( {
-		files: {
-			all: [
-				'resources/**/*.js',
-				'tests/**/*.js'
-			]
-		},
 		jshint: {
 			options: {
 				jshintrc: true
 			},
-			all: '<%= files.all %>'
+			all: '.'
 		},
 		jscs: {
-			src: '<%= files.all %>'
+			src: '.'
 		},
 		banana: {
 			all: 'i18n/'
 		},
 		jsonlint: {
 			all: [
-				'*.json',
 				'**/*.json',
 				'!node_modules/**'
 			]
