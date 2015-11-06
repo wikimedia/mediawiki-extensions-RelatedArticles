@@ -13,23 +13,18 @@
 		var Page = mw.mobileFrontend.require( 'mobile.startup/Page' );
 
 		return $.map( pages, function ( rawPage ) {
-			return new Page( {
-				id: rawPage.id,
-				title: rawPage.title,
-				thumbnail: rawPage.thumbnail,
-				wikidataDescription: rawPage.description
-			} );
+			return new Page( rawPage );
 		} );
 	}
 
-	mw.trackSubscribe( 'ext.relatedArticles.init', function ( _, data ) {
+	mw.trackSubscribe( 'ext.relatedArticles.init', function ( _, pages ) {
 		var WatchstarPageList = mw.mobileFrontend.require( 'mobile.pagelist.scripts/WatchstarPageList' ),
 			pageList,
 			$container = $( '#content' ),
 			$readMore;
 
 		pageList = new WatchstarPageList( {
-			pages: convertPages( data.pages ),
+			pages: convertPages( pages ),
 
 			// FIXME: When the user clicks any watchstar, a
 			// MobileWebWatching event is logged. Watchstar, which
