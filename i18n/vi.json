@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"Nguyên Lê"
 		]
 	},
 	"relatedarticles-title": "Trang liên quan",
-	"relatedarticles-desc": "Thêm liên kết đến các trang liên quan vào thanh bên"
+	"relatedarticles-desc": "Thêm liên kết đến các trang liên quan vào thanh bên",
+	"relatedarticles-read-more-heading": "Các bài liên quan"
 }
