@@ -3,6 +3,7 @@
 namespace RelatedArticles;
 
 use OutputPage;
+use ResourceLoader;
 use Skin;
 use ConfigFactory;
 
@@ -44,7 +45,7 @@ class ReadMoreHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'relatedarticles' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
 		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
@@ -73,7 +74,7 @@ class ReadMoreHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'relatedarticles' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 		$showReadMore = $config->get( 'RelatedArticlesShowReadMore' );
 
 		$title = $out->getContext()->getTitle();
@@ -87,6 +88,85 @@ class ReadMoreHooks {
 
 			$out->addModules( array( 'ext.relatedArticles.readMore.bootstrap' ) );
 		}
+
+		return true;
+	}
+
+	/**
+	 * EventLoggingRegisterSchemas hook handler.
+	 *
+	 * Registers our EventLogging schemas so that they can be converted to
+	 * ResourceLoaderSchemaModules by the EventLogging extension.
+	 *
+	 * If the module has already been registered in
+	 * onResourceLoaderRegisterModules, then it is overwritten.
+	 *
+	 * @param array $schemas The schemas currently registered with the EventLogging
+	 *  extension
+	 * @return bool Always true
+	 */
+	public static function onEventLoggingRegisterSchemas( &$schemas ) {
+		// @see https://meta.wikimedia.org/wiki/Schema:RelatedArticles
+		$schemas['RelatedArticles'] = 14496900;
+
+		return true;
+	}
+
+	/**
+	 * ResourceLoaderGetConfigVars hook handler for setting a config variable
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars
+	 *
+	 * @param array $vars
+	 * @return boolean
+	 */
+	public static function onResourceLoaderGetConfigVars( &$vars ) {
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$vars['wgRelatedArticlesLoggingSamplingRate'] =
+			$config->get( 'RelatedArticlesLoggingSamplingRate' );
+
+		return true;
+	}
+
+	/**
+	 * Register the "ext.relatedArticles.readMore.minerva" module.
+	 * Optionally update the dependencies and scripts if EventLogging is installed.
+	 *
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
+	 *
+	 * @param ResourceLoader &$resourceLoader The ResourceLoader object
+	 * @return boolean
+	 */
+	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
+		$dependencies = array(
+			"mediawiki.user"
+		);
+		$scripts = array(
+			"resources/ext.relatedArticles.readMore.minerva/index.js"
+		);
+
+		if ( class_exists( 'EventLogging' ) ) {
+			$dependencies[] = "ext.eventLogging.Schema";
+			$scripts[] = "resources/ext.relatedArticles.readMore.minerva/eventLogging.js";
+		}
+
+		$resourceLoader->register(
+			"ext.relatedArticles.readMore.minerva",
+			array(
+				"dependencies" => $dependencies,
+				"scripts" => $scripts,
+				"styles" => array(
+					"resources/ext.relatedArticles.readMore.minerva/readMore.less"
+				),
+				"messages" => array(
+					"relatedarticles-read-more-heading"
+				),
+				"targets" => array(
+					"mobile"
+				),
+				"localBasePath" => __DIR__ . "/..",
+				"remoteExtPath" => "RelatedArticles"
+			)
+		);
 
 		return true;
 	}

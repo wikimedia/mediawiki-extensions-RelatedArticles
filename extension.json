@@ -45,6 +45,15 @@
 		],
 		"BeforePageDisplay": [
 			"RelatedArticles\\ReadMoreHooks::onBeforePageDisplay"
+		],
+		"EventLoggingRegisterSchemas": [
+			"RelatedArticles\\ReadMoreHooks::onEventLoggingRegisterSchemas"
+		],
+		"ResourceLoaderGetConfigVars": [
+			"RelatedArticles\\ReadMoreHooks::onResourceLoaderGetConfigVars"
+		],
+		"ResourceLoaderRegisterModules": [
+			"RelatedArticles\\ReadMoreHooks::onResourceLoaderRegisterModules"
 		]
 	},
 	"MessagesDirs": {
@@ -78,28 +87,15 @@
 				"mobile",
 				"desktop"
 			]
-		},
-		"ext.relatedArticles.readMore.minerva": {
-			"scripts": [
-				"resources/ext.relatedArticles.readMore.minerva/index.js"
-			],
-			"styles": [
-				"resources/ext.relatedArticles.readMore.minerva/readMore.less"
-			],
-			"messages": [
-				"relatedarticles-read-more-heading"
-			],
-			"targets": [
-				"mobile"
-			]
 		}
 	},
 	"config": {
 		"RelatedArticlesShowReadMore": false,
-		"RelatedArticlesUseCirrusSearch": false
+		"RelatedArticlesUseCirrusSearch": false,
+		"RelatedArticlesLoggingSamplingRate": 0.01
 	},
 	"ConfigRegistry": {
-		"relatedarticles": "GlobalVarConfig::newInstance"
+		"RelatedArticles": "GlobalVarConfig::newInstance"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
