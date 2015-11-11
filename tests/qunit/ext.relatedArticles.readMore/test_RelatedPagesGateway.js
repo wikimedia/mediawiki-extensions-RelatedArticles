@@ -68,4 +68,27 @@
 		} );
 	} );
 
+	QUnit.test( 'Ignore related pages from editor curated content', 1, function ( assert ) {
+		var wgRelatedArticles = [
+				'Bar',
+				'Baz',
+				'Qux'
+			],
+			gateway = new RelatedPagesGateway( this.api, 'Foo', wgRelatedArticles, true, true ),
+			spy;
+
+		spy = this.sandbox.stub( this.api, 'get' )
+			.returns( $.Deferred().resolve( relatedPages ) );
+
+		gateway.getForCurrentPage( 1 ).then( function () {
+			var parameters = spy.lastCall.args[ 0 ];
+
+			assert.strictEqual(
+				parameters.generator,
+				'search',
+				'it should hit the CirrusSearch API even though wgRelatedArticles is non-empty'
+			);
+		} );
+	} );
+
 }( mw.mobileFrontend, jQuery ) );

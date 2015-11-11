@@ -48,7 +48,10 @@ class ReadMoreHooks {
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
+
 		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
+		$vars['wgRelatedArticlesOnlyUseCirrusSearch'] =
+			$config->get( 'RelatedArticlesOnlyUseCirrusSearch' );
 
 		return true;
 	}
