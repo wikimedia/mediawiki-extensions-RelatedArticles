@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toliño"
+			"Toliño",
+			"Elisardojm"
 		]
 	},
 	"relatedarticles-title": "Páxinas relacionadas",
-	"relatedarticles-desc": "Engade unha ligazón cara ás páxinas relacionadas na barra lateral"
+	"relatedarticles-desc": "Engade unha ligazón cara ás páxinas relacionadas na barra lateral",
+	"relatedarticles-read-more-heading": "Artigos relacionados"
 }
