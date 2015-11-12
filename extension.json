@@ -92,6 +92,7 @@
 	"config": {
 		"RelatedArticlesShowReadMore": false,
 		"RelatedArticlesUseCirrusSearch": false,
+		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"RelatedArticlesLoggingSamplingRate": 0.01
 	},
 	"ConfigRegistry": {

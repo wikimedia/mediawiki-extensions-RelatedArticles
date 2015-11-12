@@ -1,10 +1,13 @@
 ( function ( $ ) {
 
 	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
-		relatedPages = new mw.relatedArticles.RelatedPagesGateway( new mw.Api(),
-			mw.config.get( 'wgPageName' ), mw.config.get( 'wgRelatedArticles' ),
-			mw.config.get( 'wgRelatedArticlesUseCirrusSearch' ) ),
-
+		relatedPages = new mw.relatedArticles.RelatedPagesGateway(
+			new mw.Api(),
+			mw.config.get( 'wgPageName' ),
+			mw.config.get( 'wgRelatedArticles' ),
+			mw.config.get( 'wgRelatedArticlesUseCirrusSearch' ),
+			mw.config.get( 'wgRelatedArticlesOnlyUseCirrusSearch' )
+		),
 		LIMIT = 4;
 
 	if (

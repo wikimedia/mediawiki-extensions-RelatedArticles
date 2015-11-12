@@ -8,13 +8,26 @@
 	 * @param {mw.Api} api
 	 * @param {string} currentPage the page that the editorCuratedArticles relate to
 	 * @param {Array} editorCuratedArticles a list of articles curated by editors for the current page
-	 * @param {boolean} useCirrusSearch whether to hit the API when no editor curated articles are available
+	 * @param {boolean} useCirrusSearch whether to hit the API when no editor-curated articles are available
+	 * @param {boolean} [onlyUseCirrusSearch=false] whether to ignore the list of editor-curated articles
 	 */
-	function RelatedPagesGateway( api, currentPage, editorCuratedArticles, useCirrusSearch ) {
+	function RelatedPagesGateway(
+		api,
+		currentPage,
+		editorCuratedArticles,
+		useCirrusSearch,
+		onlyUseCirrusSearch
+	) {
 		this.api = api;
 		this.currentPage = currentPage;
-		this.editorCuratedArticles = editorCuratedArticles || [];
 		this.useCirrusSearch = useCirrusSearch;
+
+		if ( onlyUseCirrusSearch ) {
+			editorCuratedArticles = [];
+		}
+
+		this.editorCuratedArticles = editorCuratedArticles || [];
+
 	}
 	OO.initClass( RelatedPagesGateway );
 
