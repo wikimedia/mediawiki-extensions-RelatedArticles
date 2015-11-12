@@ -3,8 +3,6 @@
 namespace RelatedArticles;
 
 use Parser;
-// FIXME: Remove in 30 days (T114915)
-use CustomData;
 use Exception;
 use Title;
 use SkinTemplate;
@@ -84,36 +82,12 @@ class Hooks {
 		return true;
 	}
 
-
-	/**
-	* Gets the global instance of the {@see CustomData} class for backwards compatibility.
-	*
-	* FIXME: This can be removed when cache clears. (T114915)
-	* If the instance isn't available, then an exception is thrown.
-	*
-	* @throws Exception When the CustomData extension isn't properly installed
-	* @deprecated
-	* @return CustomData
-	*/
-	public static function getCustomData() {
-		global $wgCustomData;
-
-		if ( !$wgCustomData instanceof CustomData ) {
-			throw new Exception(
-				'CustomData extension isn\'t properly installed and is needed to view pages in cache.'
-			);
-		}
-
-		return $wgCustomData;
-	}
-
 	/**
 	 * Passes the related articles list from the cached parser output
 	 * object to the output page for rendering.
 	 *
 	 * The list of related articles will be retrieved using
-	 * <code>ParserOutput#getExtensionData</code> and, if that fails,
-	 * <code>CustomData#getParserData</code>.
+	 * <code>ParserOutput#getExtensionData</code>.
 	 *
 	 * @param OutputPage $out
 	 * @param ParserOutput $parserOutput
@@ -121,12 +95,6 @@ class Hooks {
 	 */
 	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
 		$related = $parserOutput->getExtensionData( 'RelatedArticles' );
-		// Backwards compatability with old cached pages. In cached pages, related articles will not be in
-		// ParserOutput but will still be in custom data so let's retrieve them from there.
-		// FIXME: Remove in 30 days (T114915)
-		if ( !$related ) {
-			$related = self::getCustomData()->getParserData( $out, 'RelatedArticles' );
-		}
 
 		if ( $related ) {
 			$out->setProperty( 'RelatedArticles', $related );
