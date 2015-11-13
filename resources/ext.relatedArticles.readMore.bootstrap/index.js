@@ -8,7 +8,7 @@
 			mw.config.get( 'wgRelatedArticlesUseCirrusSearch' ),
 			mw.config.get( 'wgRelatedArticlesOnlyUseCirrusSearch' )
 		),
-		LIMIT = 4;
+		LIMIT = 3;
 
 	if (
 		config.wgNamespaceNumber === 0 &&
