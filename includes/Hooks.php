@@ -44,19 +44,19 @@ class Hooks {
 	 */
 	public static function onFuncRelated( Parser $parser ) {
 		$parserOutput = $parser->getOutput();
-		$relatedArticles = $parserOutput->getExtensionData( 'RelatedArticles' );
-		if ( !$relatedArticles ) {
-			$relatedArticles = array();
+		$relatedPages = $parserOutput->getExtensionData( 'RelatedArticles' );
+		if ( !$relatedPages ) {
+			$relatedPages = array();
 		}
 		$args = func_get_args();
 		array_shift( $args );
 
-		// Add all the related articles passed by the parser function
+		// Add all the related pages passed by the parser function
 		// {{#related:Test with read more|Foo|Bar}}
-		foreach ( $args as $relatedArticle ) {
-			$relatedArticles[] = $relatedArticle;
+		foreach ( $args as $relatedPage ) {
+			$relatedPages[] = $relatedPage;
 		}
-		$parserOutput->setExtensionData( 'RelatedArticles', $relatedArticles );
+		$parserOutput->setExtensionData( 'RelatedArticles', $relatedPages );
 
 		return '';
 	}
@@ -64,7 +64,7 @@ class Hooks {
 	/**
 	 * Handler for the <code>ParserClearState</code> hook.
 	 *
-	 * Empties the internal list so that related articles are not passed on to future
+	 * Empties the internal list so that related pages are not passed on to future
 	 * ParserOutput's - note that {{#related:Foo}} appends and can be used multiple times
 	 * in the page.
 	 *
@@ -83,10 +83,10 @@ class Hooks {
 	}
 
 	/**
-	 * Passes the related articles list from the cached parser output
+	 * Passes the related pages list from the cached parser output
 	 * object to the output page for rendering.
 	 *
-	 * The list of related articles will be retrieved using
+	 * The list of related pages will be retrieved using
 	 * <code>ParserOutput#getExtensionData</code>.
 	 *
 	 * @param OutputPage $out
@@ -104,37 +104,37 @@ class Hooks {
 	}
 
 	/**
-	 * Generates anchor element attributes for each entry in list of articles.
+	 * Generates anchor element attributes for each entry in list of pages.
 	 *
 	 * The attributes that are generated are: <code>href</code>,
 	 * <code>text</code>, and <code>class</code>, with the latter always
 	 * set to <code>"interwiki-relart"</code>.
 	 *
-	 * If the the article is of the form <code>"Foo && Bar"</code>, then
+	 * If the the page is of the form <code>"Foo && Bar"</code>, then
 	 * the <code>text</code> attribute will be set to "Bar", otherwise the
-	 * article's {@see Title::getPrefixedText prefixed text} will be used.
+	 * page's {@see Title::getPrefixedText prefixed text} will be used.
 	 *
-	 * @param array[string] $relatedArticles
+	 * @param array[string] $relatedPages
 	 * @return array An array of maps, each with <code>href</code>,
 	 *  <code>text</code>, and <code>class</code> entries.
 	 */
-	private static function getRelatedArticlesUrls( array $relatedArticles ) {
-		$relatedArticlesUrls = array();
+	private static function getRelatedPagesUrls( array $relatedPages ) {
+		$relatedPagesUrls = array();
 
-		foreach ( $relatedArticles as $article ) {
+		foreach ( $relatedPages as $page ) {
 			// Tribute to Evan
-			$article = urldecode( $article );
+			$page = urldecode( $page );
 
 			$altText = '';
-			if ( preg_match( '/\&\&/', $article ) ) {
-				$parts = array_map( 'trim', explode( '&&', $article, 2 ) );
-				$article = $parts[0];
+			if ( preg_match( '/\&\&/', $page ) ) {
+				$parts = array_map( 'trim', explode( '&&', $page, 2 ) );
+				$page = $parts[0];
 				$altText = $parts[1];
 			}
 
-			$title = Title::newFromText( $article );
+			$title = Title::newFromText( $page );
 			if ( $title ) {
-				$relatedArticlesUrls[] = array(
+				$relatedPagesUrls[] = array(
 					'href' => $title->getLocalURL(),
 					'text' => $altText ?: $title->getPrefixedText(),
 					'class' => 'interwiki-relart'
@@ -142,13 +142,13 @@ class Hooks {
 			}
 		};
 
-		return $relatedArticlesUrls;
+		return $relatedPagesUrls;
 	}
 
 	/**
 	 * Handler for the <code>SkinBuildSidebar</code> hook.
 	 *
-	 * Retrieves the list of related articles
+	 * Retrieves the list of related pages
 	 * and adds its HTML representation to the sidebar.
 	 *
 	 * @param Skin $skin
@@ -157,18 +157,18 @@ class Hooks {
 	 */
 	public static function onSkinBuildSidebar( Skin $skin, &$bar ) {
 		$out = $skin->getOutput();
-		$relatedArticles = $out->getProperty( 'RelatedArticles' );
+		$relatedPages = $out->getProperty( 'RelatedArticles' );
 
-		if ( !$relatedArticles ) {
+		if ( !$relatedPages ) {
 			return true;
 		}
 
-		$relatedArticlesUrls = self::getRelatedArticlesUrls( $relatedArticles );
+		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
 
 		// build relatedarticles <li>'s
-		$relatedArticles = array();
-		foreach ( (array) $relatedArticlesUrls as $url ) {
-			$relatedArticles[] =
+		$relatedPages = array();
+		foreach ( (array) $relatedPagesUrls as $url ) {
+			$relatedPages[] =
 				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
 					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
 						$url['text']
@@ -179,7 +179,7 @@ class Hooks {
 		// build complete html
 		$bar[$skin->msg( 'relatedarticles-title' )->text()] =
 			Html::rawElement( 'ul', array(),
-				implode( '', $relatedArticles )
+				implode( '', $relatedPages )
 			);
 
 		return true;
@@ -188,25 +188,25 @@ class Hooks {
 	/**
 	 * Handler for the <code>SkinTemplateToolboxEnd</code> hook.
 	 *
-	 * Retrieves the list of related articles from the template and
+	 * Retrieves the list of related pages from the template and
 	 * <code>echo</code>s its HTML representation to the sidebar.
 	 *
 	 * @param SkinTemplate $skinTpl
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onSkinTemplateToolboxEnd( BaseTemplate &$skinTpl ) {
-		$relatedArticles = $skinTpl->getSkin()->getOutput()->getProperty( 'RelatedArticles' );
+		$relatedPages = $skinTpl->getSkin()->getOutput()->getProperty( 'RelatedArticles' );
 
-		if ( !$relatedArticles ) {
+		if ( !$relatedPages ) {
 			return true;
 		}
 
-		$relatedArticlesUrls = self::getRelatedArticlesUrls( $relatedArticles );
+		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
 
 		// build relatedarticles <li>'s
-		$relatedArticles = array();
-		foreach ( (array) $relatedArticlesUrls as $url ) {
-			$relatedArticles[] =
+		$relatedPages = array();
+		foreach ( (array) $relatedPagesUrls as $url ) {
+			$relatedPages[] =
 				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
 					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
 						$url['text']
@@ -227,7 +227,7 @@ class Hooks {
 			Html::element( 'h3', array(), wfMessage( 'relatedarticles-title' )->text() ) .
 			Html::openElement( 'div', array( 'class' => 'body' ) ) .
 			Html::openElement( 'ul' ) .
-			implode( '', $relatedArticles );
+			implode( '', $relatedPages );
 
 		return true;
 	}
