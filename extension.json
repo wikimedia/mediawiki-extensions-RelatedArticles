@@ -63,9 +63,9 @@
 	},
 	"manifest_version": 1,
 	"ResourceModules": {
-		"ext.relatedArticles.readMore": {
+		"ext.relatedArticles.readMore.gateway": {
 			"scripts": [
-				"resources/ext.relatedArticles.readMore/RelatedPagesGateway.js"
+				"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js"
 			],
 			"dependencies": [
 				"oojs"
@@ -81,7 +81,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
-				"ext.relatedArticles.readMore"
+				"ext.relatedArticles.readMore.gateway"
 			],
 			"targets": [
 				"mobile",

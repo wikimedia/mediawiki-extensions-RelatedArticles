@@ -23,12 +23,12 @@ class ReadMoreHooks {
 			'targets' => array( 'desktop', 'mobile' ),
 		);
 
-		$modules['qunit']['ext.relatedArticles.readMore.tests'] = $boilerplate + array(
+		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + array(
 			'scripts' => array(
-				'ext.relatedArticles.readMore/test_RelatedPagesGateway.js',
+				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',
 			),
 			'dependencies' => array(
-				'ext.relatedArticles.readMore',
+				'ext.relatedArticles.readMore.gateway',
 			),
 		);
 		return true;
@@ -65,9 +65,9 @@ class ReadMoreHooks {
 	 * <ol>
 	 *   <li><code>$wgRelatedArticlesShowReadMore</code> is truthy</li>
 	 *   <li>
-	 *     The output is being rendered with the
-	 *     <code>SkinMinervaBeta<code> skin, i.e. the user is currently
-	 *     viewing the page on the mobile set in beta mode
+	 *     The output is being rendered with any skin except the
+	 *     <code>SkinMinerva<code> skin, i.e. the user is currently
+	 *     not viewing the page on the mobile set in stable mode
 	 *   </li>
 	 *   <li>The page is in mainspace</li>
 	 * </ol>
@@ -84,7 +84,7 @@ class ReadMoreHooks {
 
 		if (
 			$showReadMore &&
-			get_class( $skin ) === 'SkinMinervaBeta' &&
+			get_class( $skin ) !== 'SkinMinerva' &&
 			$title->inNamespace( NS_MAIN ) &&
 			!$title->isMainPage()
 		) {
@@ -131,7 +131,7 @@ class ReadMoreHooks {
 	}
 
 	/**
-	 * Register the "ext.relatedArticles.readMore.minerva" module.
+	 * Register the "ext.relatedArticles.readMore" module.
 	 * Optionally update the dependencies and scripts if EventLogging is installed.
 	 *
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
@@ -141,24 +141,25 @@ class ReadMoreHooks {
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
 		$dependencies = array(
-			"mediawiki.user"
+			"mediawiki.user",
+			"mediawiki.util"
 		);
 		$scripts = array(
-			"resources/ext.relatedArticles.readMore.minerva/index.js"
+			"resources/ext.relatedArticles.readMore/index.js"
 		);
 
 		if ( class_exists( 'EventLogging' ) ) {
 			$dependencies[] = "ext.eventLogging.Schema";
-			$scripts[] = "resources/ext.relatedArticles.readMore.minerva/eventLogging.js";
+			$scripts[] = "resources/ext.relatedArticles.readMore/eventLogging.js";
 		}
 
 		$resourceLoader->register(
-			"ext.relatedArticles.readMore.minerva",
+			"ext.relatedArticles.readMore",
 			array(
 				"dependencies" => $dependencies,
 				"scripts" => $scripts,
 				"styles" => array(
-					"resources/ext.relatedArticles.readMore.minerva/readMore.less"
+					"resources/ext.relatedArticles.readMore/readMore.less"
 				),
 				"messages" => array(
 					"relatedarticles-read-more-heading"
