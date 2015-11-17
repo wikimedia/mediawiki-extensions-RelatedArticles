@@ -1,7 +1,7 @@
 ( function ( $ ) {
 
 	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
-		relatedPages = new mw.relatedArticles.RelatedPagesGateway(
+		relatedPages = new mw.relatedPages.RelatedPagesGateway(
 			new mw.Api(),
 			mw.config.get( 'wgPageName' ),
 			mw.config.get( 'wgRelatedArticles' ),

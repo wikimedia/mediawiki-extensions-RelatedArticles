@@ -1,7 +1,7 @@
 // See https://meta.wikimedia.org/wiki/Schema:RelatedArticles
 ( function ( $ ) {
 	var $readMore,
-		schemaRelatedArticles,
+		schemaRelatedPages,
 		skin = mw.config.get( 'skin' ),
 		$window = $( window );
 
@@ -34,12 +34,12 @@
 	function logReadMoreSeen() {
 		if ( isElementInViewport( $readMore ) ) {
 			$window.off( 'scroll', logReadMoreSeen );
-			schemaRelatedArticles.log( { eventName: 'seen' } );
+			schemaRelatedPages.log( { eventName: 'seen' } );
 		}
 	}
 
 	mw.trackSubscribe( 'ext.relatedArticles.logReady', function ( _, data ) {
-		schemaRelatedArticles = new mw.eventLog.Schema(
+		schemaRelatedPages = new mw.eventLog.Schema(
 			'RelatedArticles',
 			// not sampled if the config variable is not set
 			mw.config.get( 'wgRelatedArticlesLoggingSamplingRate', 0 ),
@@ -56,7 +56,7 @@
 		$readMore = data.$readMore;
 
 		// log ready
-		schemaRelatedArticles.log( { eventName: 'ready' } );
+		schemaRelatedPages.log( { eventName: 'ready' } );
 
 		// log when ReadMore is seen by the user
 		$window.on(
@@ -70,7 +70,7 @@
 		$readMore.on( 'click', 'a', function () {
 			var index = $( this ).parents( 'li' ).index();
 
-			schemaRelatedArticles.log( {
+			schemaRelatedPages.log( {
 				eventName: 'clicked',
 				clickIndex: index + 1
 			} );

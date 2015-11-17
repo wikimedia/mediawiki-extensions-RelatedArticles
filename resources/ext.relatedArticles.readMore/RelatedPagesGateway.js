@@ -1,20 +1,20 @@
 ( function ( $ ) {
 
 	// FIXME: Move into separate file as this module becomes larger.
-	mw.relatedArticles = {};
+	mw.relatedPages = {};
 
 	/**
 	 * @class RelatedPagesGateway
 	 * @param {mw.Api} api
-	 * @param {string} currentPage the page that the editorCuratedArticles relate to
-	 * @param {Array} editorCuratedArticles a list of articles curated by editors for the current page
-	 * @param {boolean} useCirrusSearch whether to hit the API when no editor-curated articles are available
-	 * @param {boolean} [onlyUseCirrusSearch=false] whether to ignore the list of editor-curated articles
+	 * @param {string} currentPage the page that the editorCuratedPages relate to
+	 * @param {Array} editorCuratedPages a list of pages curated by editors for the current page
+	 * @param {boolean} useCirrusSearch whether to hit the API when no editor-curated pages are available
+	 * @param {boolean} [onlyUseCirrusSearch=false] whether to ignore the list of editor-curated pages
 	 */
 	function RelatedPagesGateway(
 		api,
 		currentPage,
-		editorCuratedArticles,
+		editorCuratedPages,
 		useCirrusSearch,
 		onlyUseCirrusSearch
 	) {
@@ -23,10 +23,10 @@
 		this.useCirrusSearch = useCirrusSearch;
 
 		if ( onlyUseCirrusSearch ) {
-			editorCuratedArticles = [];
+			editorCuratedPages = [];
 		}
 
-		this.editorCuratedArticles = editorCuratedArticles || [];
+		this.editorCuratedPages = editorCuratedPages || [];
 
 	}
 	OO.initClass( RelatedPagesGateway );
@@ -50,7 +50,7 @@
 	 * * The Wikidata description, if any
 	 *
 	 * @method
-	 * @param {number} limit of articles to get
+	 * @param {number} limit of pages to get
 	 * @return {jQuery.Promise}
 	 */
 	RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
@@ -62,13 +62,13 @@
 				pithumbsize: 80,
 				wbptterms: 'description'
 			},
-			relatedArticles = ( this.editorCuratedArticles ).slice( 0, limit );
+			relatedPages = ( this.editorCuratedPages ).slice( 0, limit );
 
-		if ( relatedArticles.length ) {
-			parameters.pilimit = relatedArticles.length;
+		if ( relatedPages.length ) {
+			parameters.pilimit = relatedPages.length;
 			parameters[ 'continue' ] = ''; // jscs:ignore requireDotNotation
 
-			parameters.titles = relatedArticles;
+			parameters.titles = relatedPages;
 		} else if ( this.useCirrusSearch ) {
 			parameters.pilimit = limit;
 
@@ -117,5 +117,5 @@
 		} );
 	}
 
-	mw.relatedArticles.RelatedPagesGateway = RelatedPagesGateway;
+	mw.relatedPages.RelatedPagesGateway = RelatedPagesGateway;
 }( jQuery ) );

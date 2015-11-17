@@ -1,5 +1,5 @@
 ( function ( M, $ ) {
-	var RelatedPagesGateway = mw.relatedArticles.RelatedPagesGateway,
+	var RelatedPagesGateway = mw.relatedPages.RelatedPagesGateway,
 		relatedPages = {
 			query: {
 				pages: {
