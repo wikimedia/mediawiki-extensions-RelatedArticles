@@ -2,6 +2,7 @@
 
 namespace RelatedArticles;
 
+use BetaFeatures;
 use OutputPage;
 use ResourceLoader;
 use Skin;
@@ -64,11 +65,9 @@ class ReadMoreHooks {
 	 *
 	 * <ol>
 	 *   <li><code>$wgRelatedArticlesShowReadMore</code> is truthy</li>
-	 *   <li>
-	 *     The output is being rendered with any skin except the
-	 *     <code>SkinMinerva<code> skin, i.e. the user is currently
-	 *     not viewing the page on the mobile set in stable mode
-	 *   </li>
+	 *   <li>On mobile, the output is being rendered with
+	 *     <code>SkinMinervaBeta<code></li>
+	 *   <li>On desktop, the beta feature has been enabled.</li>
 	 *   <li>The page is in mainspace</li>
 	 * </ol>
 	 *
@@ -84,12 +83,18 @@ class ReadMoreHooks {
 
 		if (
 			$showReadMore &&
-			get_class( $skin ) !== 'SkinMinerva' &&
 			$title->inNamespace( NS_MAIN ) &&
 			!$title->isMainPage()
 		) {
-
-			$out->addModules( array( 'ext.relatedArticles.readMore.bootstrap' ) );
+			if (
+				get_class( $skin ) === 'SkinMinervaBeta' ||
+				(
+					class_exists( 'BetaFeatures' ) &&
+					BetaFeatures::isFeatureEnabled( $out->getUser(), 'read-more' )
+				)
+			) {
+				$out->addModules( array( 'ext.relatedArticles.readMore.bootstrap' ) );
+			}
 		}
 
 		return true;
@@ -165,6 +170,7 @@ class ReadMoreHooks {
 					"relatedarticles-read-more-heading"
 				),
 				"targets" => array(
+					"desktop",
 					"mobile"
 				),
 				"localBasePath" => __DIR__ . "/..",
@@ -174,4 +180,5 @@ class ReadMoreHooks {
 
 		return true;
 	}
+
 }

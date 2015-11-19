@@ -4,5 +4,7 @@
 	},
 	"relatedarticles-title": "Related pages",
 	"relatedarticles-desc": "Adds a link to related pages on the sidebar",
-	"relatedarticles-read-more-heading": "Related Articles"
+	"relatedarticles-read-more-heading": "Related Articles",
+	"relatedarticles-read-more-beta-feature-title": "Read more",
+	"relatedarticles-read-more-beta-feature-description": "Suggests related topics at the bottom of a page."
 }
