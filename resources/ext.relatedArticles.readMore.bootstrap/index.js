@@ -13,14 +13,14 @@
 	if (
 		config.wgNamespaceNumber === 0 &&
 		!config.wgIsMainPage &&
-		config.skin === 'minerva' &&
-		config.wgMFMode === 'beta'
+		// any skin except minerva stable
+		( config.skin !== 'minerva' || config.wgMFMode === 'beta' )
 	) {
 		$.when(
 			// Note we load dependencies here rather than ResourceLoader
-			// to avoid PHP exceptions when MobileFrontend not installed
+			// to avoid PHP exceptions when Cards not installed
 			// which should never happen given the if statement.
-			mw.loader.using( [ 'mobile.pagelist.scripts', 'ext.relatedArticles.readMore.minerva' ] ),
+			mw.loader.using( [ 'ext.cards', 'ext.relatedArticles.readMore' ] ),
 			relatedPages.getForCurrentPage( LIMIT )
 		).done( function ( _, pages ) {
 			if ( pages.length ) {

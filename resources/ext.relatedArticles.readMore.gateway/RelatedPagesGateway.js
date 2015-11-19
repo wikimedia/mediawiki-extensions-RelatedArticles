@@ -81,8 +81,7 @@
 		}
 
 		return this.api.get( parameters )
-			.then( getPages )
-			.then( processPages );
+			.then( getPages );
 	};
 
 	/**
@@ -90,31 +89,6 @@
 	 */
 	function getPages( result ) {
 		return result && result.query && result.query.pages ? result.query.pages : [];
-	}
-
-	/**
-	 * @ignore
-	 */
-	function processPages( pages ) {
-		return $.map( pages, function ( page ) {
-			var result = {
-				id: page.pageid,
-				isMissing: !page.pageid,
-				title: page.title,
-				thumbnail: page.thumbnail,
-				wikidataDescription: undefined
-			};
-
-			if (
-				page.terms &&
-				page.terms.description &&
-				page.terms.description.length > 0
-			) {
-				result.wikidataDescription = page.terms.description[ 0 ];
-			}
-
-			return result;
-		} );
 	}
 
 	mw.relatedPages.RelatedPagesGateway = RelatedPagesGateway;
