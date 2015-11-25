@@ -40,6 +40,9 @@
 		"UnitTestsList": [
 			"RelatedArticles\\Hooks::onUnitTestsList"
 		],
+		"GetBetaFeaturePreferences": [
+			"RelatedArticles\\Hooks::onGetBetaFeaturePreferences"
+		],
 		"MakeGlobalVariablesScript": [
 			"RelatedArticles\\ReadMoreHooks::onMakeGlobalVariablesScript"
 		],
