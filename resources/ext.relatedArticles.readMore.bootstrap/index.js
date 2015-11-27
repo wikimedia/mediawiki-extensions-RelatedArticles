@@ -1,80 +1,31 @@
 ( function ( $ ) {
 
-	var relatedArticles = mw.config.get( 'wgRelatedArticles' ) || [],
-		config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
-		module;
-
-	// Limit number of related articles to 4 (more of them increases likelihood of reader ignoring).
-	relatedArticles = relatedArticles.slice( 0, 4 );
-
-	/**
-	 * Retrieves the data required to render a card.
-	 *
-	 * Given a title, the following additional information is retrieved
-	 * from the API:
-	 *
-	 * * The ID of the page corresponding to the title
-	 * * The thumbnail, if any
-	 * * The Wikidata description, if any
-	 *
-	 * @private
-	 *
-	 * @param {string[]} titles
-	 * @return {jQuery.Promise}
-	 */
-	function getData( titles ) {
-		var api = new mw.Api();
-
-		return api.get( {
-			action: 'query',
-			prop: 'pageimages|pageterms',
-			wbptterms: 'description',
-			pilimit: titles.length,
-			'continue': '',
-
-			titles: titles
-		} ).then( function ( data ) {
-			if ( !data.query || !data.query.pages ) {
-				return [];
-			}
-
-			return $.map( data.query.pages, function ( page ) {
-				var result = {
-					id: page.pageid,
-					title: page.title,
-					thumbnail: page.thumbnail,
-					description: undefined
-				};
-
-				if (
-					page.terms &&
-					page.terms.description &&
-					page.terms.description.length > 0
-				) {
-					result.description = page.terms.description[ 0 ];
-				}
-
-				return result;
-			} );
-		} );
-	}
+	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
+		relatedPages = new mw.relatedPages.RelatedPagesGateway(
+			new mw.Api(),
+			mw.config.get( 'wgPageName' ),
+			mw.config.get( 'wgRelatedArticles' ),
+			mw.config.get( 'wgRelatedArticlesUseCirrusSearch' ),
+			mw.config.get( 'wgRelatedArticlesOnlyUseCirrusSearch' )
+		),
+		LIMIT = 3;
 
 	if (
-		relatedArticles.length > 0 &&
 		config.wgNamespaceNumber === 0 &&
 		!config.wgIsMainPage &&
-		config.skin === 'minerva' &&
-		config.wgMFMode === 'beta'
+		// any skin except minerva stable
+		( config.skin !== 'minerva' || config.wgMFMode === 'beta' )
 	) {
-		module = 'ext.relatedArticles.readMore.minerva';
-
-		$( function () {
-			$.when(
-				mw.loader.using( module ),
-				getData( relatedArticles )
-			).done( function ( _, data ) {
-				mw.track( 'ext.relatedArticles.init', { pages: data } );
-			} );
+		$.when(
+			// Note we load dependencies here rather than ResourceLoader
+			// to avoid PHP exceptions when Cards not installed
+			// which should never happen given the if statement.
+			mw.loader.using( [ 'ext.cards', 'ext.relatedArticles.readMore' ] ),
+			relatedPages.getForCurrentPage( LIMIT )
+		).done( function ( _, pages ) {
+			if ( pages.length ) {
+				mw.track( 'ext.relatedArticles.init', pages );
+			}
 		} );
 	}
 

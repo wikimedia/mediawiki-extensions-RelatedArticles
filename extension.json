@@ -1,6 +1,6 @@
 {
 	"name": "RelatedArticles",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"author": [
 		"Roland Unger",
 		"Hans Musil",
@@ -19,6 +19,9 @@
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
 	},
 	"Hooks": {
+		"ResourceLoaderTestModules": [
+			"RelatedArticles\\ReadMoreHooks::onResourceLoaderTestModules"
+		],
 		"ParserFirstCallInit": [
 			"RelatedArticles\\Hooks::onParserFirstCallInit"
 		],
@@ -37,11 +40,23 @@
 		"UnitTestsList": [
 			"RelatedArticles\\Hooks::onUnitTestsList"
 		],
+		"GetBetaFeaturePreferences": [
+			"RelatedArticles\\Hooks::onGetBetaFeaturePreferences"
+		],
 		"MakeGlobalVariablesScript": [
 			"RelatedArticles\\ReadMoreHooks::onMakeGlobalVariablesScript"
 		],
 		"BeforePageDisplay": [
 			"RelatedArticles\\ReadMoreHooks::onBeforePageDisplay"
+		],
+		"EventLoggingRegisterSchemas": [
+			"RelatedArticles\\ReadMoreHooks::onEventLoggingRegisterSchemas"
+		],
+		"ResourceLoaderGetConfigVars": [
+			"RelatedArticles\\ReadMoreHooks::onResourceLoaderGetConfigVars"
+		],
+		"ResourceLoaderRegisterModules": [
+			"RelatedArticles\\ReadMoreHooks::onResourceLoaderRegisterModules"
 		]
 	},
 	"MessagesDirs": {
@@ -51,32 +66,40 @@
 	},
 	"manifest_version": 1,
 	"ResourceModules": {
-		"ext.relatedArticles.readMore.bootstrap": {
+		"ext.relatedArticles.readMore.gateway": {
 			"scripts": [
-				"resources/ext.relatedArticles.readMore.bootstrap/index.js"
+				"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js"
 			],
 			"dependencies": [
-				"mediawiki.api"
+				"oojs"
 			],
 			"targets": [
 				"mobile",
 				"desktop"
 			]
 		},
-		"ext.relatedArticles.readMore.minerva": {
+		"ext.relatedArticles.readMore.bootstrap": {
 			"scripts": [
-				"resources/ext.relatedArticles.readMore.minerva/index.js"
+				"resources/ext.relatedArticles.readMore.bootstrap/index.js"
 			],
-			"styles": [
-				"resources/ext.relatedArticles.readMore.minerva/readMore.less"
-			],
-			"messages": [
-				"relatedarticles-read-more-heading"
+			"dependencies": [
+				"mediawiki.api",
+				"ext.relatedArticles.readMore.gateway"
 			],
 			"targets": [
-				"mobile"
+				"mobile",
+				"desktop"
 			]
 		}
+	},
+	"config": {
+		"RelatedArticlesShowReadMore": false,
+		"RelatedArticlesUseCirrusSearch": false,
+		"RelatedArticlesOnlyUseCirrusSearch": false,
+		"RelatedArticlesLoggingSamplingRate": 0.01
+	},
+	"ConfigRegistry": {
+		"RelatedArticles": "GlobalVarConfig::newInstance"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",

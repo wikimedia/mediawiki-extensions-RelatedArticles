@@ -10,20 +10,16 @@ module.exports = function ( grunt ) {
 			options: {
 				jshintrc: true
 			},
-			all: [
-				'*.js',
-				'resources/**/*.js'
-			]
+			all: '.'
 		},
 		jscs: {
-			src: '<%= jshint.all %>'
+			src: '.'
 		},
 		banana: {
 			all: 'i18n/'
 		},
 		jsonlint: {
 			all: [
-				'*.json',
 				'**/*.json',
 				'!node_modules/**'
 			]
