@@ -1,3 +1,16 @@
+==RelatedArticles 1.2.0==
+e86fc3b Fall back to CirrusSearch's morelike: feature
+5b5a0b2 Put Read More behind a feature flag
+7ebe784 Run JSHint and JSCS against tests
+3995b7a Add event logging to read more
+2397059 Remove CustomData extension dependency
+529b798 build: Simplify Grunt configuration
+0fed50e Optionally disable Read More using extension data
+f87807e Limit the number of pages to 3
+d08962d [Hygiene] Rename internal uses of "article" to "page"
+8cf9b60 Make RelatedArticles soft-depend on Cards
+5522727 Add simple README
+95ea0b0 Make RelatedArticles available as a beta feature
 ==RelatedArticles 1.1.0==
 761ddf1 Add .gitreview and .gitignore
 2c93d90 Initial commit
