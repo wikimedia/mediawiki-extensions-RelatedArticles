@@ -2,26 +2,25 @@
 	var RelatedPagesGateway = mw.relatedPages.RelatedPagesGateway,
 		relatedPages = {
 			query: {
-				pages: {
-					123: {
-						id: 123,
+				pages: [
+					{
+						pageid: 123,
 						title: 'Oh noes',
 						ns: 0,
 						thumbnail: {
 							source: 'http://placehold.it/200x100'
 						}
 					}
-				}
+				]
 			}
 		},
 		emptyRelatedPages = {
 			query: {
-				pages: {
-				}
+				pages: []
 			}
 		};
 
-	QUnit.module( 'RelatedArticles readMore - Related pages api', {
+	QUnit.module( 'ext.relatedArticles.gateway', {
 		setup: function () {
 			this.api = new mw.Api();
 		}
