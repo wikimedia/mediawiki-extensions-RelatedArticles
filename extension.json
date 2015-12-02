@@ -97,8 +97,8 @@
 		}
 	},
 	"config": {
-		"@RelatedArticlesShowReadMore": "If true, shows ReadMore while hiding related articles from the sidebar on desktop.",
-		"RelatedArticlesShowReadMore": false,
+		"RelatedArticlesShowInSidebar": true,
+		"RelatedArticlesShowInFooter": false,
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"RelatedArticlesLoggingSamplingRate": 0.01
