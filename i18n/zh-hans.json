@@ -8,5 +8,7 @@
 	},
 	"relatedarticles-title": "相关页面",
 	"relatedarticles-desc": "在边栏上添加相关页面的链接",
-	"relatedarticles-read-more-heading": "相关条目"
+	"relatedarticles-read-more-heading": "相关条目",
+	"relatedarticles-read-more-beta-feature-title": "阅读更多",
+	"relatedarticles-read-more-beta-feature-description": "在页面底部建议相关话题。"
 }
