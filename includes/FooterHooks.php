@@ -9,32 +9,7 @@ use Skin;
 use ConfigFactory;
 use User;
 
-class ReadMoreHooks {
-	/**
-	 * Register QUnit tests.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
-	 *
-	 * @param array $modules
-	 * @param ResourceLoader $rl
-	 * @return bool
-	 */
-	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
-		$boilerplate = array(
-			'localBasePath' => __DIR__ . '/../tests/qunit/',
-			'remoteExtPath' => 'RelatedArticles/tests/qunit',
-			'targets' => array( 'desktop', 'mobile' ),
-		);
-
-		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + array(
-			'scripts' => array(
-				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',
-			),
-			'dependencies' => array(
-				'ext.relatedArticles.readMore.gateway',
-			),
-		);
-		return true;
-	}
+class FooterHooks {
 
 	/**
 	 * Handler for the <code>MakeGlobalVariablesScript</code> hook.
