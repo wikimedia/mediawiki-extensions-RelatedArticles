@@ -41,7 +41,7 @@
 			"RelatedArticles\\Hooks::onUnitTestsList"
 		],
 		"GetBetaFeaturePreferences": [
-			"RelatedArticles\\Hooks::onGetBetaFeaturePreferences"
+			"RelatedArticles\\ReadMoreHooks::onGetBetaFeaturePreferences"
 		],
 		"MakeGlobalVariablesScript": [
 			"RelatedArticles\\ReadMoreHooks::onMakeGlobalVariablesScript"
@@ -93,6 +93,7 @@
 		}
 	},
 	"config": {
+		"@RelatedArticlesShowReadMore": "If true, shows ReadMore while hiding related articles from the sidebar on desktop.",
 		"RelatedArticlesShowReadMore": false,
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,

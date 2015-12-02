@@ -7,6 +7,7 @@ use OutputPage;
 use ResourceLoader;
 use Skin;
 use ConfigFactory;
+use User;
 
 class ReadMoreHooks {
 	/**
@@ -177,6 +178,40 @@ class ReadMoreHooks {
 				"remoteExtPath" => "RelatedArticles"
 			)
 		);
+
+		return true;
+	}
+
+	/**
+	 * GetBetaFeaturePreferences hook handler
+	 * The beta feature is for showing ReadMore, not for showing related
+	 * articles in the sidebar.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/GetBetaFeaturePreferences
+	 *
+	 * @param User $user
+	 * @param array $preferences
+	 *
+	 * @return bool
+	 */
+	public static function onGetBetaFeaturePreferences( User $user, array &$preferences ) {
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$showReadMore = $config->get( 'RelatedArticlesShowReadMore' );
+
+		if ( $showReadMore ) {
+			$wgExtensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
+
+			$preferences['read-more'] = array(
+				'label-message' => 'relatedarticles-read-more-beta-feature-title',
+				'desc-message' => 'relatedarticles-read-more-beta-feature-description',
+				'screenshot' => array(
+					'ltr' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-ltr.svg",
+					'rtl' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-rtl.svg",
+				),
+				'info-link' => 'https://www.mediawiki.org/wiki/Reading/Web/Projects/Read_more',
+				'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Reading/Web/Projects/Read_more',
+			);
+
+		}
 
 		return true;
 	}
