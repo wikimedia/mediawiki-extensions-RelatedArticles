@@ -40,10 +40,10 @@ class FooterHooks {
 	 * to the output when:
 	 *
 	 * <ol>
-	 *   <li><code>$wgRelatedArticlesShowReadMore</code> is truthy</li>
+	 *   <li><code>$wgRelatedArticlesShowInFooter</code> is truthy</li>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
-	 *   <li>On desktop, the beta feature has been enabled.</li>
+	 *   <li>On desktop, the beta feature has been enabled</li>
 	 *   <li>The page is in mainspace</li>
 	 * </ol>
 	 *
@@ -53,7 +53,7 @@ class FooterHooks {
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
-		$showReadMore = $config->get( 'RelatedArticlesShowReadMore' );
+		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
 		$title = $out->getContext()->getTitle();
 
@@ -170,7 +170,7 @@ class FooterHooks {
 	 */
 	public static function onGetBetaFeaturePreferences( User $user, array &$preferences ) {
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
-		$showReadMore = $config->get( 'RelatedArticlesShowReadMore' );
+		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
 		if ( $showReadMore ) {
 			$wgExtensionAssetsPath = $config->get( 'ExtensionAssetsPath' );

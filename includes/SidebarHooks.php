@@ -157,7 +157,7 @@ class SidebarHooks {
 	private static function isInSidebar( $relatedPages, User $user ) {
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 
-		if ( !$relatedPages || $config->get( 'RelatedArticlesShowReadMore' ) ) {
+		if ( !$relatedPages || !$config->get( 'RelatedArticlesShowInSidebar' ) ) {
 			return false;
 		}
 
