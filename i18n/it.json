@@ -6,5 +6,7 @@
 	},
 	"relatedarticles-title": "Pagine correlate",
 	"relatedarticles-desc": "Aggiunge un collegamento alle pagine correlate nella barra laterale",
-	"relatedarticles-read-more-heading": "Voci correlate"
+	"relatedarticles-read-more-heading": "Voci correlate",
+	"relatedarticles-read-more-beta-feature-title": "Per saperne di più",
+	"relatedarticles-read-more-beta-feature-description": "Suggerisci argomenti correlati in fondo alla pagina."
 }
