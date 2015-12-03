@@ -2,10 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Armando-Martin",
-			"Macofe"
+			"Macofe",
+			"SinNovedades"
 		]
 	},
 	"relatedarticles-title": "Páginas relacionadas",
 	"relatedarticles-desc": "Añace un enlace a las páginas relacionadas en la barra lateral",
-	"relatedarticles-read-more-heading": "Artículos relacionados"
+	"relatedarticles-read-more-heading": "Artículos relacionados",
+	"relatedarticles-read-more-beta-feature-title": "Seguir leyendo",
+	"relatedarticles-read-more-beta-feature-description": "Sugerir temas relacionados al final de la página."
 }

@@ -6,5 +6,7 @@
 	},
 	"relatedarticles-title": "Articoli collegati",
 	"relatedarticles-desc": "Ajoute un lien aux pages associées dans la barre latérale",
-	"relatedarticles-read-more-heading": "Articles associés"
+	"relatedarticles-read-more-heading": "Articles associés",
+	"relatedarticles-read-more-beta-feature-title": "En savoir plus",
+	"relatedarticles-read-more-beta-feature-description": "Suggère des sujets connexes en bas d’une page."
 }
