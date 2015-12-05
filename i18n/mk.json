@@ -5,6 +5,8 @@
 		]
 	},
 	"relatedarticles-title": "Поврзани страници",
-	"relatedarticles-desc": "Во страничната лента додава врска за поврзани страници",
-	"relatedarticles-read-more-heading": "Поврзани статии"
+	"relatedarticles-desc": "Во страничникот додава врска за поврзани страници",
+	"relatedarticles-read-more-heading": "Поврзани статии",
+	"relatedarticles-read-more-beta-feature-title": "Прочитајте повеќе",
+	"relatedarticles-read-more-beta-feature-description": "Предлага поврзани теми на дното од страницата."
 }
