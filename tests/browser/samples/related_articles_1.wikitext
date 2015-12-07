@@ -1,0 +1,5 @@
+RelatedArticles page 1
+
+{{#related:related_articles_2}}
+{{#related:related_articles_3}}
+{{#related:related_articles_4}}
