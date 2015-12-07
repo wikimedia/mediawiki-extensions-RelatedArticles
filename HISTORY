@@ -1,3 +1,8 @@
+==RelatedArticles 2.0.0==
+fbc6961 Fix RelatedPagesGateway unit test failures
+18990e6 Correctly show related articles on desktop
+9157e30 [Hygiene] Reorganise hooks to reflect placements
+040314c [Breaking] Configure footer and sidebar placements
 ==RelatedArticles 1.2.0==
 e86fc3b Fall back to CirrusSearch's morelike: feature
 5b5a0b2 Put Read More behind a feature flag

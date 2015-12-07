@@ -1,6 +1,6 @@
 {
 	"name": "RelatedArticles",
-	"version": "1.2.0",
+	"version": "2.0.0",
 	"author": [
 		"Roland Unger",
 		"Hans Musil",
@@ -13,15 +13,20 @@
 	"type": "other",
 	"AutoloadClasses": {
 		"RelatedArticles\\Hooks": "includes/Hooks.php",
-		"RelatedArticles\\ReadMoreHooks": "includes/ReadMoreHooks.php"
+		"RelatedArticles\\SidebarHooks": "includes/SidebarHooks.php",
+		"RelatedArticles\\FooterHooks": "includes/FooterHooks.php"
 	},
 	"ExtensionMessagesFiles": {
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
 	},
 	"Hooks": {
-		"ResourceLoaderTestModules": [
-			"RelatedArticles\\ReadMoreHooks::onResourceLoaderTestModules"
+		"UnitTestsList": [
+			"RelatedArticles\\Hooks::onUnitTestsList"
 		],
+		"ResourceLoaderTestModules": [
+			"RelatedArticles\\Hooks::onResourceLoaderTestModules"
+		],
+
 		"ParserFirstCallInit": [
 			"RelatedArticles\\Hooks::onParserFirstCallInit"
 		],
@@ -31,32 +36,31 @@
 		"OutputPageParserOutput": [
 			"RelatedArticles\\Hooks::onOutputPageParserOutput"
 		],
+
 		"@SkinBuildSidebar": [
-			"RelatedArticles\\Hooks::onSkinBuildSidebar"
+			"RelatedArticles\\SidebarHooks::onSkinBuildSidebar"
 		],
 		"SkinTemplateToolboxEnd": [
-			"RelatedArticles\\Hooks::onSkinTemplateToolboxEnd"
+			"RelatedArticles\\SidebarHooks::onSkinTemplateToolboxEnd"
 		],
-		"UnitTestsList": [
-			"RelatedArticles\\Hooks::onUnitTestsList"
-		],
+
 		"GetBetaFeaturePreferences": [
-			"RelatedArticles\\Hooks::onGetBetaFeaturePreferences"
+			"RelatedArticles\\FooterHooks::onGetBetaFeaturePreferences"
 		],
 		"MakeGlobalVariablesScript": [
-			"RelatedArticles\\ReadMoreHooks::onMakeGlobalVariablesScript"
+			"RelatedArticles\\FooterHooks::onMakeGlobalVariablesScript"
 		],
 		"BeforePageDisplay": [
-			"RelatedArticles\\ReadMoreHooks::onBeforePageDisplay"
+			"RelatedArticles\\FooterHooks::onBeforePageDisplay"
 		],
 		"EventLoggingRegisterSchemas": [
-			"RelatedArticles\\ReadMoreHooks::onEventLoggingRegisterSchemas"
+			"RelatedArticles\\FooterHooks::onEventLoggingRegisterSchemas"
 		],
 		"ResourceLoaderGetConfigVars": [
-			"RelatedArticles\\ReadMoreHooks::onResourceLoaderGetConfigVars"
+			"RelatedArticles\\FooterHooks::onResourceLoaderGetConfigVars"
 		],
 		"ResourceLoaderRegisterModules": [
-			"RelatedArticles\\ReadMoreHooks::onResourceLoaderRegisterModules"
+			"RelatedArticles\\FooterHooks::onResourceLoaderRegisterModules"
 		]
 	},
 	"MessagesDirs": {
@@ -93,7 +97,8 @@
 		}
 	},
 	"config": {
-		"RelatedArticlesShowReadMore": false,
+		"RelatedArticlesShowInSidebar": true,
+		"RelatedArticlesShowInFooter": false,
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"RelatedArticlesLoggingSamplingRate": 0.01

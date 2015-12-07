@@ -2,18 +2,9 @@
 
 namespace RelatedArticles;
 
-use BetaFeatures;
-use ConfigFactory;
 use Parser;
-use Exception;
-use Title;
-use SkinTemplate;
-use BaseTemplate;
-use Skin;
-use Html;
 use OutputPage;
 use ParserOutput;
-use User;
 
 class Hooks {
 
@@ -107,138 +98,6 @@ class Hooks {
 	}
 
 	/**
-	 * Generates anchor element attributes for each entry in list of pages.
-	 *
-	 * The attributes that are generated are: <code>href</code>,
-	 * <code>text</code>, and <code>class</code>, with the latter always
-	 * set to <code>"interwiki-relart"</code>.
-	 *
-	 * If the the page is of the form <code>"Foo && Bar"</code>, then
-	 * the <code>text</code> attribute will be set to "Bar", otherwise the
-	 * page's {@see Title::getPrefixedText prefixed text} will be used.
-	 *
-	 * @param array[string] $relatedPages
-	 * @return array An array of maps, each with <code>href</code>,
-	 *  <code>text</code>, and <code>class</code> entries.
-	 */
-	private static function getRelatedPagesUrls( array $relatedPages ) {
-		$relatedPagesUrls = array();
-
-		foreach ( $relatedPages as $page ) {
-			// Tribute to Evan
-			$page = urldecode( $page );
-
-			$altText = '';
-			if ( preg_match( '/\&\&/', $page ) ) {
-				$parts = array_map( 'trim', explode( '&&', $page, 2 ) );
-				$page = $parts[0];
-				$altText = $parts[1];
-			}
-
-			$title = Title::newFromText( $page );
-			if ( $title ) {
-				$relatedPagesUrls[] = array(
-					'href' => $title->getLocalURL(),
-					'text' => $altText ?: $title->getPrefixedText(),
-					'class' => 'interwiki-relart'
-				);
-			}
-		};
-
-		return $relatedPagesUrls;
-	}
-
-	/**
-	 * Handler for the <code>SkinBuildSidebar</code> hook.
-	 *
-	 * Retrieves the list of related pages
-	 * and adds its HTML representation to the sidebar if the ReadMore feature
-	 * is disabled and the beta feature is enabled by the user.
-	 *
-	 * @param Skin $skin
-	 * @param array $bar
-	 * @return boolean Always <code>true</code>
-	 */
-	public static function onSkinBuildSidebar( Skin $skin, &$bar ) {
-		$out = $skin->getOutput();
-		$relatedPages = $out->getProperty( 'RelatedArticles' );
-
-		if ( !Hooks::isAbleToShowRelatedPages( $relatedPages, $out->getUser() ) ) {
-			return true;
-		}
-
-		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
-
-		// build relatedarticles <li>'s
-		$relatedPages = array();
-		foreach ( (array) $relatedPagesUrls as $url ) {
-			$relatedPages[] =
-				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
-					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
-						$url['text']
-					)
-				);
-		}
-
-		// build complete html
-		$bar[$skin->msg( 'relatedarticles-title' )->text()] =
-			Html::rawElement( 'ul', array(),
-				implode( '', $relatedPages )
-			);
-
-		return true;
-	}
-
-	/**
-	 * Handler for the <code>SkinTemplateToolboxEnd</code> hook.
-	 *
-	 * Retrieves the list of related pages from the template and
-	 * <code>echo</code>s its HTML representation to the sidebar if the
-	 * ReadMore feature is disabled and the beta feature is enabled by the user.
-	 *
-	 * @param SkinTemplate $skinTpl
-	 * @return boolean Always <code>true</code>
-	 */
-	public static function onSkinTemplateToolboxEnd( BaseTemplate &$skinTpl ) {
-		$out = $skinTpl->getSkin()->getOutput();
-		$relatedPages = $out->getProperty( 'RelatedArticles' );
-
-		if ( !Hooks::isAbleToShowRelatedPages( $relatedPages, $out->getUser() ) ) {
-			return true;
-		}
-
-		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
-
-		// build relatedarticles <li>'s
-		$relatedPages = array();
-		foreach ( (array) $relatedPagesUrls as $url ) {
-			$relatedPages[] =
-				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
-					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
-						$url['text']
-					)
-				);
-		}
-
-		// build complete html
-		echo
-			Html::closeElement( 'ul' ) .
-			Html::closeElement( 'div' ) .
-			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', array(
-				'class' => 'portal',
-				'role' => 'navigation',
-				'id' => 'p-relatedarticles',
-			) ) .
-			Html::element( 'h3', array(), wfMessage( 'relatedarticles-title' )->text() ) .
-			Html::openElement( 'div', array( 'class' => 'body' ) ) .
-			Html::openElement( 'ul' ) .
-			implode( '', $relatedPages );
-
-		return true;
-	}
-
-	/**
 	 * Handler for the <code>UnitTestsList</code> hook.
 	 *
 	 * Adds the path to this extension's PHPUnit test suite to the set of
@@ -254,53 +113,28 @@ class Hooks {
 	}
 
 	/**
-	 * GetBetaFeaturePreferences hook handler
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/GetBetaFeaturePreferences
+	 * Register QUnit tests.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
-	 * @param User $user
-	 * @param array $preferences
-	 *
+	 * @param array $modules
+	 * @param ResourceLoader $rl
 	 * @return bool
 	 */
-	public static function onGetBetaFeaturePreferences( User $user, array &$preferences ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
-		$wgExtensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
-
-		$preferences['read-more'] = array(
-			'label-message' => 'relatedarticles-read-more-beta-feature-title',
-			'desc-message' => 'relatedarticles-read-more-beta-feature-description',
-			'screenshot' => array(
-				'ltr' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-ltr.svg",
-				'rtl' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-rtl.svg",
-			),
-			'info-link' => 'https://www.mediawiki.org/wiki/Reading/Web/Projects/Read_more',
-			'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Reading/Web/Projects/Read_more',
+	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
+		$boilerplate = array(
+			'localBasePath' => __DIR__ . '/../tests/qunit/',
+			'remoteExtPath' => 'RelatedArticles/tests/qunit',
+			'targets' => array( 'desktop', 'mobile' ),
 		);
 
-		return true;
-	}
-
-	/**
-	 * Check whether there are related articles that can be displayed,
-	 * the ReadMore feature is disabled, and the beta feature is
-	 * enabled by the user. Return true if BetaFeatures is not installed.
-	 *
-	 * @param mixed|null $relatedPages
-	 * @param User $user
-	 * @return bool
-	 * @throws \ConfigException
-	 */
-	private static function isAbleToShowRelatedPages( $relatedPages, User $user ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
-
-		if ( !$relatedPages || $config->get( 'RelatedArticlesShowReadMore' ) ) {
-			return false;
-		}
-
-		if ( class_exists( 'BetaFeatures' ) ) {
-			return BetaFeatures::isFeatureEnabled( $user, 'read-more' );
-		}
-
+		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + array(
+			'scripts' => array(
+				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',
+			),
+			'dependencies' => array(
+				'ext.relatedArticles.readMore.gateway',
+			),
+		);
 		return true;
 	}
 }

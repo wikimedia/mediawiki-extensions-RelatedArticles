@@ -7,33 +7,9 @@ use OutputPage;
 use ResourceLoader;
 use Skin;
 use ConfigFactory;
+use User;
 
-class ReadMoreHooks {
-	/**
-	 * Register QUnit tests.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
-	 *
-	 * @param array $modules
-	 * @param ResourceLoader $rl
-	 * @return bool
-	 */
-	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
-		$boilerplate = array(
-			'localBasePath' => __DIR__ . '/../tests/qunit/',
-			'remoteExtPath' => 'RelatedArticles/tests/qunit',
-			'targets' => array( 'desktop', 'mobile' ),
-		);
-
-		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + array(
-			'scripts' => array(
-				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',
-			),
-			'dependencies' => array(
-				'ext.relatedArticles.readMore.gateway',
-			),
-		);
-		return true;
-	}
+class FooterHooks {
 
 	/**
 	 * Handler for the <code>MakeGlobalVariablesScript</code> hook.
@@ -64,10 +40,10 @@ class ReadMoreHooks {
 	 * to the output when:
 	 *
 	 * <ol>
-	 *   <li><code>$wgRelatedArticlesShowReadMore</code> is truthy</li>
+	 *   <li><code>$wgRelatedArticlesShowInFooter</code> is truthy</li>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
-	 *   <li>On desktop, the beta feature has been enabled.</li>
+	 *   <li>On desktop, the beta feature has been enabled</li>
 	 *   <li>The page is in mainspace</li>
 	 * </ol>
 	 *
@@ -77,7 +53,7 @@ class ReadMoreHooks {
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
-		$showReadMore = $config->get( 'RelatedArticlesShowReadMore' );
+		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
 		$title = $out->getContext()->getTitle();
 
@@ -177,6 +153,40 @@ class ReadMoreHooks {
 				"remoteExtPath" => "RelatedArticles"
 			)
 		);
+
+		return true;
+	}
+
+	/**
+	 * GetBetaFeaturePreferences hook handler
+	 * The beta feature is for showing ReadMore, not for showing related
+	 * articles in the sidebar.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/GetBetaFeaturePreferences
+	 *
+	 * @param User $user
+	 * @param array $preferences
+	 *
+	 * @return bool
+	 */
+	public static function onGetBetaFeaturePreferences( User $user, array &$preferences ) {
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
+
+		if ( $showReadMore ) {
+			$wgExtensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
+
+			$preferences['read-more'] = array(
+				'label-message' => 'relatedarticles-read-more-beta-feature-title',
+				'desc-message' => 'relatedarticles-read-more-beta-feature-description',
+				'screenshot' => array(
+					'ltr' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-ltr.svg",
+					'rtl' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-rtl.svg",
+				),
+				'info-link' => 'https://www.mediawiki.org/wiki/Reading/Web/Projects/Read_more',
+				'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Reading/Web/Projects/Read_more',
+			);
+
+		}
 
 		return true;
 	}

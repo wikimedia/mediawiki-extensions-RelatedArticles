@@ -7,5 +7,7 @@
 	},
 	"relatedarticles-title": "Powiązane strony",
 	"relatedarticles-desc": "Dodaje link do powiązanych stron w menu bocznym",
-	"relatedarticles-read-more-heading": "Powiązane artykuły"
+	"relatedarticles-read-more-heading": "Powiązane artykuły",
+	"relatedarticles-read-more-beta-feature-title": "Czytaj więcej",
+	"relatedarticles-read-more-beta-feature-description": "Sugestia tematów pokrewnych na dole strony."
 }

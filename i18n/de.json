@@ -7,5 +7,7 @@
 	},
 	"relatedarticles-title": "Verwandte Seiten",
 	"relatedarticles-desc": "Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar",
-	"relatedarticles-read-more-heading": "Verwandte Artikel"
+	"relatedarticles-read-more-heading": "Verwandte Artikel",
+	"relatedarticles-read-more-beta-feature-title": "Mehr erfahren",
+	"relatedarticles-read-more-beta-feature-description": "Schlägt ähnliche Themen am Seitenende vor."
 }
