@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( $, mw ) {
 
 	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
 		relatedPages = new mw.relatedPages.RelatedPagesGateway(
@@ -29,4 +29,4 @@
 		} );
 	}
 
-}( jQuery ) );
+}( jQuery, mediaWiki ) );

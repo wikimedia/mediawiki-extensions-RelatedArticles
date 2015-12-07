@@ -3,6 +3,7 @@
 	"bitwise": true,
 	"eqeqeq": true,
 	"es3": true,
+	"freeze": true,
 	"latedef": true,
 	"noarg": true,
 	"nonew": true,
@@ -11,10 +12,11 @@
 
 	// Environment
 	"browser": true,
+	"jquery": true,
 
 	"globals": {
 		"mw": false,
-		"jQuery": false,
+		"mediaWiki": false,
 		"OO": false,
 		"QUnit": false
 	}

@@ -77,4 +77,4 @@
 		} );
 	} );
 
-} )( jQuery );
+}( jQuery, mediaWiki ) );
