@@ -38,6 +38,8 @@
 	if (
 		config.wgNamespaceNumber === 0 &&
 		!config.wgIsMainPage &&
+		// T120735
+		mw.config.get( 'wgAction' ) === 'view' &&
 		// any skin except minerva stable
 		( config.skin !== 'minerva' || config.wgMFMode === 'beta' )
 	) {
