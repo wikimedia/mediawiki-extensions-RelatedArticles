@@ -1,0 +1,3 @@
+RelatedArticles page 3
+
+{{#related:related_articles_4}}

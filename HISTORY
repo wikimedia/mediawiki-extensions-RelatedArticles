@@ -1,3 +1,9 @@
+==RelatedArticles 2.1.0==
+9932fee Add browser tests for ReadMore
+8a73239 Update packages
+9623c1c RelatedArticles load after half window scroll
+ed338bb Disable RelatedArticles when editor enabled
+a3d9b22 Fix loading related articles on small screens
 ==RelatedArticles 2.0.0==
 fbc6961 Fix RelatedPagesGateway unit test failures
 18990e6 Correctly show related articles on desktop
