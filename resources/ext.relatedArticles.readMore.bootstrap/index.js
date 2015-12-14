@@ -12,13 +12,14 @@
 		debouncedLoad = $.debounce( 100, function () {
 			loadRelatedArticles();
 		} ),
-		$window = $( window ),
+		$window = $( window );
+
+	function loadRelatedArticles() {
 		/**
 		 * Threshold value to load related articles - after about half scroll
 		 */
-		scrollThreshold = ( $( document ).height() / 2 ) - $window.height();
+		var scrollThreshold = ( $( document ).height() / 2 ) - $window.height();
 
-	function loadRelatedArticles() {
 		if ( $window.scrollTop() > scrollThreshold ) {
 			$.when(
 				// Note we load dependencies here rather than ResourceLoader
