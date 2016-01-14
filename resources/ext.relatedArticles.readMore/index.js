@@ -48,7 +48,7 @@
 				.append( $( '<h2></h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
 				.append( cards.$el );
 
-			$( '#content' ).append( $readMore );
+			$readMore.insertAfter( '#content' );
 
 			// the ReadMore code is ready
 			mw.track( 'ext.relatedArticles.logReady', { $readMore: $readMore } );
