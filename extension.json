@@ -10,7 +10,7 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:RelatedArticles",
 	"descriptionmsg": "relatedarticles-desc",
 	"license-name": "GPL-2.0",
-	"type": "other",
+	"type": "betafeatures",
 	"AutoloadClasses": {
 		"RelatedArticles\\Hooks": "includes/Hooks.php",
 		"RelatedArticles\\SidebarHooks": "includes/SidebarHooks.php",
