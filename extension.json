@@ -1,6 +1,6 @@
 {
 	"name": "RelatedArticles",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"author": [
 		"Roland Unger",
 		"Hans Musil",
@@ -10,7 +10,7 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:RelatedArticles",
 	"descriptionmsg": "relatedarticles-desc",
 	"license-name": "GPL-2.0",
-	"type": "other",
+	"type": "betafeatures",
 	"AutoloadClasses": {
 		"RelatedArticles\\Hooks": "includes/Hooks.php",
 		"RelatedArticles\\SidebarHooks": "includes/SidebarHooks.php",
