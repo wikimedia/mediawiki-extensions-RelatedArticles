@@ -7,8 +7,10 @@ class SpecialPreferencesPage
   button(:submit_button, css: '#prefcontrol')
 
   def enable_read_more
-    self.beta_features_tab_element.when_present.click
-    read_more_checkbox_element.when_present.click if read_more_checkbox_element.attribute('checked').nil?
+    beta_features_tab_element.when_present.click
+    if read_more_checkbox_element.attribute('checked').nil?
+      read_more_checkbox_element.when_present.click
+    end
     submit_button_element.when_present.click
   end
 end

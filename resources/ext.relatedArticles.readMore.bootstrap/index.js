@@ -1,6 +1,7 @@
 ( function ( $, mw ) {
 
-	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode', 'wgIsMainPage' ] ),
+	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode',
+			'wgIsMainPage', 'wgAction' ] ),
 		relatedPages = new mw.relatedPages.RelatedPagesGateway(
 			new mw.Api(),
 			mw.config.get( 'wgPageName' ),
@@ -14,6 +15,11 @@
 		} ),
 		$window = $( window );
 
+	/**
+	 * Load related articles when the user scrolls past half of the window height.
+	 *
+	 * @ignore
+	 */
 	function loadRelatedArticles() {
 		/**
 		 * Threshold value to load related articles - after about half scroll
@@ -36,11 +42,29 @@
 			$window.off( 'scroll', debouncedLoad );
 		}
 	}
+
+	/**
+	 * Is the current page a diff page?
+	 *
+	 * @ignore
+	 * @return {boolean}
+	 */
+	function isDiffPage() {
+		var queryParams = new mw.Uri( window.location.href ).query;
+
+		return !!(
+			queryParams.type === 'revision' ||
+			queryParams.hasOwnProperty( 'diff' ) ||
+			queryParams.hasOwnProperty( 'oldid' )
+		);
+	}
+
 	if (
 		config.wgNamespaceNumber === 0 &&
 		!config.wgIsMainPage &&
 		// T120735
-		mw.config.get( 'wgAction' ) === 'view' &&
+		config.wgAction === 'view' &&
+		!isDiffPage() &&
 		// any skin except minerva stable
 		( config.skin !== 'minerva' || config.wgMFMode === 'beta' )
 	) {

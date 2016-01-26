@@ -67,7 +67,7 @@ Then(/^page has fully loaded without ReadMore code$/) do
 end
 
 Then(/^ReadMore is enabled as a beta feature$/) do
-  visit(SpecialPreferencesPage).enable_read_more()
+  visit(SpecialPreferencesPage).enable_read_more
 end
 
 Then(/^I must see ReadMore$/) do
