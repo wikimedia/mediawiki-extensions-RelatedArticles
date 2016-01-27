@@ -6,8 +6,8 @@
 		]
 	},
 	"relatedarticles-title": "Verwandte Seiten",
-	"relatedarticles-desc": "Erweiterung für die Ausgabe von verwandten Seiten auf der Sidebar",
-	"relatedarticles-read-more-heading": "Verwandte Artikel",
+	"relatedarticles-desc": "Ergänzt einen Link auf ähnliche Seiten in der Seitenleiste oder Fußzeile, falls der Benutzer die Betafunktion aktiviert.",
+	"relatedarticles-read-more-heading": "Verwandte Seiten",
 	"relatedarticles-read-more-beta-feature-title": "Mehr erfahren",
-	"relatedarticles-read-more-beta-feature-description": "Schlägt ähnliche Themen am Seitenende vor."
+	"relatedarticles-read-more-beta-feature-description": "Schlägt ähnliche Seiten am Seitenende vor."
 }
