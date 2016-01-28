@@ -5,8 +5,8 @@
 		]
 	},
 	"relatedarticles-title": "Pagine correlate",
-	"relatedarticles-desc": "Aggiunge un collegamento alle pagine correlate nella barra laterale",
-	"relatedarticles-read-more-heading": "Voci correlate",
+	"relatedarticles-desc": "Aggiunge un collegamento alle pagine correlate nella barra laterale o nel piè di pagina, se l'utente attiva la funzione beta.",
+	"relatedarticles-read-more-heading": "Pagine correlate",
 	"relatedarticles-read-more-beta-feature-title": "Per saperne di più",
-	"relatedarticles-read-more-beta-feature-description": "Suggerisci argomenti correlati in fondo alla pagina."
+	"relatedarticles-read-more-beta-feature-description": "Suggerisci pagine correlate in fondo alla pagina."
 }
