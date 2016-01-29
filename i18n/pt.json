@@ -6,8 +6,8 @@
 		]
 	},
 	"relatedarticles-title": "Páginas relacionadas",
-	"relatedarticles-desc": "Adiciona uma ligação para páginas relacionadas na barra lateral",
-	"relatedarticles-read-more-heading": "Artigos relacionados",
+	"relatedarticles-desc": "Adiciona uma ligação para páginas relacionadas na barra lateral ou no rodapé, se o editor tiver a funcionalidade beta ativada.",
+	"relatedarticles-read-more-heading": "Páginas relacionadas",
 	"relatedarticles-read-more-beta-feature-title": "Ler mais",
-	"relatedarticles-read-more-beta-feature-description": "Sugere tópicos relacionados na parte inferior de uma página."
+	"relatedarticles-read-more-beta-feature-description": "Sugere páginas relacionadas na parte inferior de uma página."
 }
