@@ -5,6 +5,8 @@
 		]
 	},
 	"relatedarticles-title": "Páxines rellacionaes",
-	"relatedarticles-desc": "Amiesta un enllaz a páxines rellacionaes na barra llateral",
-	"relatedarticles-read-more-heading": "Artículos rellacionaos"
+	"relatedarticles-desc": "Amiesta un enllaz a páxines rellacionaes na barra llateral o nel pie, si l'usuariu activa la carauterística beta",
+	"relatedarticles-read-more-heading": "Páxines rellacionaes",
+	"relatedarticles-read-more-beta-feature-title": "Lleer más",
+	"relatedarticles-read-more-beta-feature-description": "Suxer páxines rellacionaes al final d'una páxina."
 }
