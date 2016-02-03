@@ -7,7 +7,7 @@
 		]
 	},
 	"relatedarticles-title": "Связанные страницы",
-	"relatedarticles-desc": "Добавляет ссылку на связанные страницы на боковую панель",
+	"relatedarticles-desc": "Добавляет ссылку на связанные страницы на боковую панель или в шапку, если участник включает бета-функцию.",
 	"relatedarticles-read-more-heading": "Связанные страницы",
 	"relatedarticles-read-more-beta-feature-title": "Читать ещё",
 	"relatedarticles-read-more-beta-feature-description": "В нижней части страницы предлагает связанные темы"
