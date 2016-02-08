@@ -6,7 +6,7 @@
 		]
 	},
 	"relatedarticles-title": "Související stránky",
-	"relatedarticles-desc": "Přidává do bočního panelu odkaz na související stránky",
-	"relatedarticles-read-more-heading": "Související články",
-	"relatedarticles-read-more-beta-feature-description": "Navrhuje související témata v dolní části stránky."
+	"relatedarticles-desc": "Přidává do bočního panelu nebo patičky odkaz na související stránky, pokud si uživatel tuto betafunkci zapne.",
+	"relatedarticles-read-more-heading": "Související stránky",
+	"relatedarticles-read-more-beta-feature-description": "Navrhuje související stránky v dolní části stránky."
 }
