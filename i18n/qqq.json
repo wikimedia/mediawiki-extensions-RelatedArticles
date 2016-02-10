@@ -10,6 +10,6 @@
 	"relatedarticles-title": "Title shown on the sidebar",
 	"relatedarticles-desc": "{{desc|name=Related Articles|url=https://www.mediawiki.org/wiki/Extension:RelatedArticles}}",
 	"relatedarticles-read-more-heading": "The heading of section, added at the end of the page, that lists the related pages",
-	"relatedarticles-read-more-beta-feature-title": "Title of the ReadMore feature in Special:Preferences#mw-prefsection-betafeatures.\n{{Identical|Read more}}",
-	"relatedarticles-read-more-beta-feature-description": "Description of the ReadMore feature in Special:Preferences#mw-prefsection-betafeatures"
+	"relatedarticles-read-more-beta-feature-title": "Title of the related pages feature in Special:Preferences#mw-prefsection-betafeatures.\n{{Identical|Read more}}",
+	"relatedarticles-read-more-beta-feature-description": "Description of the related pages feature in Special:Preferences#mw-prefsection-betafeatures"
 }
