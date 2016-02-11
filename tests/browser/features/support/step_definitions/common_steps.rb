@@ -36,10 +36,6 @@ Given /^I am in mobile beta mode$/ do
   end
 end
 
-Given(/^I am logged into the website$/) do
-  visit(LoginPage).login_with(user, password)
-end
-
 Given(/^I am on the "(.*?)" page/) do |arg1|
   visit(ArticlePage, using_params: { article_name: arg1 })
 end

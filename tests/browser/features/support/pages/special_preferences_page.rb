@@ -8,9 +8,8 @@ class SpecialPreferencesPage
 
   def enable_read_more
     beta_features_tab_element.when_present.click
-    if read_more_checkbox_element.attribute('checked').nil?
-      read_more_checkbox_element.when_present.click
-    end
+    return unless read_more_checkbox_element.attribute('checked').nil?
+    read_more_checkbox_element.click
     submit_button_element.when_present.click
   end
 end
