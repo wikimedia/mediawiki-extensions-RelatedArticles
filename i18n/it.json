@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Fringio"
 		]
 	},
 	"relatedarticles-title": "Pagine correlate",
 	"relatedarticles-desc": "Aggiunge un collegamento alle pagine correlate nella barra laterale o nel piè di pagina, se l'utente attiva la funzione beta.",
 	"relatedarticles-read-more-heading": "Pagine correlate",
-	"relatedarticles-read-more-beta-feature-title": "Per saperne di più",
+	"relatedarticles-read-more-beta-feature-title": "Pagine correlate",
 	"relatedarticles-read-more-beta-feature-description": "Suggerisci pagine correlate in fondo alla pagina."
 }
