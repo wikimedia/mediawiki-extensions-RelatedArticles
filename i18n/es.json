@@ -8,8 +8,8 @@
 		]
 	},
 	"relatedarticles-title": "Páginas relacionadas",
-	"relatedarticles-desc": "Añace un enlace a las páginas relacionadas en la barra lateral",
+	"relatedarticles-desc": "Añade un enlace a las páginas relacionadas en la barra lateral o en el pie de página, si el usuario habilita la función beta.",
 	"relatedarticles-read-more-heading": "Páginas relacionadas",
 	"relatedarticles-read-more-beta-feature-title": "Páginas relacionadas",
-	"relatedarticles-read-more-beta-feature-description": "Sugiere temas relacionados al final de una página."
+	"relatedarticles-read-more-beta-feature-description": "Sugiere páginas relacionadas al final de una página."
 }
