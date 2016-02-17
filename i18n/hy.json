@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Դավիթ Սարոյան"
+			"Դավիթ Սարոյան",
+			"Աշոտ1997"
 		]
 	},
-	"relatedarticles-title": "Առնչվող հոդվածներ",
-	"relatedarticles-read-more-heading": "Առնչվող հոդվածներ",
+	"relatedarticles-title": "Առնչվող էջեր",
+	"relatedarticles-read-more-heading": "Առնչվող էջեր",
 	"relatedarticles-read-more-beta-feature-title": "Իմանալ ավելին"
 }
