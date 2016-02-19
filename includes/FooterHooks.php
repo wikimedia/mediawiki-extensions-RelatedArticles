@@ -142,6 +142,14 @@ class FooterHooks {
 				"styles" => array(
 					"resources/ext.relatedArticles.readMore/readMore.less"
 				),
+				"skinStyles" => array(
+					"default" => "resources/ext.relatedArticles.readMore/readMore.default.less",
+					"monobook" => array(
+						"resources/ext.relatedArticles.readMore/readMore.default.less",
+						"resources/ext.relatedArticles.readMore/readMore.monobook.less"
+					),
+					"minerva" => "resources/ext.relatedArticles.readMore/readMore.minerva.less"
+				),
 				"messages" => array(
 					"relatedarticles-read-more-heading"
 				),
