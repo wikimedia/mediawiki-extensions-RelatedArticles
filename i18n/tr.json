@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"HakanIST"
+			"HakanIST",
+			"Sayginer"
 		]
 	},
+	"relatedarticles-read-more-heading": "İlgili sayfalar",
 	"relatedarticles-read-more-beta-feature-title": "Devamı"
 }
