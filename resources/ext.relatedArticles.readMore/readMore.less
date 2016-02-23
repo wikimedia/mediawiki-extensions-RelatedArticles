@@ -1,16 +1,6 @@
 @import "mediawiki.ui/variables";
 
-// Hide RelatedArticles when VE is activated (https://phabricator.wikimedia.org/T120443)
-.ve-activated {
-	.ra-read-more {
-		display: none;
-	}
-}
-
 .ra-read-more {
-	margin-top: 35px;
-	margin-bottom: 70px;
-
 	h2 {
 		border-bottom: none;
 		font-size: .8em;
@@ -19,20 +9,5 @@
 		padding-bottom: 0.5em;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-	}
-
-	.page-list {
-		border-top: 1px solid @colorGray14;
-	}
-}
-
-body.skin-vector {
-	.ra-read-more {
-		margin: 0 0 0 10em;
-		padding: 1em;
-
-		.ext-cards-card-list {
-			margin-left: 0;
-		}
 	}
 }
