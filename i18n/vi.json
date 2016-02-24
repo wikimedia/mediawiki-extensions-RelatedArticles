@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Minh Nguyen",
-			"Nguyên Lê"
+			"Nguyên Lê",
+			"Dinhxuanduyet"
 		]
 	},
 	"relatedarticles-title": "Trang liên quan",
 	"relatedarticles-desc": "Thêm liên kết đến các trang liên quan vào thanh bên",
-	"relatedarticles-read-more-heading": "Các bài liên quan"
+	"relatedarticles-read-more-heading": "Các trang liên quan"
 }
