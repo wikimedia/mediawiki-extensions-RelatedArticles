@@ -3,11 +3,13 @@
 		"authors": [
 			"Shirayuki",
 			"Sujiniku",
-			"Otokoume"
+			"Otokoume",
+			"Fryed-peach"
 		]
 	},
 	"relatedarticles-title": "関連ページ",
 	"relatedarticles-desc": "もし利用者がベータ機能を有効化する場合、関連ページヘのリンクをサイドバーに追加します。",
 	"relatedarticles-read-more-heading": "関連ページ",
-	"relatedarticles-read-more-beta-feature-title": "関連ページ"
+	"relatedarticles-read-more-beta-feature-title": "関連ページ",
+	"relatedarticles-read-more-beta-feature-description": "ページの末尾で関連したページを提案する。"
 }
