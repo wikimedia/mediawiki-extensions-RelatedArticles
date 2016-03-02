@@ -32,7 +32,7 @@ beta_desktop:
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!
 
-beta_mobile:
+beta:
   mediawiki_url: http://en.m.wikipedia.beta.wmflabs.org/wiki/
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!
