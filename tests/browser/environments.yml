@@ -27,12 +27,12 @@ mw-vagrant-guest:
   mediawiki_url: http://127.0.0.1/wiki/
   user_factory: true
 
-beta_desktop:
+beta-desktop:
   mediawiki_url: http://en.wikipedia.beta.wmflabs.org/wiki/
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!
 
-beta:
+beta-mobile:
   mediawiki_url: http://en.m.wikipedia.beta.wmflabs.org/wiki/
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!

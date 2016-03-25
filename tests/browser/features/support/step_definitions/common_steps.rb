@@ -1,15 +1,15 @@
 Given(/^RelatedArticles test pages are installed$/) do
   api.create_page 'Related Articles 1',
-                  File.read('samples/related_articles_1.wikitext')
+                  File.read(File.join(__dir__, '../../../samples/related_articles_1.wikitext'))
 
   api.create_page 'Related Articles 2',
-                  File.read('samples/related_articles_2.wikitext')
+                  File.read(File.join(__dir__, '../../../samples/related_articles_2.wikitext'))
 
   api.create_page 'Related Articles 3',
-                  File.read('samples/related_articles_3.wikitext')
+                  File.read(File.join(__dir__, '../../../samples/related_articles_3.wikitext'))
 
   api.create_page 'Related Articles 4',
-                  File.read('samples/related_articles_4.wikitext')
+                  File.read(File.join(__dir__, '../../../samples/related_articles_4.wikitext'))
 end
 
 Given(/^I am using the mobile site$/) do
