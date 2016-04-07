@@ -130,6 +130,7 @@ class FooterHooks {
 		);
 
 		if ( class_exists( 'EventLogging' ) ) {
+			$dependencies[] = "mediawiki.viewport";
 			$dependencies[] = "ext.eventLogging.Schema";
 			$scripts[] = "resources/ext.relatedArticles.readMore/eventLogging.js";
 		}

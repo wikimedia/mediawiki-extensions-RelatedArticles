@@ -6,33 +6,10 @@
 		$window = $( window );
 
 	/**
-	 * Check if at least half of the element's height and half of its width are in viewport
-	 *
-	 * @method
-	 * @param {jQuery.Object} $el - element that's being tested
-	 * @return {boolean}
-	 */
-	function isElementInViewport( $el ) {
-		var windowHeight = $window.height(),
-			windowWidth = $window.width(),
-			windowScrollLeft = $window.scrollLeft(),
-			windowScrollTop = $window.scrollTop(),
-			elHeight = $el.height(),
-			elWidth = $el.width(),
-			elOffset = $el.offset();
-
-		return (
-			( windowScrollTop + windowHeight >= elOffset.top + elHeight / 2 ) &&
-			( windowScrollLeft + windowWidth >= elOffset.left + elWidth / 2 ) &&
-			( windowScrollTop <= elOffset.top + elHeight / 2 )
-		);
-	}
-
-	/**
 	 * Log when ReadMore is seen by the user
 	 */
 	function logReadMoreSeen() {
-		if ( isElementInViewport( $readMore ) ) {
+		if ( mw.viewport.isElementInViewport( $readMore.get( 0 ) ) ) {
 			$window.off( 'scroll', logReadMoreSeen );
 			schemaRelatedPages.log( { eventName: 'seen' } );
 		}
