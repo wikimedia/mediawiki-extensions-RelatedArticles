@@ -59,7 +59,7 @@
 				formatversion: 2,
 				prop: 'pageimages|pageterms',
 				piprop: 'thumbnail',
-				pithumbsize: 80,
+				pithumbsize: 160, // FIXME: Revert to 80 once pithumbmode is implemented
 				wbptterms: 'description'
 			},
 			relatedPages = ( this.editorCuratedPages ).slice( 0, limit );
