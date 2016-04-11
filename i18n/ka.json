@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"David1010"
+			"David1010",
+			"Otogi"
 		]
 	},
-	"relatedarticles-title": "დაკავშირებული გვერდები"
+	"relatedarticles-title": "დაკავშირებული გვერდები",
+	"relatedarticles-read-more-heading": "დაკავშირებული გვერდები",
+	"relatedarticles-read-more-beta-feature-title": "დაკავშირებული გვერდები",
+	"relatedarticles-read-more-beta-feature-description": "ასახავს დაკავშირებულ თემებს გვერდის ქვემოთ"
 }
