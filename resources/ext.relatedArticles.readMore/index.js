@@ -44,7 +44,7 @@
 
 			cards = new CardListView( getCards( pages ) );
 
-			$readMore = $( '<aside class="ra-read-more post-content"></aside>' )
+			$readMore = $( '<aside class="ra-read-more post-content noprint"></aside>' )
 				.append( $( '<h2></h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
 				.append( cards.$el );
 
