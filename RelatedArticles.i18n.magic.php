@@ -1,7 +1,7 @@
 <?php
 
-$magicWords = array();
+$magicWords = [];
 
-$magicWords['en'] = array(
-	'related' => array( 0, 'related' ),
-);
+$magicWords['en'] = [
+	'related' => [ 0, 'related' ],
+];

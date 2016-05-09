@@ -34,11 +34,11 @@ class SidebarHooks {
 		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
 
 		// build relatedarticles <li>'s
-		$relatedPages = array();
+		$relatedPages = [];
 		foreach ( (array) $relatedPagesUrls as $url ) {
 			$relatedPages[] =
-				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
-					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
+				Html::rawElement( 'li', [ 'class' => htmlspecialchars( $url['class'] ) ],
+					Html::element( 'a', [ 'href' => htmlspecialchars( $url['href'] ) ],
 						$url['text']
 					)
 				);
@@ -46,7 +46,7 @@ class SidebarHooks {
 
 		// build complete html
 		$bar[$skin->msg( 'relatedarticles-title' )->text()] =
-			Html::rawElement( 'ul', array(),
+			Html::rawElement( 'ul', [],
 				implode( '', $relatedPages )
 			);
 
@@ -74,11 +74,11 @@ class SidebarHooks {
 		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
 
 		// build relatedarticles <li>'s
-		$relatedPages = array();
+		$relatedPages = [];
 		foreach ( (array) $relatedPagesUrls as $url ) {
 			$relatedPages[] =
-				Html::rawElement( 'li', array( 'class' => htmlspecialchars( $url['class'] ) ),
-					Html::element( 'a', array( 'href' => htmlspecialchars( $url['href'] ) ),
+				Html::rawElement( 'li', [ 'class' => htmlspecialchars( $url['class'] ) ],
+					Html::element( 'a', [ 'href' => htmlspecialchars( $url['href'] ) ],
 						$url['text']
 					)
 				);
@@ -89,13 +89,13 @@ class SidebarHooks {
 			Html::closeElement( 'ul' ) .
 			Html::closeElement( 'div' ) .
 			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', array(
+			Html::openElement( 'div', [
 				'class' => 'portal',
 				'role' => 'navigation',
 				'id' => 'p-relatedarticles',
-			) ) .
-			Html::element( 'h3', array(), wfMessage( 'relatedarticles-title' )->text() ) .
-			Html::openElement( 'div', array( 'class' => 'body' ) ) .
+			] ) .
+			Html::element( 'h3', [], wfMessage( 'relatedarticles-title' )->text() ) .
+			Html::openElement( 'div', [ 'class' => 'body' ] ) .
 			Html::openElement( 'ul' ) .
 			implode( '', $relatedPages );
 
@@ -118,7 +118,7 @@ class SidebarHooks {
 	 *  <code>text</code>, and <code>class</code> entries.
 	 */
 	private static function getRelatedPagesUrls( array $relatedPages ) {
-		$relatedPagesUrls = array();
+		$relatedPagesUrls = [];
 
 		foreach ( $relatedPages as $page ) {
 			// Tribute to Evan
@@ -133,11 +133,11 @@ class SidebarHooks {
 
 			$title = Title::newFromText( $page );
 			if ( $title ) {
-				$relatedPagesUrls[] = array(
+				$relatedPagesUrls[] = [
 					'href' => $title->getLocalURL(),
 					'text' => $altText ?: $title->getPrefixedText(),
 					'class' => 'interwiki-relart'
-				);
+				];
 			}
 		};
 

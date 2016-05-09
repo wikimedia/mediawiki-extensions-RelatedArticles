@@ -12,7 +12,7 @@ class HooksTest extends PHPUnit_Framework_TestCase {
 	public function test_onParserClearState() {
 		$parser = new Parser();
 		$parserOutput = $parser->mOutput = new ParserOutput();
-		$relatedPages = array( 'Maybeshewill' );
+		$relatedPages = [ 'Maybeshewill' ];
 
 		$parserOutput->setExtensionData( 'RelatedArticles', $relatedPages );
 		$parserOutput->setProperty( 'RelatedArticles', $relatedPages );
@@ -20,7 +20,7 @@ class HooksTest extends PHPUnit_Framework_TestCase {
 		Hooks::onParserClearState( $parser );
 
 		$this->assertEquals(
-			array(),
+			[],
 			$parserOutput->getExtensionData( 'RelatedArticles' ),
 			'It clears the list of related pages.'
 		);

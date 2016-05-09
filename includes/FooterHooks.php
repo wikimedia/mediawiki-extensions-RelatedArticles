@@ -69,7 +69,7 @@ class FooterHooks {
 					BetaFeatures::isFeatureEnabled( $out->getUser(), 'read-more' )
 				)
 			) {
-				$out->addModules( array( 'ext.relatedArticles.readMore.bootstrap' ) );
+				$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
 			}
 		}
 
@@ -121,13 +121,13 @@ class FooterHooks {
 	 * @return boolean
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		$dependencies = array(
+		$dependencies = [
 			"mediawiki.user",
 			"mediawiki.util"
-		);
-		$scripts = array(
+		];
+		$scripts = [
 			"resources/ext.relatedArticles.readMore/index.js"
-		);
+		];
 
 		if ( class_exists( 'EventLogging' ) ) {
 			$dependencies[] = "mediawiki.viewport";
@@ -137,30 +137,30 @@ class FooterHooks {
 
 		$resourceLoader->register(
 			"ext.relatedArticles.readMore",
-			array(
+			[
 				"dependencies" => $dependencies,
 				"scripts" => $scripts,
-				"styles" => array(
+				"styles" => [
 					"resources/ext.relatedArticles.readMore/readMore.less"
-				),
-				"skinStyles" => array(
+				],
+				"skinStyles" => [
 					"default" => "resources/ext.relatedArticles.readMore/readMore.default.less",
-					"monobook" => array(
+					"monobook" => [
 						"resources/ext.relatedArticles.readMore/readMore.default.less",
 						"resources/ext.relatedArticles.readMore/readMore.monobook.less"
-					),
+					],
 					"minerva" => "resources/ext.relatedArticles.readMore/readMore.minerva.less"
-				),
-				"messages" => array(
+				],
+				"messages" => [
 					"relatedarticles-read-more-heading"
-				),
-				"targets" => array(
+				],
+				"targets" => [
 					"desktop",
 					"mobile"
-				),
+				],
 				"localBasePath" => __DIR__ . "/..",
 				"remoteExtPath" => "RelatedArticles"
-			)
+			]
 		);
 
 		return true;
@@ -184,16 +184,16 @@ class FooterHooks {
 		if ( $showReadMore ) {
 			$wgExtensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
 
-			$preferences['read-more'] = array(
+			$preferences['read-more'] = [
 				'label-message' => 'relatedarticles-read-more-beta-feature-title',
 				'desc-message' => 'relatedarticles-read-more-beta-feature-description',
-				'screenshot' => array(
+				'screenshot' => [
 					'ltr' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-ltr.svg",
 					'rtl' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-rtl.svg",
-				),
+				],
 				'info-link' => 'https://www.mediawiki.org/wiki/Reading/Web/Projects/Read_more',
 				'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Reading/Web/Projects/Read_more',
-			);
+			];
 
 		}
 

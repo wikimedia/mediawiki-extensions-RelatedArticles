@@ -40,7 +40,7 @@ class Hooks {
 		$parserOutput = $parser->getOutput();
 		$relatedPages = $parserOutput->getExtensionData( 'RelatedArticles' );
 		if ( !$relatedPages ) {
-			$relatedPages = array();
+			$relatedPages = [];
 		}
 		$args = func_get_args();
 		array_shift( $args );
@@ -68,7 +68,7 @@ class Hooks {
 	public static function onParserClearState( Parser &$parser ) {
 		$parserOutput = $parser->getOutput();
 
-		$parserOutput->setExtensionData( 'RelatedArticles', array() );
+		$parserOutput->setExtensionData( 'RelatedArticles', [] );
 
 		// FIXME: Remove in 30 days (T115698)
 		$parserOutput->unsetProperty( 'RelatedArticles' );
@@ -121,20 +121,20 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
-		$boilerplate = array(
+		$boilerplate = [
 			'localBasePath' => __DIR__ . '/../tests/qunit/',
 			'remoteExtPath' => 'RelatedArticles/tests/qunit',
-			'targets' => array( 'desktop', 'mobile' ),
-		);
+			'targets' => [ 'desktop', 'mobile' ],
+		];
 
-		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + array(
-			'scripts' => array(
+		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + [
+			'scripts' => [
 				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',
-			),
-			'dependencies' => array(
+			],
+			'dependencies' => [
 				'ext.relatedArticles.readMore.gateway',
-			),
-		);
+			],
+		];
 		return true;
 	}
 }
