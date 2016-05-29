@@ -7,6 +7,8 @@
 		]
 	},
 	"relatedarticles-title": "Trang liên quan",
-	"relatedarticles-desc": "Thêm liên kết đến các trang liên quan vào thanh bên",
-	"relatedarticles-read-more-heading": "Các trang liên quan"
+	"relatedarticles-desc": "Thêm liên kết đến các trang liên quan vào thanh bên hoặc vào cuối trang, nếu người dùng kích hoạt tính năng beta.",
+	"relatedarticles-read-more-heading": "Các trang liên quan",
+	"relatedarticles-read-more-beta-feature-title": "Trang liên quan",
+	"relatedarticles-read-more-beta-feature-description": "Gợi ý các trang liên quan vào cuối trang."
 }
