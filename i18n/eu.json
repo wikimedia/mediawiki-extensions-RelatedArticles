@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"Sator"
 		]
 	},
-	"relatedarticles-read-more-beta-feature-title": "Irakurri gehiago"
+	"relatedarticles-title": "Lotutako orrialdeak",
+	"relatedarticles-read-more-heading": "Lotutako orrialdeak",
+	"relatedarticles-read-more-beta-feature-title": "Lotutako orrialdeak",
+	"relatedarticles-read-more-beta-feature-description": "Proposatutako lotutako orrialdeak orrialdearen azpialdean."
 }
