@@ -5,8 +5,8 @@
 		]
 	},
 	"relatedarticles-title": "Seotud leheküljed",
-	"relatedarticles-desc": "Lisab külgribale seotud teemade lingi.",
-	"relatedarticles-read-more-heading": "Seotud artiklid",
-	"relatedarticles-read-more-beta-feature-title": "Lisalugemine",
-	"relatedarticles-read-more-beta-feature-description": "Näitab lehekülje all lugemissoovitusi seotud teemadel."
+	"relatedarticles-desc": "Lisab seotud teemade lingi külgribale või jalusesse, kui kasutaja lubab beetafunktsiooni.",
+	"relatedarticles-read-more-heading": "Seotud leheküljed",
+	"relatedarticles-read-more-beta-feature-title": "Seotud leheküljed",
+	"relatedarticles-read-more-beta-feature-description": "Soovitab lehekülje all lugemiseks seotud lehekülgi."
 }
