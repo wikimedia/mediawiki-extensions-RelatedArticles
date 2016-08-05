@@ -56,27 +56,6 @@ class Hooks {
 	}
 
 	/**
-	 * Handler for the <code>ParserClearState</code> hook.
-	 *
-	 * Empties the internal list so that related pages are not passed on to future
-	 * ParserOutput's - note that {{#related:Foo}} appends and can be used multiple times
-	 * in the page.
-	 *
-	 * @param Parser $parser
-	 * @return boolean Always <code>true</code>
-	 */
-	public static function onParserClearState( Parser &$parser ) {
-		$parserOutput = $parser->getOutput();
-
-		$parserOutput->setExtensionData( 'RelatedArticles', [] );
-
-		// FIXME: Remove in 30 days (T115698)
-		$parserOutput->unsetProperty( 'RelatedArticles' );
-
-		return true;
-	}
-
-	/**
 	 * Passes the related pages list from the cached parser output
 	 * object to the output page for rendering.
 	 *
@@ -93,21 +72,6 @@ class Hooks {
 		if ( $related ) {
 			$out->setProperty( 'RelatedArticles', $related );
 		}
-
-		return true;
-	}
-
-	/**
-	 * Handler for the <code>UnitTestsList</code> hook.
-	 *
-	 * Adds the path to this extension's PHPUnit test suite to the set of
-	 * paths.
-	 *
-	 * @param array $paths
-	 * @return boolean Always <code>true</code>
-	 */
-	public static function onUnitTestsList( array &$paths ) {
-		$paths[] = __DIR__ . '/../tests/phpunit';
 
 		return true;
 	}

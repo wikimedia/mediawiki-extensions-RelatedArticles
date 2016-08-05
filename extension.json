@@ -20,18 +20,12 @@
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
 	},
 	"Hooks": {
-		"UnitTestsList": [
-			"RelatedArticles\\Hooks::onUnitTestsList"
-		],
 		"ResourceLoaderTestModules": [
 			"RelatedArticles\\Hooks::onResourceLoaderTestModules"
 		],
 
 		"ParserFirstCallInit": [
 			"RelatedArticles\\Hooks::onParserFirstCallInit"
-		],
-		"ParserClearState": [
-			"RelatedArticles\\Hooks::onParserClearState"
 		],
 		"OutputPageParserOutput": [
 			"RelatedArticles\\Hooks::onOutputPageParserOutput"
