@@ -13,7 +13,7 @@ use User;
 class SidebarHooks {
 
 	/**
-	 * Handler for the <code>SkinBuildSidebar</code> hook.
+	 * Handler for the <code>SidebarBeforeOutput</code> hook.
 	 *
 	 * Retrieves the list of related pages
 	 * and adds its HTML representation to the sidebar if the ReadMore feature
@@ -23,7 +23,7 @@ class SidebarHooks {
 	 * @param array $bar
 	 * @return boolean Always <code>true</code>
 	 */
-	public static function onSkinBuildSidebar( Skin $skin, &$bar ) {
+	public static function onSidebarBeforeOutput( Skin $skin, &$bar ) {
 		$out = $skin->getOutput();
 		$relatedPages = $out->getProperty( 'RelatedArticles' );
 
@@ -49,55 +49,6 @@ class SidebarHooks {
 			Html::rawElement( 'ul', [],
 				implode( '', $relatedPages )
 			);
-
-		return true;
-	}
-
-	/**
-	 * Handler for the <code>SkinTemplateToolboxEnd</code> hook.
-	 *
-	 * Retrieves the list of related pages from the template and
-	 * <code>echo</code>s its HTML representation to the sidebar if the
-	 * ReadMore feature is disabled and the beta feature is enabled by the user.
-	 *
-	 * @param SkinTemplate $skinTpl
-	 * @return boolean Always <code>true</code>
-	 */
-	public static function onSkinTemplateToolboxEnd( BaseTemplate &$skinTpl ) {
-		$out = $skinTpl->getSkin()->getOutput();
-		$relatedPages = $out->getProperty( 'RelatedArticles' );
-
-		if ( !self::isInSidebar( $relatedPages, $out->getUser() ) ) {
-			return true;
-		}
-
-		$relatedPagesUrls = self::getRelatedPagesUrls( $relatedPages );
-
-		// build relatedarticles <li>'s
-		$relatedPages = [];
-		foreach ( (array) $relatedPagesUrls as $url ) {
-			$relatedPages[] =
-				Html::rawElement( 'li', [ 'class' => htmlspecialchars( $url['class'] ) ],
-					Html::element( 'a', [ 'href' => htmlspecialchars( $url['href'] ) ],
-						$url['text']
-					)
-				);
-		}
-
-		// build complete html
-		echo
-			Html::closeElement( 'ul' ) .
-			Html::closeElement( 'div' ) .
-			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', [
-				'class' => 'portal',
-				'role' => 'navigation',
-				'id' => 'p-relatedarticles',
-			] ) .
-			Html::element( 'h3', [], wfMessage( 'relatedarticles-title' )->text() ) .
-			Html::openElement( 'div', [ 'class' => 'body' ] ) .
-			Html::openElement( 'ul' ) .
-			implode( '', $relatedPages );
 
 		return true;
 	}

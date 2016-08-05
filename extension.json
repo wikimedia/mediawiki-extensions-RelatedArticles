@@ -31,11 +31,8 @@
 			"RelatedArticles\\Hooks::onOutputPageParserOutput"
 		],
 
-		"@SkinBuildSidebar": [
-			"RelatedArticles\\SidebarHooks::onSkinBuildSidebar"
-		],
-		"SkinTemplateToolboxEnd": [
-			"RelatedArticles\\SidebarHooks::onSkinTemplateToolboxEnd"
+		"SidebarBeforeOutput": [
+			"RelatedArticles\\SidebarHooks::onSidebarBeforeOutput"
 		],
 
 		"GetBetaFeaturePreferences": [
