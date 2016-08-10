@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"StanProg"
+		]
+	},
+	"relatedarticles-title": "Свързани страници",
+	"relatedarticles-desc": "Добавя препратка към свързани страници на страничния панел или в долната част на страницата, ако потребителят в позволил тази тестова функционалност.",
+	"relatedarticles-read-more-heading": "Свързани страници",
+	"relatedarticles-read-more-beta-feature-title": "Свързани страници",
+	"relatedarticles-read-more-beta-feature-description": "Предлага страници към свързани теми в долната част на страниците."
+}
