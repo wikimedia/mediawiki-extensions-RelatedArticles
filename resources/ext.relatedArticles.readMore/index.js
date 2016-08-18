@@ -44,11 +44,18 @@
 
 			cards = new CardListView( getCards( pages ) );
 
-			$readMore = $( '<aside class="ra-read-more post-content noprint"></aside>' )
+			$readMore = $( '<aside class="ra-read-more noprint"></aside>' )
 				.append( $( '<h2></h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
 				.append( cards.$el );
 
-			$readMore.insertAfter( '#content' );
+			// If a skin has marked up a footer content area prepend it there
+			if ( $( '.footer-content' ).length ) {
+				$readMore.prependTo( '.footer-content' );
+			} else {
+				$( '<div class="read-more-container post-content" />' )
+					.append( $readMore )
+					.insertAfter( '#content' );
+			}
 
 			// the ReadMore code is ready
 			mw.track( 'ext.relatedArticles.logReady', { $readMore: $readMore } );
