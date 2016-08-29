@@ -41,6 +41,7 @@ class FooterHooks {
 	 * to the output when:
 	 *
 	 * <ol>
+	 *   <li>The page is not a disambiguation page</li>
 	 *   <li><code>$wgRelatedArticlesShowInFooter</code> is truthy</li>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
