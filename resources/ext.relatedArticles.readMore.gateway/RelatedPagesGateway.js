@@ -76,6 +76,7 @@
 			parameters.gsrsearch = 'morelike:' + this.currentPage;
 			parameters.gsrnamespace = '0';
 			parameters.gsrlimit = limit;
+			parameters.gsrqiprofile = 'classic_noboostlinks';
 		} else {
 			return $.Deferred().resolve( [] );
 		}
