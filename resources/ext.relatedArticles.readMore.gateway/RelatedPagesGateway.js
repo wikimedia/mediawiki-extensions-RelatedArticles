@@ -77,6 +77,7 @@
 			parameters.gsrnamespace = '0';
 			parameters.gsrlimit = limit;
 			parameters.gsrqiprofile = 'classic_noboostlinks';
+			parameters.smaxage = 86400;  // 24 hours
 		} else {
 			return $.Deferred().resolve( [] );
 		}
