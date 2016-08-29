@@ -8,6 +8,7 @@ use ResourceLoader;
 use Skin;
 use ConfigFactory;
 use User;
+use DisambiguatorHooks;
 
 class FooterHooks {
 
@@ -52,6 +53,10 @@ class FooterHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+		if ( class_exists( 'DisambiguatorHooks' ) &&
+			DisambiguatorHooks::isDisambiguationPage( $out->getTitle() ) ) {
+			return true;
+		}
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
