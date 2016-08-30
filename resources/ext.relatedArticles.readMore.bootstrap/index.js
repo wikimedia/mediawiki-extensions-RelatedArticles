@@ -21,12 +21,10 @@
 	 * @ignore
 	 */
 	function loadRelatedArticles() {
-		/**
-		 * Threshold value to load related articles - after about half scroll
-		 */
-		var scrollThreshold = ( $( document ).height() / 2 ) - $window.height();
+		var readMore = $( '.read-more-container' ).get( 0 ),
+			scrollThreshold = $( document ).height() / 2 - $window.height();
 
-		if ( $window.scrollTop() > scrollThreshold ) {
+		if ( mw.viewport.isElementCloseToViewport( readMore, scrollThreshold ) ) {
 			$.when(
 				// Note we load dependencies here rather than ResourceLoader
 				// to avoid PHP exceptions when Cards not installed
@@ -68,6 +66,14 @@
 		// any skin except minerva stable
 		( config.skin !== 'minerva' || config.wgMFMode === 'beta' )
 	) {
+		// Add container to DOM for checking distance on scroll
+		// If a skin has marked up a footer content area prepend it there
+		if ( $( '.footer-content' ).length ) {
+			$( '<div class="read-more-container" />' ).prependTo( '.footer-content' );
+		} else {
+			$( '<div class="read-more-container post-content" />' )
+				.insertAfter( '#content' );
+		}
 		// try related articles load on scroll
 		$window.on( 'scroll', debouncedLoad );
 		// try an initial load, in case of no scroll

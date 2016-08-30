@@ -80,6 +80,7 @@
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.Uri",
+				"mediawiki.viewport",
 				"ext.relatedArticles.readMore.gateway",
 				"jquery.throttle-debounce"
 			],
