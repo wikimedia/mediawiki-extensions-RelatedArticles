@@ -35,31 +35,18 @@ class FooterHooks {
 	}
 
 	/**
-	 * Uses the Disambiguator extension to test whether the page is a disambiguation page.
-	 *
-	 * If the Disambiguator extension isn't installed, then the test always fails, i.e. the page is
-	 * never a disambiguation page.
-	 *
-	 * @return boolean
-	 */
-	private static function isDisambiguationPage( Title $title ) {
-		return class_exists( 'DisambiguatorHooks' ) &&
-			DisambiguatorHooks::isDisambiguationPage( $title );
-	}
-
-	/**
 	 * Handler for the <code>BeforePageDisplay</code> hook.
 	 *
 	 * Adds the <code>ext.relatedArticles.readMore.bootstrap</code> module
 	 * to the output when:
 	 *
 	 * <ol>
+	 *   <li>The page is not a disambiguation page</li>
 	 *   <li><code>$wgRelatedArticlesShowInFooter</code> is truthy</li>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
 	 *   <li>On desktop, the beta feature has been enabled</li>
 	 *   <li>The page is in mainspace</li>
-	 *   <li>The page is not a disambiguation page</li>
 	 * </ol>
 	 *
 	 * @param OutputPage $out
@@ -67,6 +54,10 @@ class FooterHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+		if ( class_exists( 'DisambiguatorHooks' ) &&
+			DisambiguatorHooks::isDisambiguationPage( $out->getTitle() ) ) {
+			return true;
+		}
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
@@ -75,8 +66,7 @@ class FooterHooks {
 		if (
 			$showReadMore &&
 			$title->inNamespace( NS_MAIN ) &&
-			!$title->isMainPage() &&
-			!self::isDisambiguationPage( $title )
+			!$title->isMainPage()
 		) {
 			if (
 				get_class( $skin ) === 'SkinMinervaBeta' ||
