@@ -166,7 +166,7 @@ class FooterHooks {
 						"resources/ext.relatedArticles.readMore/readMore.default.less",
 						"resources/ext.relatedArticles.readMore/readMore.monobook.less"
 					],
-					"minerva" => "resources/ext.relatedArticles.readMore/readMore.minerva.less"
+					"minerva" => ""
 				],
 				"messages" => [
 					"relatedarticles-read-more-heading"
