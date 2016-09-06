@@ -77,7 +77,22 @@
 			parameters.gsrnamespace = '0';
 			parameters.gsrlimit = limit;
 			parameters.gsrqiprofile = 'classic_noboostlinks';
-			parameters.smaxage = 86400;  // 24 hours
+
+			// Currently, if you're logged in, then the API uses your language by default ard so responses
+			// are always private i.e. they shouldn't be cached in a shared cache and can be cached by the
+			// browser.
+			//
+			// By make the API use the language of the content rather than that of the user, the API
+			// reponse is made public, i.e. they can be cached in a shared cache.
+			//
+			// See T97096 for more detail and discussion.
+			parameters.uselang = 'content';
+
+			// Instruct shared caches that the response will become stale in 24 hours.
+			parameters.smaxage = 86400;
+
+			// Instruct the browser that the response will become stale in 24 hours.
+			parameters.maxage = 86400;
 		} else {
 			return $.Deferred().resolve( [] );
 		}
