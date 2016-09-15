@@ -1,8 +1,6 @@
 ( function ( $, mw ) {
 
-	var config = mw.config.get( [ 'skin', 'wgNamespaceNumber', 'wgMFMode',
-			'wgIsMainPage', 'wgAction' ] ),
-		relatedPages = new mw.relatedPages.RelatedPagesGateway(
+	var relatedPages = new mw.relatedPages.RelatedPagesGateway(
 			new mw.Api(),
 			mw.config.get( 'wgPageName' ),
 			mw.config.get( 'wgRelatedArticles' ),
@@ -41,43 +39,17 @@
 		}
 	}
 
-	/**
-	 * Is the current page a diff page?
-	 *
-	 * @ignore
-	 * @return {boolean}
-	 */
-	function isDiffPage() {
-		var queryParams = new mw.Uri( window.location.href ).query;
-
-		return !!(
-			queryParams.type === 'revision' ||
-			queryParams.hasOwnProperty( 'diff' ) ||
-			queryParams.hasOwnProperty( 'oldid' )
-		);
+	// Add container to DOM for checking distance on scroll
+	// If a skin has marked up a footer content area prepend it there
+	if ( $( '.footer-content' ).length ) {
+		$( '<div class="read-more-container" />' ).prependTo( '.footer-content' );
+	} else {
+		$( '<div class="read-more-container post-content" />' )
+			.insertAfter( '#content' );
 	}
-
-	if (
-		config.wgNamespaceNumber === 0 &&
-		!config.wgIsMainPage &&
-		// T120735
-		config.wgAction === 'view' &&
-		!isDiffPage() &&
-		// any skin except minerva stable
-		( config.skin !== 'minerva' || config.wgMFMode === 'beta' )
-	) {
-		// Add container to DOM for checking distance on scroll
-		// If a skin has marked up a footer content area prepend it there
-		if ( $( '.footer-content' ).length ) {
-			$( '<div class="read-more-container" />' ).prependTo( '.footer-content' );
-		} else {
-			$( '<div class="read-more-container post-content" />' )
-				.insertAfter( '#content' );
-		}
-		// try related articles load on scroll
-		$window.on( 'scroll', debouncedLoad );
-		// try an initial load, in case of no scroll
-		loadRelatedArticles();
-	}
+	// try related articles load on scroll
+	$window.on( 'scroll', debouncedLoad );
+	// try an initial load, in case of no scroll
+	loadRelatedArticles();
 
 }( jQuery, mediaWiki ) );

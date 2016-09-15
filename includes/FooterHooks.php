@@ -49,6 +49,22 @@ class FooterHooks {
 	}
 
 	/**
+	 * Check whether the output page is a diff page
+	 *
+	 * @param OutputPage $out
+	 * @return bool
+	 */
+	private static function isDiffPage( OutputPage $out ) {
+		$request = $out->getRequest();
+		$type = $request->getText( 'type' );
+		$diff = $request->getText( 'diff' );
+		$oldId = $request->getText( 'oldid' );
+		$isSpecialMobileDiff = $out->getTitle()->isSpecial( 'MobileDiff' );
+
+		return $type === 'revision' || $diff || $oldId || $isSpecialMobileDiff;
+	}
+
+	/**
 	 * Handler for the <code>BeforePageDisplay</code> hook.
 	 *
 	 * Adds the <code>ext.relatedArticles.readMore.bootstrap</code> module
@@ -60,7 +76,11 @@ class FooterHooks {
 	 *     <code>SkinMinervaBeta<code></li>
 	 *   <li>On desktop, the beta feature has been enabled</li>
 	 *   <li>The page is in mainspace</li>
+	 *   <li>The action is 'view'</li>
+	 *   <li>The page is not the Main Page</li>
 	 *   <li>The page is not a disambiguation page</li>
+	 *   <li>The page is not a diff page</li>
+	 *   <li>The skin is not Minerva stable</li>
 	 * </ol>
 	 *
 	 * @param OutputPage $out
@@ -72,16 +92,23 @@ class FooterHooks {
 		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
 		$title = $out->getContext()->getTitle();
+		$action = $out->getRequest()->getText( 'action', 'view' );
 
 		if (
 			$showReadMore &&
 			$title->inNamespace( NS_MAIN ) &&
+			// T120735
+			$action === 'view' &&
 			!$title->isMainPage() &&
-			!self::isDisambiguationPage( $title )
+			!self::isDisambiguationPage( $title ) &&
+			!self::isDiffPage( $out )
 		) {
 			if (
+				// FIXME: right now both Minerva stable and beta report their names as 'minerva'
 				get_class( $skin ) === 'SkinMinervaBeta' ||
 				(
+					// any skin except minerva stable
+					$skin->getSkinName() !== 'minerva' &&
 					class_exists( 'BetaFeatures' ) &&
 					BetaFeatures::isFeatureEnabled( $out->getUser(), 'read-more' )
 				)
