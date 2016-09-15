@@ -22,7 +22,7 @@
 	 */
 	function loadRelatedArticles() {
 		var readMore = $( '.read-more-container' ).get( 0 ),
-			scrollThreshold = $window.height() * 1.5;
+			scrollThreshold = $window.height() * 2;
 
 		if ( mw.viewport.isElementCloseToViewport( readMore, scrollThreshold ) ) {
 			$.when(
