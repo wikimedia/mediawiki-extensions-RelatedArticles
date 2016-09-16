@@ -65,6 +65,34 @@ class FooterHooks {
 	}
 
 	/**
+	 * Is ReadMore allowed on skin?
+	 *
+	 * The feature is allowed on all skins as long as they are not blacklisted
+	 * in the configuration variable `RelatedArticlesFooterBlacklistedSkins`.
+	 * On desktop, the beta feature needs to be enabled by the user as well.
+	 *
+	 * @param User $user
+	 * @param Skin $skin
+	 * @return bool
+	 */
+	private static function isReadMoreAllowedOnSkin( User $user, Skin $skin ) {
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$blacklistedSkins = $config->get( 'RelatedArticlesFooterBlacklistedSkins' );
+		$skinName = $skin->getSkinName();
+		$isBlacklistedSkin = in_array( $skinName, $blacklistedSkins );
+
+		if ( !$isBlacklistedSkin ) {
+			// Minerva has its own beta mode and doesn't use the BetaFeatures extension.
+			if ( $skinName === 'minerva' ) {
+				return true;
+			}
+			return class_exists( 'BetaFeatures' ) && BetaFeatures::isFeatureEnabled( $user, 'read-more' );
+		}
+
+		return false;
+	}
+
+	/**
 	 * Handler for the <code>BeforePageDisplay</code> hook.
 	 *
 	 * Adds the <code>ext.relatedArticles.readMore.bootstrap</code> module
@@ -74,13 +102,12 @@ class FooterHooks {
 	 *   <li><code>$wgRelatedArticlesShowInFooter</code> is truthy</li>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
-	 *   <li>On desktop, the beta feature has been enabled</li>
 	 *   <li>The page is in mainspace</li>
 	 *   <li>The action is 'view'</li>
 	 *   <li>The page is not the Main Page</li>
 	 *   <li>The page is not a disambiguation page</li>
 	 *   <li>The page is not a diff page</li>
-	 *   <li>The skin is not Minerva stable</li>
+	 *   <li>The feature is allowed on the skin (see isReadMoreAllowedOnSkin() above)</li>
 	 * </ol>
 	 *
 	 * @param OutputPage $out
@@ -101,20 +128,10 @@ class FooterHooks {
 			$action === 'view' &&
 			!$title->isMainPage() &&
 			!self::isDisambiguationPage( $title ) &&
-			!self::isDiffPage( $out )
+			!self::isDiffPage( $out ) &&
+			self::isReadMoreAllowedOnSkin( $out->getUser(), $skin )
 		) {
-			if (
-				// FIXME: right now both Minerva stable and beta report their names as 'minerva'
-				get_class( $skin ) === 'SkinMinervaBeta' ||
-				(
-					// any skin except minerva stable
-					$skin->getSkinName() !== 'minerva' &&
-					class_exists( 'BetaFeatures' ) &&
-					BetaFeatures::isFeatureEnabled( $out->getUser(), 'read-more' )
-				)
-			) {
-				$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
-			}
+			$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
 		}
 
 		return true;
