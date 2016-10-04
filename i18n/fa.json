@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Reza1615"
+			"Reza1615",
+			"Ebraminio"
 		]
 	},
 	"relatedarticles-title": "صفحات مرتبط",
-	"relatedarticles-desc": "اضافه کردن پیوند به صفحات مرتبط در نوار کناری"
+	"relatedarticles-desc": "اضافه کردن پیوند به صفحات مرتبط در نوار کناری",
+	"relatedarticles-read-more-heading": "مقاله‌های مرتبط",
+	"relatedarticles-read-more-beta-feature-title": "صفحه‌های مرتبط",
+	"relatedarticles-read-more-beta-feature-description": "پیشنهاد مطالب مرتبط در پائین صفحه"
 }
