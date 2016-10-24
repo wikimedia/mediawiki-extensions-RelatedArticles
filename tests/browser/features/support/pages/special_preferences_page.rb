@@ -3,7 +3,7 @@ class SpecialPreferencesPage
   page_url 'Special:Preferences'
 
   a(:beta_features_tab, css: '#preftab-betafeatures')
-  text_field(:read_more_checkbox, css: '#mw-input-wpread-more')
+  text_field(:read_more_checkbox, css: '[name=wpread-more]')
   button(:submit_button, css: '#prefcontrol')
 
   def enable_read_more
