@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Dorgan"
 		]
 	},
 	"relatedarticles-title": "Kapcsolódó lapok",
 	"relatedarticles-read-more-heading": "Kapcsolódó lapok",
 	"relatedarticles-read-more-beta-feature-title": "Kapcsolódó lapok",
-	"relatedarticles-read-more-beta-feature-description": "Kapcsolódó oldalakat javasol a lapok alján."
+	"relatedarticles-read-more-beta-feature-description": "Az éppen aktuális oldal témájához kapcsolódó oldalakat javasol a lap alján."
 }
