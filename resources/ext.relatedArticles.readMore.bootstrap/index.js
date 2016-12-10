@@ -32,6 +32,8 @@
 			).done( function ( _, pages ) {
 				if ( pages.length ) {
 					mw.track( 'ext.relatedArticles.init', pages );
+				} else {
+					readMore.remove();
 				}
 			} );
 			// detach handler to stop subsequent loads on scroll
@@ -47,6 +49,7 @@
 		$( '<div class="read-more-container post-content" />' )
 			.insertAfter( '#content' );
 	}
+
 	// try related articles load on scroll
 	$window.on( 'scroll', debouncedLoad );
 	// try an initial load, in case of no scroll
