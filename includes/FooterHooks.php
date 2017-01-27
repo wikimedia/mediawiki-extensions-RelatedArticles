@@ -168,7 +168,8 @@ class FooterHooks {
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
 		$vars['wgRelatedArticlesLoggingSamplingRate'] =
 			$config->get( 'RelatedArticlesLoggingSamplingRate' );
-
+		$vars['RelatedArticlesEnabledSamplingRate']
+			= $config->get( 'RelatedArticlesEnabledSamplingRate' );
 		return true;
 	}
 

@@ -14,6 +14,30 @@
 		$window = $( window );
 
 	/**
+	 * Is RelatedArticles extension enabled for current user
+	 *
+	 * User's session ID is used to determine the eligibility for RelatedArticles functionality,
+	 * thus the function will result the same outcome as long as the browser
+	 * hasn't been restarted or the cookie hasn't been cleared.
+	 *
+	 * @return {boolean}
+	 */
+	function isEnabledForCurrentUser() {
+		var bucket,
+			samplingRate = mw.config.get( 'RelatedArticlesEnabledSamplingRate', 1 );
+
+		bucket = mw.experiments.getBucket( {
+			name: 'ext.relatedArticles.visibility',
+			enabled: true,
+			buckets: {
+				control: 1 - samplingRate,
+				A: samplingRate
+			}
+		}, mw.user.sessionId() );
+		return bucket === 'A';
+	}
+
+	/**
 	 * Load related articles when the user scrolls past half of the window height.
 	 *
 	 * @ignore
@@ -41,18 +65,20 @@
 		}
 	}
 
-	// Add container to DOM for checking distance on scroll
-	// If a skin has marked up a footer content area prepend it there
-	if ( $( '.footer-content' ).length ) {
-		$( '<div class="read-more-container" />' ).prependTo( '.footer-content' );
-	} else {
-		$( '<div class="read-more-container post-content" />' )
-			.insertAfter( '#content' );
-	}
+	if ( isEnabledForCurrentUser() ) {
+		// Add container to DOM for checking distance on scroll
+		// If a skin has marked up a footer content area prepend it there
+		if ( $( '.footer-content' ).length ) {
+			$( '<div class="read-more-container" />' ).prependTo( '.footer-content' );
+		} else {
+			$( '<div class="read-more-container post-content" />' )
+				.insertAfter( '#content' );
+		}
 
-	// try related articles load on scroll
-	$window.on( 'scroll', debouncedLoad );
-	// try an initial load, in case of no scroll
-	loadRelatedArticles();
+		// try related articles load on scroll
+		$window.on( 'scroll', debouncedLoad );
+		// try an initial load, in case of no scroll
+		loadRelatedArticles();
+	}
 
 }( jQuery, mediaWiki ) );

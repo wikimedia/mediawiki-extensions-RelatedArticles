@@ -78,6 +78,8 @@
 				"resources/ext.relatedArticles.readMore.bootstrap/index.js"
 			],
 			"dependencies": [
+				"mediawiki.experiments",
+				"mediawiki.user",
 				"mediawiki.api",
 				"mediawiki.Uri",
 				"mediawiki.viewport",
@@ -96,6 +98,7 @@
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"RelatedArticlesLoggingSamplingRate": 0.01,
+		"RelatedArticlesEnabledSamplingRate": 1,
 		"@RelatedArticlesFooterBlacklistedSkins": "List of skin names (e.g. 'minerva') where related articles won't be shown in the footer. If absent related articles will show in stable on Minerva or beta on all other skins.",
 		"RelatedArticlesFooterBlacklistedSkins": []
 	},

@@ -5,6 +5,10 @@
 		skin = mw.config.get( 'skin' ),
 		$window = $( window );
 
+	if ( !$.isFunction( navigator.sendBeacon ) ) {
+		return;
+	}
+
 	/**
 	 * Log when ReadMore is seen by the user
 	 */
