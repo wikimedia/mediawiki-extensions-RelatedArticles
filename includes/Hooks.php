@@ -81,7 +81,7 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
 	 * @param array $modules
-	 * @param ResourceLoader $rl
+	 * @param \ResourceLoader $rl
 	 * @return bool
 	 */
 	public static function onResourceLoaderTestModules( &$modules, &$rl ) {

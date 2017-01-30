@@ -3,10 +3,10 @@
 namespace RelatedArticles;
 
 use BetaFeatures;
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 use ResourceLoader;
 use Skin;
-use ConfigFactory;
 use User;
 use DisambiguatorHooks;
 use Title;
@@ -24,7 +24,8 @@ class FooterHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'RelatedArticles' );
 
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
 
@@ -76,7 +77,8 @@ class FooterHooks {
 	 * @return bool
 	 */
 	private static function isReadMoreAllowedOnSkin( User $user, Skin $skin ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'RelatedArticles' );
 		$blacklistedSkins = $config->get( 'RelatedArticlesFooterBlacklistedSkins' );
 		$skinName = $skin->getSkinName();
 		$isBlacklistedSkin = in_array( $skinName, $blacklistedSkins );
@@ -115,7 +117,8 @@ class FooterHooks {
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'RelatedArticles' );
 		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
 		$title = $out->getContext()->getTitle();
@@ -165,7 +168,8 @@ class FooterHooks {
 	 * @return boolean
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'RelatedArticles' );
 		$vars['wgRelatedArticlesLoggingSamplingRate'] =
 			$config->get( 'RelatedArticlesLoggingSamplingRate' );
 		$vars['RelatedArticlesEnabledSamplingRate']
@@ -240,7 +244,8 @@ class FooterHooks {
 	 * @return bool
 	 */
 	public static function onGetBetaFeaturePreferences( User $user, array &$preferences ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'RelatedArticles' );
 		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
 
 		if ( $showReadMore ) {

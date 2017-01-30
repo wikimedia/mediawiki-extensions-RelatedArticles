@@ -2,10 +2,8 @@
 
 namespace RelatedArticles;
 
-use ConfigFactory;
+use MediaWiki\MediaWikiServices;
 use Title;
-use SkinTemplate;
-use BaseTemplate;
 use Skin;
 use Html;
 use User;
@@ -106,7 +104,8 @@ class SidebarHooks {
 	 * @throws \ConfigException
 	 */
 	private static function isInSidebar( $relatedPages, User $user ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'RelatedArticles' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'RelatedArticles' );
 
 		if ( !$relatedPages || !$config->get( 'RelatedArticlesShowInSidebar' ) ) {
 			return false;
