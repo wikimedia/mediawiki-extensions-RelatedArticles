@@ -45,7 +45,7 @@ class FooterHooks {
 	 * @return boolean
 	 */
 	private static function isDisambiguationPage( Title $title ) {
-		return class_exists( 'DisambiguatorHooks' ) &&
+		return \ExtensionRegistry::getInstance()->isLoaded( 'Disambiguator' ) &&
 			DisambiguatorHooks::isDisambiguationPage( $title );
 	}
 
