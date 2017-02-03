@@ -88,7 +88,7 @@ class FooterHooks {
 			if ( $skinName === 'minerva' ) {
 				return true;
 			}
-			return class_exists( 'BetaFeatures' ) && BetaFeatures::isFeatureEnabled( $user, 'read-more' );
+			return !class_exists( 'BetaFeatures' ) || BetaFeatures::isFeatureEnabled( $user, 'read-more' );
 		}
 
 		return false;
