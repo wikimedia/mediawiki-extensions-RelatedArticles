@@ -19,7 +19,7 @@ Feature: ReadMore
     Then I must see ReadMore
       And ReadMore must have three cards
 
-  @en.m.wikipedia.beta.wmflabs.org
+  @en.wikipedia.beta.wmflabs.org
   Scenario: ReadMore is not present when disabled as a BetaFeature
     Given I am on the "Related Articles 1" page
       And page has fully loaded without ReadMore code
