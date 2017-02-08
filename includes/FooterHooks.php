@@ -28,7 +28,8 @@ class FooterHooks {
 			->makeConfig( 'RelatedArticles' );
 
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
-
+		$vars['wgRelatedArticlesBetaFeatureEnabled'] =
+			self::isUserOptedIntoBetaFeature( $out->getUser() );
 		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
 		$vars['wgRelatedArticlesOnlyUseCirrusSearch'] =
 			$config->get( 'RelatedArticlesOnlyUseCirrusSearch' );
@@ -66,6 +67,16 @@ class FooterHooks {
 	}
 
 	/**
+	 * Did the user opt into the ReadMore beta feature?
+	 *
+	 * @param User $user
+	 * @return bool
+	 */
+	private static function isUserOptedIntoBetaFeature( User $user ) {
+		return class_exists( 'BetaFeatures' ) && BetaFeatures::isFeatureEnabled( $user, 'read-more' );
+	}
+
+	/**
 	 * Is ReadMore allowed on skin?
 	 *
 	 * The feature is allowed on all skins as long as they are not blacklisted
@@ -88,7 +99,7 @@ class FooterHooks {
 			if ( $skinName === 'minerva' ) {
 				return true;
 			}
-			return !class_exists( 'BetaFeatures' ) || BetaFeatures::isFeatureEnabled( $user, 'read-more' );
+			return !class_exists( 'BetaFeatures' ) || self::isUserOptedIntoBetaFeature( $user );
 		}
 
 		return false;
@@ -172,7 +183,7 @@ class FooterHooks {
 			->makeConfig( 'RelatedArticles' );
 		$vars['wgRelatedArticlesLoggingSamplingRate'] =
 			$config->get( 'RelatedArticlesLoggingSamplingRate' );
-		$vars['RelatedArticlesEnabledSamplingRate']
+		$vars['wgRelatedArticlesEnabledSamplingRate']
 			= $config->get( 'RelatedArticlesEnabledSamplingRate' );
 		return true;
 	}

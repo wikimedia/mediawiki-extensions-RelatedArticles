@@ -16,7 +16,9 @@
 	/**
 	 * Is RelatedArticles extension enabled for current user
 	 *
-	 * User's session ID is used to determine the eligibility for RelatedArticles functionality,
+	 * Returns true if the user opted into the beta feature, otherwise
+	 * user's session ID is used to determine the eligibility for RelatedArticles functionality,
+	 * based on the value of wgRelatedArticlesEnabledSamplingRate
 	 * thus the function will result the same outcome as long as the browser
 	 * hasn't been restarted or the cookie hasn't been cleared.
 	 *
@@ -24,7 +26,11 @@
 	 */
 	function isEnabledForCurrentUser() {
 		var bucket,
-			samplingRate = mw.config.get( 'RelatedArticlesEnabledSamplingRate', 1 );
+			samplingRate = mw.config.get( 'wgRelatedArticlesEnabledSamplingRate', 1 );
+
+		if ( mw.config.get( 'wgRelatedArticlesBetaFeatureEnabled' ) ) {
+			return true;
+		}
 
 		bucket = mw.experiments.getBucket( {
 			name: 'ext.relatedArticles.visibility',
