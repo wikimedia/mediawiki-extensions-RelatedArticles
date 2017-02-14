@@ -2,10 +2,12 @@
 	"extends": "wikimedia",
 	"env": {
 		"browser": true,
+		"es6": true,
 		"jquery": true,
 		"qunit": true
 	},
 	"globals": {
+		"browser": false,
 		"mw": false,
 		"OO": false,
 		"mediaWiki": false,
