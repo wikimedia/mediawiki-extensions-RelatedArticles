@@ -189,7 +189,7 @@ class FooterHooks {
 	}
 
 	/**
-	 * Register the "ext.relatedArticles.readMore" module.
+	 * Register the "ext.relatedArticles.readMore.eventLogging" module.
 	 * Optionally update the dependencies and scripts if EventLogging is installed.
 	 *
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
@@ -198,39 +198,21 @@ class FooterHooks {
 	 * @return boolean
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		$dependencies = [
-			"mediawiki.user",
-			"mediawiki.util"
-		];
-		$scripts = [
-			"resources/ext.relatedArticles.readMore/index.js"
-		];
+		$dependencies = [];
+		$scripts = [];
 
 		if ( class_exists( 'EventLogging' ) ) {
+			$dependencies[] = "mediawiki.user";
 			$dependencies[] = "mediawiki.viewport";
 			$dependencies[] = "ext.eventLogging.Schema";
-			$scripts[] = "resources/ext.relatedArticles.readMore/eventLogging.js";
+			$scripts[] = "resources/ext.relatedArticles.readMore.eventLogging/index.js";
 		}
 
 		$resourceLoader->register(
-			"ext.relatedArticles.readMore",
+			"ext.relatedArticles.readMore.eventLogging",
 			[
 				"dependencies" => $dependencies,
 				"scripts" => $scripts,
-				"styles" => [
-					"resources/ext.relatedArticles.readMore/readMore.less"
-				],
-				"skinStyles" => [
-					"default" => "resources/ext.relatedArticles.readMore/readMore.default.less",
-					"monobook" => [
-						"resources/ext.relatedArticles.readMore/readMore.default.less",
-						"resources/ext.relatedArticles.readMore/readMore.monobook.less"
-					],
-					"minerva" => ""
-				],
-				"messages" => [
-					"relatedarticles-read-more-heading"
-				],
 				"targets" => [
 					"desktop",
 					"mobile"

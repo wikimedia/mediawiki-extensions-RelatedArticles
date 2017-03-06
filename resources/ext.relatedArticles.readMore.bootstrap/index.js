@@ -57,7 +57,11 @@
 				// Note we load dependencies here rather than ResourceLoader
 				// to avoid PHP exceptions when Cards not installed
 				// which should never happen given the if statement.
-				mw.loader.using( [ 'ext.cards', 'ext.relatedArticles.readMore' ] ),
+				mw.loader.using( [
+					'ext.cards',
+					'ext.relatedArticles.readMore',
+					'ext.relatedArticles.readMore.eventLogging'
+				] ),
 				relatedPages.getForCurrentPage( LIMIT )
 			).done( function ( _, pages ) {
 				if ( pages.length ) {

@@ -90,6 +90,32 @@
 				"mobile",
 				"desktop"
 			]
+		},
+		"ext.relatedArticles.readMore": {
+			"dependencies": [
+				"mediawiki.util"
+			],
+			"scripts": [
+				"resources/ext.relatedArticles.readMore/index.js"
+			],
+			"styles": [
+				"resources/ext.relatedArticles.readMore/readMore.less"
+			],
+			"skinStyles": {
+				"default": "resources/ext.relatedArticles.readMore/readMore.default.less",
+				"monobook": [
+					"resources/ext.relatedArticles.readMore/readMore.default.less",
+					"resources/ext.relatedArticles.readMore/readMore.monobook.less"
+				],
+				"minerva": ""
+			},
+			"messages": [
+				"relatedarticles-read-more-heading"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
 		}
 	},
 	"config": {
