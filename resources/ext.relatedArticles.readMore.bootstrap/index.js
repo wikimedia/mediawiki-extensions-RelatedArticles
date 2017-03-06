@@ -60,8 +60,7 @@
 				// which should never happen given the if statement.
 				mw.loader.using( [
 					'ext.cards',
-					'ext.relatedArticles.readMore',
-					'ext.relatedArticles.readMore.eventLogging'
+					'ext.relatedArticles.readMore'
 				] ),
 				relatedPages.getForCurrentPage( LIMIT )
 			).done( function ( _, pages ) {
@@ -94,7 +93,5 @@
 		loadRelatedArticles();
 	}
 
-	mw.loader.using( 'ext.relatedArticles.readMore.eventLogging' ).done( function () {
-		mw.track( 'ext.relatedArticles.logEnabled', { isEnabled: shouldShowReadMore } );
-	} );
+	mw.track( 'ext.relatedArticles.logEnabled', { isEnabled: shouldShowReadMore } );
 }( jQuery, mediaWiki ) );

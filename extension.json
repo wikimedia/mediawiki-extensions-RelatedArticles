@@ -84,6 +84,7 @@
 				"mediawiki.Uri",
 				"mediawiki.viewport",
 				"ext.relatedArticles.readMore.gateway",
+				"ext.relatedArticles.readMore.eventLogging",
 				"jquery.throttle-debounce"
 			],
 			"targets": [
@@ -93,7 +94,8 @@
 		},
 		"ext.relatedArticles.readMore": {
 			"dependencies": [
-				"mediawiki.util"
+				"mediawiki.util",
+				"ext.relatedArticles.readMore.eventLogging"
 			],
 			"scripts": [
 				"resources/ext.relatedArticles.readMore/index.js"
