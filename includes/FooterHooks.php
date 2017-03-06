@@ -166,7 +166,7 @@ class FooterHooks {
 	 */
 	public static function onEventLoggingRegisterSchemas( &$schemas ) {
 		// @see https://meta.wikimedia.org/wiki/Schema:RelatedArticles
-		$schemas['RelatedArticles'] = 14496900;
+		$schemas['RelatedArticles'] = 16352530;
 
 		return true;
 	}

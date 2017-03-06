@@ -11,7 +11,8 @@
 		debouncedLoad = $.debounce( 100, function () {
 			loadRelatedArticles();
 		} ),
-		$window = $( window );
+		$window = $( window ),
+		shouldShowReadMore;
 
 	/**
 	 * Is RelatedArticles extension enabled for current user
@@ -75,7 +76,9 @@
 		}
 	}
 
-	if ( isEnabledForCurrentUser() ) {
+	shouldShowReadMore = isEnabledForCurrentUser();
+
+	if ( shouldShowReadMore ) {
 		// Add container to DOM for checking distance on scroll
 		// If a skin has marked up a footer content area prepend it there
 		if ( $( '.footer-content' ).length ) {
@@ -91,4 +94,7 @@
 		loadRelatedArticles();
 	}
 
+	mw.loader.using( 'ext.relatedArticles.readMore.eventLogging' ).done( function () {
+		mw.track( 'ext.relatedArticles.logEnabled', { isEnabled: shouldShowReadMore } );
+	} );
 }( jQuery, mediaWiki ) );
