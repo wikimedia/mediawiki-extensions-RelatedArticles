@@ -28,8 +28,6 @@ class FooterHooks {
 			->makeConfig( 'RelatedArticles' );
 
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
-		$vars['wgRelatedArticlesBetaFeatureEnabled'] =
-			self::isUserOptedIntoBetaFeature( $out->getUser() );
 		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
 		$vars['wgRelatedArticlesOnlyUseCirrusSearch'] =
 			$config->get( 'RelatedArticlesOnlyUseCirrusSearch' );
@@ -67,21 +65,10 @@ class FooterHooks {
 	}
 
 	/**
-	 * Did the user opt into the ReadMore beta feature?
-	 *
-	 * @param User $user
-	 * @return bool
-	 */
-	private static function isUserOptedIntoBetaFeature( User $user ) {
-		return class_exists( 'BetaFeatures' ) && BetaFeatures::isFeatureEnabled( $user, 'read-more' );
-	}
-
-	/**
 	 * Is ReadMore allowed on skin?
 	 *
-	 * The feature is allowed on all skins as long as they are not blacklisted
-	 * in the configuration variable `RelatedArticlesFooterBlacklistedSkins`.
-	 * On desktop, the beta feature needs to be enabled by the user as well.
+	 * The feature is allowed on all skins as long as they are whitelisted
+	 * in the configuration variable `RelatedArticlesFooterWhitelistedSkins`.
 	 *
 	 * @param User $user
 	 * @param Skin $skin
@@ -90,19 +77,9 @@ class FooterHooks {
 	private static function isReadMoreAllowedOnSkin( User $user, Skin $skin ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
-		$blacklistedSkins = $config->get( 'RelatedArticlesFooterBlacklistedSkins' );
+		$skins = $config->get( 'RelatedArticlesFooterWhitelistedSkins' );
 		$skinName = $skin->getSkinName();
-		$isBlacklistedSkin = in_array( $skinName, $blacklistedSkins );
-
-		if ( !$isBlacklistedSkin ) {
-			// Minerva has its own beta mode and doesn't use the BetaFeatures extension.
-			if ( $skinName === 'minerva' ) {
-				return true;
-			}
-			return !class_exists( 'BetaFeatures' ) || self::isUserOptedIntoBetaFeature( $user );
-		}
-
-		return false;
+		return in_array( $skinName, $skins );
 	}
 
 	/**
@@ -224,40 +201,4 @@ class FooterHooks {
 
 		return true;
 	}
-
-	/**
-	 * GetBetaFeaturePreferences hook handler
-	 * The beta feature is for showing ReadMore, not for showing related
-	 * articles in the sidebar.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/GetBetaFeaturePreferences
-	 *
-	 * @param User $user
-	 * @param array $preferences
-	 *
-	 * @return bool
-	 */
-	public static function onGetBetaFeaturePreferences( User $user, array &$preferences ) {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()
-			->makeConfig( 'RelatedArticles' );
-		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
-
-		if ( $showReadMore ) {
-			$wgExtensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
-
-			$preferences['read-more'] = [
-				'label-message' => 'relatedarticles-read-more-beta-feature-title',
-				'desc-message' => 'relatedarticles-read-more-beta-feature-description',
-				'screenshot' => [
-					'ltr' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-ltr.svg",
-					'rtl' => "$wgExtensionAssetsPath/RelatedArticles/images/BetaFeatures/wb-readmore-beta-rtl.svg",
-				],
-				'info-link' => 'https://www.mediawiki.org/wiki/Reading/Web/Projects/Read_more',
-				'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Reading/Web/Projects/Read_more',
-			];
-
-		}
-
-		return true;
-	}
-
 }

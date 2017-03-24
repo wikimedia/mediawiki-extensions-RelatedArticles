@@ -35,9 +35,6 @@
 			"RelatedArticles\\SidebarHooks::onSidebarBeforeOutput"
 		],
 
-		"GetBetaFeaturePreferences": [
-			"RelatedArticles\\FooterHooks::onGetBetaFeaturePreferences"
-		],
 		"MakeGlobalVariablesScript": [
 			"RelatedArticles\\FooterHooks::onMakeGlobalVariablesScript"
 		],
@@ -127,8 +124,8 @@
 		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"RelatedArticlesLoggingSamplingRate": 0.01,
 		"RelatedArticlesEnabledSamplingRate": 1,
-		"@RelatedArticlesFooterBlacklistedSkins": "List of skin names (e.g. 'minerva') where related articles won't be shown in the footer. If absent related articles will show in stable on Minerva or beta on all other skins.",
-		"RelatedArticlesFooterBlacklistedSkins": []
+		"@RelatedArticlesFooterWhitelistedSkins": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
+		"RelatedArticlesFooterWhitelistedSkins": [ "minerva" ]
 	},
 	"ConfigRegistry": {
 		"RelatedArticles": "GlobalVarConfig::newInstance"

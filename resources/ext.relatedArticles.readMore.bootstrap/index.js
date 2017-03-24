@@ -29,10 +29,6 @@
 		var bucket,
 			samplingRate = mw.config.get( 'wgRelatedArticlesEnabledSamplingRate', 1 );
 
-		if ( mw.config.get( 'wgRelatedArticlesBetaFeatureEnabled' ) ) {
-			return true;
-		}
-
 		bucket = mw.experiments.getBucket( {
 			name: 'ext.relatedArticles.visibility',
 			enabled: true,

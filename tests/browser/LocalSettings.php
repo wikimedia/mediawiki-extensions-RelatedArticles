@@ -5,5 +5,3 @@ $wgRelatedArticlesShowInFooter = true;
 $wgRelatedArticlesShowInSidebar = true;
 $wgRelatedArticlesUseCirrusSearch = true;
 $wgRelatedArticlesOnlyUseCirrusSearch = false;
-$wgMFEnableBeta = true;
-$wgRelatedArticlesFooterBlacklistedSkins = [ 'minerva' ];
