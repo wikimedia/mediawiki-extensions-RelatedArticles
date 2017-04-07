@@ -9,7 +9,7 @@
 		),
 		LIMIT = 3,
 		debouncedLoad = $.debounce( 100, function () {
-			loadRelatedArticles();
+			loadRelatedArticles(); // eslint-disable-line
 		} ),
 		$window = $( window ),
 		shouldShowReadMore;

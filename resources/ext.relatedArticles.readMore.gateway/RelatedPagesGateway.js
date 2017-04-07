@@ -32,6 +32,15 @@
 	OO.initClass( RelatedPagesGateway );
 
 	/**
+	 * @ignore
+	 * @param {Object} result
+	 * @return {Array}
+	 */
+	function getPages( result ) {
+		return result && result.query && result.query.pages ? result.query.pages : [];
+	}
+
+	/**
 	 * Gets the related pages for the current page.
 	 *
 	 * If there are related pages assigned to this page using the `related`
@@ -100,13 +109,6 @@
 		return this.api.get( parameters )
 			.then( getPages );
 	};
-
-	/**
-	 * @ignore
-	 */
-	function getPages( result ) {
-		return result && result.query && result.query.pages ? result.query.pages : [];
-	}
 
 	mw.relatedPages.RelatedPagesGateway = RelatedPagesGateway;
 }( jQuery, mediaWiki ) );
