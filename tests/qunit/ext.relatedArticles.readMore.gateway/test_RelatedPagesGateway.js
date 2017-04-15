@@ -26,48 +26,48 @@
 		}
 	} );
 
-	QUnit.test( 'Returns an array with the results when api responds', 2, function ( assert ) {
+	QUnit.test( 'Returns an array with the results when api responds', function ( assert ) {
 		var gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
 			assert.ok( $.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results[ 0 ].title, 'Oh noes' );
 		} );
 	} );
 
-	QUnit.test( 'Empty related pages is handled fine.', 2, function ( assert ) {
+	QUnit.test( 'Empty related pages is handled fine.', function ( assert ) {
 		var gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
 
-		gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
 			assert.ok( $.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results.length, 0 );
 		} );
 	} );
 
-	QUnit.test( 'Empty related pages with no cirrus search is handled fine. No API request.', 3, function ( assert ) {
+	QUnit.test( 'Empty related pages with no cirrus search is handled fine. No API request.', function ( assert ) {
 		var gateway = new RelatedPagesGateway( this.api, 'Foo', [], false ),
 			spy = this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
 			assert.ok( $.isArray( results ), 'Results must be an array' );
 			assert.ok( !spy.called, 'API is not invoked' );
 			assert.strictEqual( results.length, 0 );
 		} );
 	} );
 
-	QUnit.test( 'Related pages from editor curated content', 1, function ( assert ) {
+	QUnit.test( 'Related pages from editor curated content', function ( assert ) {
 		var gateway = new RelatedPagesGateway( this.api, 'Foo', [ { title: 1 } ], false );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
 			assert.strictEqual( results.length, 1,
 				'API still hit despite cirrus being disabled.' );
 		} );
 	} );
 
-	QUnit.test( 'Ignore related pages from editor curated content', 1, function ( assert ) {
+	QUnit.test( 'Ignore related pages from editor curated content', function ( assert ) {
 		var wgRelatedArticles = [
 				'Bar',
 				'Baz',
@@ -79,7 +79,7 @@
 		spy = this.sandbox.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
 
-		gateway.getForCurrentPage( 1 ).then( function () {
+		return gateway.getForCurrentPage( 1 ).then( function () {
 			var parameters = spy.lastCall.args[ 0 ];
 
 			assert.strictEqual(
