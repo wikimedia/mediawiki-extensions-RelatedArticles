@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Сербијана"
+			"Сербијана",
+			"Obsuser"
 		]
 	},
-	"relatedarticles-read-more-beta-feature-title": "Сродне странице"
+	"relatedarticles-title": "Повезане странице",
+	"relatedarticles-read-more-heading": "Повезане странице"
 }
