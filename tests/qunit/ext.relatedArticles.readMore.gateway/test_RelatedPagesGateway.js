@@ -1,5 +1,6 @@
 ( function ( M, $ ) {
 	var RelatedPagesGateway = mw.relatedPages.RelatedPagesGateway,
+		lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ],
 		relatedPages = {
 			query: {
 				pages: [
@@ -64,6 +65,40 @@
 		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
 			assert.strictEqual( results.length, 1,
 				'API still hit despite cirrus being disabled.' );
+		} );
+	} );
+
+	QUnit.test( 'When limit is higher than number of cards, no limit is enforced.', function ( assert ) {
+		var gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
+		// needed to get page images etc..
+			stub = this.sandbox.stub( this.api, 'get' )
+				.returns( $.Deferred().resolve( relatedPages ) );
+
+		return gateway.getForCurrentPage( 20 ).then( function () {
+			assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, lotsaRelatedPages.length );
+		} );
+	} );
+
+	QUnit.test( 'When limit is 2, results are restricted.', function ( assert ) {
+		var gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
+			// needed to get page images etc..
+			stub = this.sandbox.stub( this.api, 'get' )
+				.returns( $.Deferred().resolve( relatedPages ) );
+
+		return gateway.getForCurrentPage( 2 ).then( function () {
+			assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, 2 );
+		} );
+	} );
+
+	QUnit.test( 'What if editor curated pages is undefined?', function ( assert ) {
+		var gateway = new RelatedPagesGateway( this.api, 'Foo', undefined, true );
+		// needed to get page images etc..
+		this.sandbox.stub( this.api, 'get' )
+			.returns( $.Deferred().resolve( relatedPages ) );
+
+		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
+			assert.ok( $.isArray( results ), 'Results must be an array' );
+			assert.strictEqual( results.length, 1, 'API is invoked to source articles.' );
 		} );
 	} );
 

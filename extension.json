@@ -163,6 +163,8 @@
 		}
 	},
 	"config": {
+		"@RelatedArticlesCardLimit": "Maximum number of articles that should be shown in RelatedArticles widget. This limit is derived from limits in TextExtracts and PageImages extensions. Number should be between 1 and 20.",
+		"RelatedArticlesCardLimit": 3,
 		"RelatedArticlesShowInSidebar": true,
 		"RelatedArticlesShowInFooter": false,
 		"RelatedArticlesUseCirrusSearch": false,

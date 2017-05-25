@@ -59,11 +59,12 @@
 	 * * The Wikidata description, if any
 	 *
 	 * @method
-	 * @param {number} limit of pages to get
+	 * @param {number} limit of pages to get. Should be between 1-20.
 	 * @return {jQuery.Promise}
 	 */
 	RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
-		var parameters = {
+		var apiLimit,
+			parameters = {
 				action: 'query',
 				formatversion: 2,
 				prop: 'pageimages|pageterms',
@@ -71,7 +72,8 @@
 				pithumbsize: 160, // FIXME: Revert to 80 once pithumbmode is implemented
 				wbptterms: 'description'
 			},
-			relatedPages = ( this.editorCuratedPages ).slice( 0, limit );
+			// Enforce limit
+			relatedPages = this.editorCuratedPages.slice( 0, limit );
 
 		if ( relatedPages.length ) {
 			parameters.pilimit = relatedPages.length;
@@ -79,12 +81,13 @@
 
 			parameters.titles = relatedPages;
 		} else if ( this.useCirrusSearch ) {
-			parameters.pilimit = limit;
+			apiLimit = limit;
+			parameters.pilimit = apiLimit;
 
 			parameters.generator = 'search';
 			parameters.gsrsearch = 'morelike:' + this.currentPage;
 			parameters.gsrnamespace = '0';
-			parameters.gsrlimit = limit;
+			parameters.gsrlimit = apiLimit;
 			parameters.gsrqiprofile = 'classic_noboostlinks';
 
 			// Currently, if you're logged in, then the API uses your language by default ard so responses
