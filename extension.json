@@ -1,6 +1,6 @@
 {
 	"name": "RelatedArticles",
-	"version": "2.1.0",
+	"version": "3.0.0",
 	"author": [
 		"Roland Unger",
 		"Hans Musil",
@@ -14,7 +14,6 @@
 	"AutoloadClasses": {
 		"RelatedArticles\\ResourceLoaderMuHoganModule": "includes/ResourceLoaderMuhoganModule.php",
 		"RelatedArticles\\Hooks": "includes/Hooks.php",
-		"RelatedArticles\\SidebarHooks": "includes/SidebarHooks.php",
 		"RelatedArticles\\FooterHooks": "includes/FooterHooks.php"
 	},
 	"ExtensionMessagesFiles": {
@@ -30,10 +29,6 @@
 		],
 		"OutputPageParserOutput": [
 			"RelatedArticles\\Hooks::onOutputPageParserOutput"
-		],
-
-		"SidebarBeforeOutput": [
-			"RelatedArticles\\SidebarHooks::onSidebarBeforeOutput"
 		],
 
 		"MakeGlobalVariablesScript": [
@@ -164,8 +159,6 @@
 	"config": {
 		"@RelatedArticlesCardLimit": "Maximum number of articles that should be shown in RelatedArticles widget. This limit is derived from limits in TextExtracts and PageImages extensions. Number should be between 1 and 20.",
 		"RelatedArticlesCardLimit": 3,
-		"RelatedArticlesShowInSidebar": true,
-		"RelatedArticlesShowInFooter": false,
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"RelatedArticlesLoggingBucketSize": 0.01,

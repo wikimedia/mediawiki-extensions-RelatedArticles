@@ -1,7 +1,6 @@
 <?php
 
 $wgRelatedArticlesLoggingBucketSize = 1;
-$wgRelatedArticlesShowInFooter = true;
-$wgRelatedArticlesShowInSidebar = true;
+$wgRelatedArticlesLoggingSamplingRate = 1;
 $wgRelatedArticlesUseCirrusSearch = true;
 $wgRelatedArticlesOnlyUseCirrusSearch = false;
