@@ -91,6 +91,17 @@ class Hooks {
 			'targets' => [ 'desktop', 'mobile' ],
 		];
 
+		$modules['qunit']['ext.relatedArticles.cards.tests'] = $boilerplate + [
+			'dependencies' => [
+				'ext.relatedArticles.cards'
+			],
+			'scripts' => [
+				'ext.relatedArticles.cards/CardModel.js',
+				'ext.relatedArticles.cards/CardsGateway.js',
+				'ext.relatedArticles.cards/CardView.js',
+			]
+		];
+
 		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + [
 			'scripts' => [
 				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',

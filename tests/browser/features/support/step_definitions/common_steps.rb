@@ -75,5 +75,5 @@ Then(/^I must not see ReadMore$/) do
 end
 
 Then(/^ReadMore must have three cards$/) do
-  expect(browser.execute_script("return $('.ext-cards-card').length")).to eq(3)
+  expect(browser.execute_script("return $('.ext-related-articles-card').length")).to eq(3)
 end

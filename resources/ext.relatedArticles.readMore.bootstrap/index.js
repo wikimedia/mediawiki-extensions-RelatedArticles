@@ -55,7 +55,7 @@
 				// to avoid PHP exceptions when Cards not installed
 				// which should never happen given the if statement.
 				mw.loader.using( [
-					'ext.cards',
+					'ext.relatedArticles.cards',
 					'ext.relatedArticles.readMore'
 				] ),
 				relatedPages.getForCurrentPage( LIMIT )
