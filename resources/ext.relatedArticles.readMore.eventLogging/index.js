@@ -26,10 +26,8 @@
 		{
 			pageId: mw.config.get( 'wgArticleId' ),
 			skin: ( skin === 'minerva' ) ? skin + '-' + mw.config.get( 'wgMFMode' ) : skin,
-			// We cannot depend on the uniqueness of mw.user.generateRandomSessionId(),
-			// thus append the timestamp. See mw.user documentation for more info.
-			userSessionToken: mw.user.generateRandomSessionId() +
-				( new Date() ).getTime().toString()
+			// This should persist for a given user across their session.
+			userSessionToken: mw.user.sessionId()
 		}
 	);
 
