@@ -7,5 +7,5 @@ class ArticlePage
            '<%= params[:hash] %>'
 
   aside(:read_more, css: '.ra-read-more')
-  li(:read_more_cards, css: '.ext-cards-card')
+  li(:read_more_cards, css: '.ext-related-articles-card')
 end

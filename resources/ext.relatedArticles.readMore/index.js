@@ -1,7 +1,7 @@
 ( function ( $, mw ) {
-	// Make sure 'ext.cards' is loaded. It may not be because of the race
+	// Make sure 'ext.relatedArticles.cards' is loaded. It may not be because of the race
 	// condition in the bootstrap file.
-	mw.loader.using( 'ext.cards' ).done( function () {
+	mw.loader.using( 'ext.relatedArticles.cards' ).done( function () {
 		var CardModel = mw.cards.CardModel,
 			CardView = mw.cards.CardView,
 			CardListView = mw.cards.CardListView;
