@@ -97,7 +97,6 @@ class Hooks {
 			],
 			'scripts' => [
 				'ext.relatedArticles.cards/CardModel.js',
-				'ext.relatedArticles.cards/CardsGateway.js',
 				'ext.relatedArticles.cards/CardView.js',
 			]
 		];

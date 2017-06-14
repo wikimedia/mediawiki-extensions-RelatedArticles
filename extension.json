@@ -83,8 +83,7 @@
 				"resources/ext.relatedArticles.cards/init.js",
 				"resources/ext.relatedArticles.cards/CardModel.js",
 				"resources/ext.relatedArticles.cards/CardView.js",
-				"resources/ext.relatedArticles.cards/CardListView.js",
-				"resources/ext.relatedArticles.cards/CardsGateway.js"
+				"resources/ext.relatedArticles.cards/CardListView.js"
 			],
 			"styles": [
 				"resources/ext.relatedArticles.cards/styles.less"
