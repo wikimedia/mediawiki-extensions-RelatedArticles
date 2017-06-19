@@ -5,9 +5,65 @@
 		skin = mw.config.get( 'skin' ),
 		$window = $( window );
 
-	if ( !$.isFunction( navigator.sendBeacon ) ) {
+	/**
+	 * Gets whether the UA supports [the Beacon API][0].
+	 *
+	 * [0]: https://www.w3.org/TR/beacon/
+	 *
+	 * @return {boolean}
+	 */
+	function supportsBeacon() {
+		return $.isFunction( window.navigator.sendBeacon );
+	}
+
+	/**
+	 * Gets whether the instrumentation is enabled for the user.
+	 *
+	 * We sample at the feature level, not by pageview. If the instrumentation is
+	 * enabled for the user, then it's enabled for the duration of their session.
+	 *
+	 * @return {boolean}
+	 */
+	function isEnabledForCurrentUser() {
+
+		// TODO: Rename this and other instances to bucketingRate.
+		var samplingRate = mw.config.get( 'wgRelatedArticlesLoggingSamplingRate', 0 );
+
+		if ( !supportsBeacon() ) {
+			return false;
+		}
+
+		return mw.experiments.getBucket( {
+			name: 'ext.relatedArticles.instrumentation',
+			enabled: true,
+			buckets: {
+				control: 1 - samplingRate,
+				A: samplingRate
+			}
+		}, mw.user.sessionId() ) === 'A';
+	}
+
+	if ( !isEnabledForCurrentUser() ) {
 		return;
 	}
+
+	// ---
+	// BEGIN INSTRUMENTATION
+	// ---
+
+	schemaRelatedPages = new mw.eventLog.Schema(
+		'RelatedArticles',
+
+		// The instrumentation is enabled for the user's session. DON'T SAMPLE AT
+		// THE EVENT LEVEL.
+		1,
+
+		{
+			pageId: mw.config.get( 'wgArticleId' ),
+			skin: ( skin === 'minerva' ) ? skin + '-' + mw.config.get( 'wgMFMode' ) : skin,
+			userSessionToken: mw.user.sessionId()
+		}
+	);
 
 	/**
 	 * Log when ReadMore is seen by the user
@@ -18,18 +74,6 @@
 			schemaRelatedPages.log( { eventName: 'seen' } );
 		}
 	}
-
-	schemaRelatedPages = new mw.eventLog.Schema(
-		'RelatedArticles',
-		// not sampled if the config variable is not set
-		mw.config.get( 'wgRelatedArticlesLoggingSamplingRate', 0 ),
-		{
-			pageId: mw.config.get( 'wgArticleId' ),
-			skin: ( skin === 'minerva' ) ? skin + '-' + mw.config.get( 'wgMFMode' ) : skin,
-			// This should persist for a given user across their session.
-			userSessionToken: mw.user.sessionId()
-		}
-	);
 
 	mw.trackSubscribe( 'ext.relatedArticles.logEnabled', function ( _, data ) {
 		schemaRelatedPages.log( {
