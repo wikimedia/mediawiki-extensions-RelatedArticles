@@ -33,7 +33,7 @@ class SidebarHooks {
 
 		// build relatedarticles <li>'s
 		$relatedPages = [];
-		foreach ( (array) $relatedPagesUrls as $url ) {
+		foreach ( (array)$relatedPagesUrls as $url ) {
 			$relatedPages[] =
 				Html::rawElement( 'li', [ 'class' => htmlspecialchars( $url['class'] ) ],
 					Html::element( 'a', [ 'href' => htmlspecialchars( $url['href'] ) ],
