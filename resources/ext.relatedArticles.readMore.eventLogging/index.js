@@ -25,9 +25,7 @@
 	 * @return {boolean}
 	 */
 	function isEnabledForCurrentUser() {
-
-		// TODO: Rename this and other instances to bucketingRate.
-		var samplingRate = mw.config.get( 'wgRelatedArticlesLoggingSamplingRate', 0 );
+		var bucketSize = mw.config.get( 'wgRelatedArticlesLoggingBucketSize', 0 );
 
 		if ( !supportsBeacon() ) {
 			return false;
@@ -37,8 +35,8 @@
 			name: 'ext.relatedArticles.instrumentation',
 			enabled: true,
 			buckets: {
-				control: 1 - samplingRate,
-				A: samplingRate
+				control: 1 - bucketSize,
+				A: bucketSize
 			}
 		}, mw.user.sessionId() ) === 'A';
 	}

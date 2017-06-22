@@ -158,10 +158,10 @@ class FooterHooks {
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
-		$vars['wgRelatedArticlesLoggingSamplingRate'] =
-			$config->get( 'RelatedArticlesLoggingSamplingRate' );
-		$vars['wgRelatedArticlesEnabledSamplingRate']
-			= $config->get( 'RelatedArticlesEnabledSamplingRate' );
+		$vars['wgRelatedArticlesLoggingBucketSize'] =
+			$config->get( 'RelatedArticlesLoggingBucketSize' );
+		$vars['wgRelatedArticlesEnabledBucketSize']
+			= $config->get( 'RelatedArticlesEnabledBucketSize' );
 		return true;
 	}
 

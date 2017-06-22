@@ -166,8 +166,8 @@
 		"RelatedArticlesShowInFooter": false,
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,
-		"RelatedArticlesLoggingSamplingRate": 0.01,
-		"RelatedArticlesEnabledSamplingRate": 1,
+		"RelatedArticlesLoggingBucketSize": 0.01,
+		"RelatedArticlesEnabledBucketSize": 1,
 		"@RelatedArticlesFooterWhitelistedSkins": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
 		"RelatedArticlesFooterWhitelistedSkins": [ "minerva" ]
 	},
