@@ -9,16 +9,15 @@
 .ext-related-articles-card-list {
 	.flex-display();
 	flex-flow: row wrap;
-	justify-content: flex-start;
 	font-size: @baseFontSize;
 	list-style: none;
 	overflow: hidden;
 	position: relative;
 
+	// flex-item
 	.ext-related-articles-card {
 		background-color: #fff;
 		box-sizing: border-box;
-		flex: 1 0 auto;
 		margin: 0;
 		height: @thumbWidth;
 		position: relative;
@@ -130,8 +129,11 @@
 		border-top: 0;
 		.ext-related-articles-card {
 			border: @cardBorder;
-			margin-right: 10px;
-			width: 30%;
+			@rightMargin: 1%;
+			margin-right: @rightMargin;
+			margin-bottom: 10px;
+			// max space is 100-2/3
+			width: ( 100 - ( 2 * @rightMargin ) ) / 3;
 
 			// Individual border-radius when cards side by side (not stacked)
 			&,
@@ -145,6 +147,10 @@
 			}
 			& + .ext-related-articles-card {
 				border: @cardBorder;
+			}
+			// every 3rd child drop the right margin
+			&:nth-child( 3n+3 ) {
+				margin-right: 0;
 			}
 		}
 	}
