@@ -14,7 +14,7 @@ class Hooks {
 	 * Registers the <code>related</code> parser function (see
 	 * {@see Hooks::onFuncRelated}).
 	 *
-	 * @param Parser $parser
+	 * @param Parser &$parser Paser object
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onParserFirstCallInit( Parser &$parser ) {
@@ -32,7 +32,7 @@ class Hooks {
 	 * to store it as a page prop in the database, only in the cache.
 	 *
 	 * @todo Test for uniqueness
-	 * @param Parser $parser
+	 * @param Parser $parser Parser object
 	 *
 	 * @return string Always <code>''</code>
 	 */
@@ -62,8 +62,8 @@ class Hooks {
 	 * The list of related pages will be retrieved using
 	 * <code>ParserOutput#getExtensionData</code>.
 	 *
-	 * @param OutputPage $out
-	 * @param ParserOutput $parserOutput
+	 * @param OutputPage &$out the OutputPage object
+	 * @param ParserOutput $parserOutput ParserOutput object
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
@@ -80,8 +80,8 @@ class Hooks {
 	 * Register QUnit tests.
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
-	 * @param array $modules
-	 * @param \ResourceLoader $rl
+	 * @param array &$modules array of javascript testing modules
+	 * @param \ResourceLoader &$rl Resource Loader
 	 * @return bool
 	 */
 	public static function onResourceLoaderTestModules( &$modules, &$rl ) {

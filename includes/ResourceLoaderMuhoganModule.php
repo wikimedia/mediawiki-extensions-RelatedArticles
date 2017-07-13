@@ -12,6 +12,13 @@ use ResourceLoaderContext;
  * share the code or use mustache in MobileFrontend too.
  */
 class ResourceLoaderMuHoganModule extends ResourceLoaderFileModule {
+
+	/**
+	 * Gets list of names of modules this module depends on.
+	 *
+	 * @param ResourceLoaderContext|null $context Resource loader context
+	 * @return array List of module names
+	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
 		$dependencies = parent::getDependencies( $context );
 
