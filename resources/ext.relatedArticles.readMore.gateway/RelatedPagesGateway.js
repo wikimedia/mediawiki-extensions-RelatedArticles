@@ -63,8 +63,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
-		var apiLimit,
-			parameters = {
+		var parameters = {
 				action: 'query',
 				formatversion: 2,
 				prop: 'pageimages|pageterms',
@@ -81,13 +80,12 @@
 
 			parameters.titles = relatedPages;
 		} else if ( this.useCirrusSearch ) {
-			apiLimit = limit;
-			parameters.pilimit = apiLimit;
+			parameters.pilimit = limit;
 
 			parameters.generator = 'search';
 			parameters.gsrsearch = 'morelike:' + this.currentPage;
 			parameters.gsrnamespace = '0';
-			parameters.gsrlimit = apiLimit;
+			parameters.gsrlimit = limit;
 			parameters.gsrqiprofile = 'classic_noboostlinks';
 
 			// Currently, if you're logged in, then the API uses your language by default ard so responses
