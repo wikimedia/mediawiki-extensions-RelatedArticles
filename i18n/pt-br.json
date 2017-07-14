@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luckas"
+			"Luckas",
+			"Felipe L. Ewald"
 		]
 	},
-	"relatedarticles-title": "Páginas relacionadas"
+	"relatedarticles-title": "Páginas relacionadas",
+	"relatedarticles-read-more-heading": "Páginas relacionadas"
 }
