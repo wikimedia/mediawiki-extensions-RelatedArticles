@@ -7,7 +7,8 @@
 			mw.config.get( 'wgRelatedArticlesUseCirrusSearch' ),
 			mw.config.get( 'wgRelatedArticlesOnlyUseCirrusSearch' )
 		),
-		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit' ),
+		// Make sure this is never undefined as I'm paranoid
+		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 ),
 		debouncedLoad = $.debounce( 100, function () {
 			loadRelatedArticles(); // eslint-disable-line
 		} ),

@@ -28,13 +28,6 @@ class FooterHooks {
 			->makeConfig( 'RelatedArticles' );
 
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
-		$limit = $config->get( 'RelatedArticlesCardLimit' );
-		$vars['wgRelatedArticlesCardLimit'] = $limit;
-		if ( $limit < 1 || $limit > 20 ) {
-			throw new \RuntimeException(
-				'The value of wgRelatedArticlesCardLimit is not valid. It should be between 1 and 20.'
-			);
-		}
 		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
 		$vars['wgRelatedArticlesOnlyUseCirrusSearch'] =
 			$config->get( 'RelatedArticlesOnlyUseCirrusSearch' );
@@ -169,6 +162,14 @@ class FooterHooks {
 			$config->get( 'RelatedArticlesLoggingBucketSize' );
 		$vars['wgRelatedArticlesEnabledBucketSize']
 			= $config->get( 'RelatedArticlesEnabledBucketSize' );
+
+		$limit = $config->get( 'RelatedArticlesCardLimit' );
+		$vars['wgRelatedArticlesCardLimit'] = $limit;
+		if ( $limit < 1 || $limit > 20 ) {
+			throw new \RuntimeException(
+				'The value of wgRelatedArticlesCardLimit is not valid. It should be between 1 and 20.'
+			);
+		}
 		return true;
 	}
 
