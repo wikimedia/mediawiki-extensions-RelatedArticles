@@ -19,8 +19,8 @@ class FooterHooks {
 	 * Sets the value of the <code>wgRelatedArticles</code> global variable
 	 * to the list of related articles in the cached parser output.
 	 *
-	 * @param array $vars
-	 * @param OutputPage $out
+	 * @param array &$vars variables to be added into the output of OutputPage::headElement.
+	 * @param OutputPage $out OutputPage instance calling the hook
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
@@ -100,8 +100,8 @@ class FooterHooks {
 	 *   <li>The feature is allowed on the skin (see isReadMoreAllowedOnSkin() above)</li>
 	 * </ol>
 	 *
-	 * @param OutputPage $out
-	 * @param Skin $skin
+	 * @param OutputPage $out The OutputPage object
+	 * @param Skin $skin Skin object that will be used to generate the page
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
@@ -137,7 +137,7 @@ class FooterHooks {
 	 * If the module has already been registered in
 	 * onResourceLoaderRegisterModules, then it is overwritten.
 	 *
-	 * @param array $schemas The schemas currently registered with the EventLogging
+	 * @param array &$schemas The schemas currently registered with the EventLogging
 	 *  extension
 	 * @return bool Always true
 	 */
@@ -152,7 +152,7 @@ class FooterHooks {
 	 * ResourceLoaderGetConfigVars hook handler for setting a config variable
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars
 	 *
-	 * @param array $vars
+	 * @param array &$vars Array of variables to be added into the output of the startup module.
 	 * @return boolean
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {

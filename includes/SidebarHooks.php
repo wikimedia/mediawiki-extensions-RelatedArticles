@@ -17,8 +17,8 @@ class SidebarHooks {
 	 * and adds its HTML representation to the sidebar if the ReadMore feature
 	 * is disabled and the beta feature is enabled by the user.
 	 *
-	 * @param Skin $skin
-	 * @param array $bar
+	 * @param Skin $skin Skin object
+	 * @param array &$bar Sidebar contents
 	 * @return boolean Always <code>true</code>
 	 */
 	public static function onSidebarBeforeOutput( Skin $skin, &$bar ) {
