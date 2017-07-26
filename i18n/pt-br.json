@@ -6,5 +6,6 @@
 		]
 	},
 	"relatedarticles-title": "Páginas relacionadas",
+	"relatedarticles-desc": "Adiciona um link para páginas relacionadas na barra lateral ou no rodapé, se o usuário ativar o recurso beta.",
 	"relatedarticles-read-more-heading": "Páginas relacionadas"
 }
