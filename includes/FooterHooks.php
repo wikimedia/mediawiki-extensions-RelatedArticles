@@ -21,7 +21,7 @@ class FooterHooks {
 	 *
 	 * @param array &$vars variables to be added into the output of OutputPage::headElement.
 	 * @param OutputPage $out OutputPage instance calling the hook
-	 * @return boolean Always <code>true</code>
+	 * @return bool Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
@@ -102,7 +102,7 @@ class FooterHooks {
 	 *
 	 * @param OutputPage $out The OutputPage object
 	 * @param Skin $skin Skin object that will be used to generate the page
-	 * @return boolean Always <code>true</code>
+	 * @return bool Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
@@ -153,7 +153,7 @@ class FooterHooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars
 	 *
 	 * @param array &$vars Array of variables to be added into the output of the startup module.
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
@@ -180,7 +180,7 @@ class FooterHooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
 	 *
 	 * @param ResourceLoader &$resourceLoader The ResourceLoader object
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
 		$dependencies = [];
