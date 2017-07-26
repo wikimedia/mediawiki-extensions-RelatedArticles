@@ -19,7 +19,7 @@ class SidebarHooks {
 	 *
 	 * @param Skin $skin Skin object
 	 * @param array &$bar Sidebar contents
-	 * @return boolean Always <code>true</code>
+	 * @return bool Always <code>true</code>
 	 */
 	public static function onSidebarBeforeOutput( Skin $skin, &$bar ) {
 		$out = $skin->getOutput();

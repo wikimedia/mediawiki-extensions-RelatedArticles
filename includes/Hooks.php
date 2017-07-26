@@ -15,7 +15,7 @@ class Hooks {
 	 * {@see Hooks::onFuncRelated}).
 	 *
 	 * @param Parser &$parser Paser object
-	 * @return boolean Always <code>true</code>
+	 * @return bool Always <code>true</code>
 	 */
 	public static function onParserFirstCallInit( Parser &$parser ) {
 		$parser->setFunctionHook( 'related', 'RelatedArticles\\Hooks::onFuncRelated' );
@@ -64,7 +64,7 @@ class Hooks {
 	 *
 	 * @param OutputPage &$out the OutputPage object
 	 * @param ParserOutput $parserOutput ParserOutput object
-	 * @return boolean Always <code>true</code>
+	 * @return bool Always <code>true</code>
 	 */
 	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
 		$related = $parserOutput->getExtensionData( 'RelatedArticles' );
