@@ -14,7 +14,7 @@ class Hooks {
 	 * Registers the <code>related</code> parser function (see
 	 * {@see Hooks::onFuncRelated}).
 	 *
-	 * @param Parser &$parser Paser object
+	 * @param Parser &$parser Parser object
 	 * @return bool Always <code>true</code>
 	 */
 	public static function onParserFirstCallInit( Parser &$parser ) {
