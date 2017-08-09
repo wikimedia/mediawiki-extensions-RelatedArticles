@@ -2,6 +2,6 @@
 	"@metadata": {
 		"authors": []
 	},
-	"relatedarticles-desc": "Adds a link to related pages on the sidebar or in the footer, if the user enables the beta feature.",
+	"relatedarticles-desc": "Adds links to related pages in the footer.",
 	"relatedarticles-read-more-heading": "Related pages"
 }
