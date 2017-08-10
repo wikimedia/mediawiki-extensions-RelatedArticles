@@ -89,7 +89,6 @@ class FooterHooks {
 	 * to the output when:
 	 *
 	 * <ol>
-	 *   <li><code>$wgRelatedArticlesShowInFooter</code> is truthy</li>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
 	 *   <li>The page is in mainspace</li>
@@ -105,15 +104,10 @@ class FooterHooks {
 	 * @return bool Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()
-			->makeConfig( 'RelatedArticles' );
-		$showReadMore = $config->get( 'RelatedArticlesShowInFooter' );
-
 		$title = $out->getContext()->getTitle();
 		$action = $out->getRequest()->getText( 'action', 'view' );
 
 		if (
-			$showReadMore &&
 			$title->inNamespace( NS_MAIN ) &&
 			// T120735
 			$action === 'view' &&
