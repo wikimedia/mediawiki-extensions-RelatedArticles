@@ -13,8 +13,7 @@
 	"type": "betafeatures",
 	"AutoloadClasses": {
 		"RelatedArticles\\ResourceLoaderMuHoganModule": "includes/ResourceLoaderMuhoganModule.php",
-		"RelatedArticles\\Hooks": "includes/Hooks.php",
-		"RelatedArticles\\FooterHooks": "includes/FooterHooks.php"
+		"RelatedArticles\\Hooks": "includes/Hooks.php"
 	},
 	"ExtensionMessagesFiles": {
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
@@ -32,19 +31,19 @@
 		],
 
 		"MakeGlobalVariablesScript": [
-			"RelatedArticles\\FooterHooks::onMakeGlobalVariablesScript"
+			"RelatedArticles\\Hooks::onMakeGlobalVariablesScript"
 		],
 		"BeforePageDisplay": [
-			"RelatedArticles\\FooterHooks::onBeforePageDisplay"
+			"RelatedArticles\\Hooks::onBeforePageDisplay"
 		],
 		"EventLoggingRegisterSchemas": [
-			"RelatedArticles\\FooterHooks::onEventLoggingRegisterSchemas"
+			"RelatedArticles\\Hooks::onEventLoggingRegisterSchemas"
 		],
 		"ResourceLoaderGetConfigVars": [
-			"RelatedArticles\\FooterHooks::onResourceLoaderGetConfigVars"
+			"RelatedArticles\\Hooks::onResourceLoaderGetConfigVars"
 		],
 		"ResourceLoaderRegisterModules": [
-			"RelatedArticles\\FooterHooks::onResourceLoaderRegisterModules"
+			"RelatedArticles\\Hooks::onResourceLoaderRegisterModules"
 		]
 	},
 	"MessagesDirs": {
