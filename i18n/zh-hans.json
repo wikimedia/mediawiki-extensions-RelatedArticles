@@ -6,9 +6,6 @@
 			"Liuxinyu970226"
 		]
 	},
-	"relatedarticles-title": "相关页面",
-	"relatedarticles-desc": "当用户启用测试功能时，在边栏上或页脚上添加链接至相关页面。",
-	"relatedarticles-read-more-heading": "相关页面",
-	"relatedarticles-read-more-beta-feature-title": "相关页面",
-	"relatedarticles-read-more-beta-feature-description": "在页面底部建议相关页面。"
+	"relatedarticles-desc": "添加链接至相关页面的页脚。",
+	"relatedarticles-read-more-heading": "相关页面"
 }

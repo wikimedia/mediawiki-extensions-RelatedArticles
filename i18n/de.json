@@ -5,9 +5,6 @@
 			"FriedhelmW"
 		]
 	},
-	"relatedarticles-title": "Verwandte Seiten",
-	"relatedarticles-desc": "Ergänzt einen Link auf ähnliche Seiten in der Seitenleiste oder Fußzeile, falls der Benutzer die Betafunktion aktiviert.",
-	"relatedarticles-read-more-heading": "Verwandte Seiten",
-	"relatedarticles-read-more-beta-feature-title": "Verwandte Seiten",
-	"relatedarticles-read-more-beta-feature-description": "Schlägt ähnliche Seiten am Seitenende vor."
+	"relatedarticles-desc": "Ergänzt in der Fußzeile Links auf ähnliche Seiten.",
+	"relatedarticles-read-more-heading": "Verwandte Seiten"
 }
