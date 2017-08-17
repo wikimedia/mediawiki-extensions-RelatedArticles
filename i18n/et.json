@@ -4,9 +4,6 @@
 			"Pikne"
 		]
 	},
-	"relatedarticles-title": "Seotud leheküljed",
-	"relatedarticles-desc": "Lisab seotud teemade lingi külgribale või jalusesse, kui kasutaja lubab beetafunktsiooni.",
-	"relatedarticles-read-more-heading": "Seotud leheküljed",
-	"relatedarticles-read-more-beta-feature-title": "Seotud leheküljed",
-	"relatedarticles-read-more-beta-feature-description": "Soovitab lehekülje all lugemiseks seotud lehekülgi."
+	"relatedarticles-desc": "Lisab jalusesse seotud teemade lingid.",
+	"relatedarticles-read-more-heading": "Seotud leheküljed"
 }
