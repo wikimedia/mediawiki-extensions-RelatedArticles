@@ -5,9 +5,6 @@
 			"Fringio"
 		]
 	},
-	"relatedarticles-title": "Pagine correlate",
-	"relatedarticles-desc": "Aggiunge un collegamento alle pagine correlate nella barra laterale o nel piè di pagina, se l'utente attiva la funzione beta.",
-	"relatedarticles-read-more-heading": "Pagine correlate",
-	"relatedarticles-read-more-beta-feature-title": "Pagine correlate",
-	"relatedarticles-read-more-beta-feature-description": "Suggerisci pagine correlate in fondo alla pagina."
+	"relatedarticles-desc": "Aggiungi collegamenti alle pagine correlate nel piè di pagina.",
+	"relatedarticles-read-more-heading": "Pagine correlate"
 }

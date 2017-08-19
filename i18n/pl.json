@@ -5,9 +5,6 @@
 			"Chrumps"
 		]
 	},
-	"relatedarticles-title": "Powiązane strony",
-	"relatedarticles-desc": "Dodaje link do powiązanych stron w menu bocznym lub w stopce, jeśli użytkownik włączył funkcję eksperymentalną.",
-	"relatedarticles-read-more-heading": "Powiązane strony",
-	"relatedarticles-read-more-beta-feature-title": "Powiązane strony",
-	"relatedarticles-read-more-beta-feature-description": "Sugestia pokrewnych stron na dole strony."
+	"relatedarticles-desc": "Dodaje w stopce linki do powiązanych stron.",
+	"relatedarticles-read-more-heading": "Powiązane strony"
 }
