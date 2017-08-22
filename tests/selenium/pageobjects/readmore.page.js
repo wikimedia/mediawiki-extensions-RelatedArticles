@@ -5,13 +5,16 @@ const CARD_SELECTOR = '.ext-related-articles-card',
 
 class ReadMorePage extends Page {
 
+	get mobileView() { return browser.element( '#footer-places-mobileview' ); }
+
 	openDesktop( name ) {
 		super.open( name );
 		this.resourceLoaderModuleStatus( READ_MORE_MODULE_NAME, 'registered' );
 	}
 
 	openMobile( name ) {
-		super.open( name + '&mobileaction=toggle_view_mobile' );
+		super.open( name );
+		this.mobileView.click();
 		this.resourceLoaderModuleStatus( READ_MORE_MODULE_NAME, 'ready' );
 	}
 
