@@ -5,7 +5,7 @@
 
 	QUnit.module( 'ext.relatedArticles.cards/CardModel' );
 
-	QUnit.test( '#set', 1, function ( assert ) {
+	QUnit.test( '#set', function ( assert ) {
 		var model = new CardModel( {} );
 
 		model.on( 'change', function ( attributes ) {
@@ -25,7 +25,7 @@
 		model.set( 'foo', 'bar', true );
 	} );
 
-	QUnit.test( '#get', 2, function ( assert ) {
+	QUnit.test( '#get', function ( assert ) {
 		var model = new CardModel( {} );
 
 		model.set( 'foo', 'bar' );

@@ -8,7 +8,7 @@
 
 	QUnit.module( 'ext.relatedArticles.cards/CardView' );
 
-	QUnit.test( '#_render escapes the thumbnailUrl model attribute', 1, function ( assert ) {
+	QUnit.test( '#_render escapes the thumbnailUrl model attribute', function ( assert ) {
 		var model = new CardModel( {
 				title: 'One',
 				url: mw.util.getUrl( 'One' ),
