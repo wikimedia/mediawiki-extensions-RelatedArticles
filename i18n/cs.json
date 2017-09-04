@@ -3,12 +3,10 @@
 		"authors": [
 			"Vks",
 			"Mormegil",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Dvorapa"
 		]
 	},
-	"relatedarticles-title": "Související stránky",
-	"relatedarticles-desc": "Přidává do bočního panelu nebo patičky odkaz na související stránky, pokud si uživatel tuto betafunkci zapne.",
-	"relatedarticles-read-more-heading": "Související stránky",
-	"relatedarticles-read-more-beta-feature-title": "Související stránky",
-	"relatedarticles-read-more-beta-feature-description": "Navrhuje související stránky v dolní části stránky."
+	"relatedarticles-desc": "Přidává do patičky odkazy na související stránky",
+	"relatedarticles-read-more-heading": "Související stránky"
 }
