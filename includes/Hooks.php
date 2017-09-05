@@ -185,6 +185,7 @@ class Hooks {
 			$dependencies[] = "mediawiki.user";
 			$dependencies[] = "mediawiki.viewport";
 			$dependencies[] = "ext.eventLogging.Schema";
+			$dependencies[] = "mediawiki.experiments";
 			$scripts[] = "resources/ext.relatedArticles.readMore.eventLogging/index.js";
 		}
 
