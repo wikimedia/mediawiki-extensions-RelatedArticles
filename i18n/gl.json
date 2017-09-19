@@ -6,9 +6,6 @@
 			"Banjo"
 		]
 	},
-	"relatedarticles-title": "Páxinas relacionadas",
-	"relatedarticles-desc": "Engade unha ligazón cara ás páxinas relacionadas na barra lateral ou no rodapé, se o usuario ten activa a funcionalidade en beta.",
-	"relatedarticles-read-more-heading": "Páxinas relacionadas",
-	"relatedarticles-read-more-beta-feature-title": "Páxinas relacionadas",
-	"relatedarticles-read-more-beta-feature-description": "Suxire páxinas relacionadas ao final dunha páxina."
+	"relatedarticles-desc": "Engade ligazóns cara ás páxinas relacionadas no rodapé",
+	"relatedarticles-read-more-heading": "Páxinas relacionadas"
 }
