@@ -70,7 +70,7 @@
 
 	QUnit.test( 'When limit is higher than number of cards, no limit is enforced.', function ( assert ) {
 		var gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
-		// needed to get page images etc..
+			// needed to get page images etc..
 			stub = this.sandbox.stub( this.api, 'get' )
 				.returns( $.Deferred().resolve( relatedPages ) );
 

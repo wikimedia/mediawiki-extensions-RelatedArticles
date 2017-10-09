@@ -13,7 +13,7 @@
 	 *  an article
 	 */
 	function CardModel( attributes ) {
-		CardModel[ 'super' ].apply( this, arguments );
+		CardModel.super.apply( this, arguments );
 		/**
 		 * @property {Object} attributes of the model
 		 */

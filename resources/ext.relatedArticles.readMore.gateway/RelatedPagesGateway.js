@@ -76,7 +76,7 @@
 
 		if ( relatedPages.length ) {
 			parameters.pilimit = relatedPages.length;
-			parameters[ 'continue' ] = ''; // jscs:ignore requireDotNotation
+			parameters.continue = '';
 
 			parameters.titles = relatedPages;
 		} else if ( this.useCirrusSearch ) {
