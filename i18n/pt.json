@@ -6,9 +6,6 @@
 			"Hamilton Abreu"
 		]
 	},
-	"relatedarticles-title": "Páginas relacionadas",
-	"relatedarticles-desc": "Adiciona uma ligação para páginas relacionadas na barra lateral ou no rodapé, se o editor tiver a funcionalidade beta ativada.",
-	"relatedarticles-read-more-heading": "Páginas relacionadas",
-	"relatedarticles-read-more-beta-feature-title": "Páginas relacionadas",
-	"relatedarticles-read-more-beta-feature-description": "Sugere páginas relacionadas na parte inferior de uma página."
+	"relatedarticles-desc": "Adiciona hiperligações no rodapé para páginas relacionadas",
+	"relatedarticles-read-more-heading": "Páginas relacionadas"
 }
