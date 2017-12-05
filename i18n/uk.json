@@ -5,9 +5,6 @@
 			"Piramidion"
 		]
 	},
-	"relatedarticles-title": "Пов'язані сторінки",
 	"relatedarticles-desc": "Додає посилання на пов'язані сторінки на бічну панель або внизу сторінки, якщо користувач вмикає це в бета-функціях.",
-	"relatedarticles-read-more-heading": "Пов'язані сторінки",
-	"relatedarticles-read-more-beta-feature-title": "Пов'язані сторінки",
-	"relatedarticles-read-more-beta-feature-description": "Внизу сторінки пропонує сторінки на пов'язані теми."
+	"relatedarticles-read-more-heading": "Пов'язані сторінки"
 }

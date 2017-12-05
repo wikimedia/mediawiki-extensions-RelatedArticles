@@ -5,9 +5,6 @@
 			"Jon Harald Søby"
 		]
 	},
-	"relatedarticles-title": "Relaterte sider",
 	"relatedarticles-desc": "Legger til en lenke til relaterte sider i sidefeltet eller bunnen av siden, om brukeren har slått på betafunksjonen.",
-	"relatedarticles-read-more-heading": "Relaterte sider",
-	"relatedarticles-read-more-beta-feature-title": "Relaterte sider",
-	"relatedarticles-read-more-beta-feature-description": "Foreslår relaterte sider på bunnen av siden."
+	"relatedarticles-read-more-heading": "Relaterte sider"
 }
