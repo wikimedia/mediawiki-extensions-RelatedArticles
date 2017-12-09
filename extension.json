@@ -12,7 +12,7 @@
 	"license-name": "GPL-2.0",
 	"type": "betafeatures",
 	"AutoloadClasses": {
-		"RelatedArticles\\ResourceLoaderMuHoganModule": "includes/ResourceLoaderMuhoganModule.php",
+		"RelatedArticles\\ResourceLoaderMuHoganModule": "includes/ResourceLoaderMuHoganModule.php",
 		"RelatedArticles\\Hooks": "includes/Hooks.php"
 	},
 	"ExtensionMessagesFiles": {
