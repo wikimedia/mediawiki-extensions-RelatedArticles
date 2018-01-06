@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zygimantus"
+			"Zygimantus",
+			"Manvydasz"
 		]
 	},
-	"relatedarticles-read-more-heading": "Susiję straipsniai"
+	"relatedarticles-desc": "Prideda nuorodas į susijusius puslapius poraštėje",
+	"relatedarticles-read-more-heading": "Susiję puslapiai"
 }
