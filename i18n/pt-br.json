@@ -2,9 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Luckas",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Eduardo Addad de Oliveira"
 		]
 	},
-	"relatedarticles-desc": "Adiciona um link para páginas relacionadas na barra lateral ou no rodapé, se o usuário ativar o recurso beta.",
+	"relatedarticles-desc": "Adiciona hiperligações no rodapé para páginas relacionadas",
 	"relatedarticles-read-more-heading": "Páginas relacionadas"
 }
