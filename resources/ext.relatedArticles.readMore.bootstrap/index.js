@@ -73,7 +73,7 @@
 
 	shouldShowReadMore = isEnabledForCurrentUser();
 
-	if ( shouldShowReadMore ) {
+	function showReadMore() {
 		// Add container to DOM for checking distance on scroll
 		// If a skin has marked up a footer content area prepend it there
 		if ( $( '.footer-content' ).length ) {
@@ -89,5 +89,8 @@
 		loadRelatedArticles();
 	}
 
+	if ( shouldShowReadMore ) {
+		$( showReadMore );
+	}
 	mw.track( 'ext.relatedArticles.logEnabled', { isEnabled: shouldShowReadMore } );
 }( jQuery, mediaWiki ) );
