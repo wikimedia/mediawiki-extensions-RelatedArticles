@@ -1,8 +1,8 @@
 # Selenium tests
 
-Please see tests/selenium/README.md file in mediawiki/core repository.
+Please see tests/selenium/README.md file in mediawiki/core repository, usually at mediawiki/vagrant/mediawiki folder.
 
-## Usage
+## Setup
 
 Set up MediaWiki-Vagrant:
 
@@ -10,23 +10,34 @@ Set up MediaWiki-Vagrant:
     vagrant up
     vagrant roles enable mobilefrontend relatedarticles
     vagrant provision
-
-From mediawiki/core folder:
-
+    cd mediawiki
+    npm install
     echo 'include_once "$IP/extensions/RelatedArticles/tests/selenium/LocalSettings.php";' >> LocalSettings.php
 
-Run both mediawiki/core and RelatedArticles tests from mediawiki/core folder:
+## Start Chromedriver and run all tests
+
+Run both mediawiki/core and extension tests from mediawiki/core repository (usually at mediawiki/vagrant/mediawiki folder):
 
     npm run selenium
 
-To run only RelatedArticles tests in one terminal window or tab start Chromedriver:
+## Start Chromedriver
 
-    chromedriver --url-base=/wd/hub --port=4444
+To run only some tests, you first have to start Chromedriver in one terminal tab (or window):
 
-In another terminal tab or window go to mediawiki/core folder:
+    chromedriver --url-base=wd/hub --port=4444
 
-    ./node_modules/.bin/wdio tests/selenium/wdio.conf.js --spec extensions/RelatedArticles/tests/selenium/specs/*.js
+## Run test(s) from one file
 
-Run only one RelatedArticles test file from mediawiki/core:
+Then, in another terminal tab (or window) run this from mediawiki/core repository (usually at mediawiki/vagrant/mediawiki folder):
 
-    ./node_modules/.bin/wdio tests/selenium/wdio.conf.js --spec extensions/RelatedArticles/tests/selenium/specs/readmore.js
+    ./node_modules/.bin/wdio tests/selenium/wdio.conf.js --spec extensions/EXTENSION-NAME/tests/selenium/specs/FILE-NAME.js
+
+`wdio` is a dependency of mediawiki/core that you have installed with `npm install`.
+
+## Run specific test(s)
+
+To run only test(s) which name contains string TEST-NAME, run this from mediawiki/core repository (usually at mediawiki/vagrant/mediawiki folder):
+
+    ./node_modules/.bin/wdio tests/selenium/wdio.conf.js --spec extensions/EXTENSION-NAME/tests/selenium/specs/FILE-NAME.js --mochaOpts.grep TEST-NAME
+
+Make sure Chromedriver is running when executing the above command.
