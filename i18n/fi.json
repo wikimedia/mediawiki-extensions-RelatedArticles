@@ -2,9 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"VezonThunder",
-			"Jaakkoh"
+			"Jaakkoh",
+			"Zache"
 		]
 	},
-	"relatedarticles-desc": "Lisää sivupalkkiin linkin samankaltaisiin sivuihin",
+	"relatedarticles-desc": "Lisää sivun loppuun linkkejä samankaltaisiin sivuihin",
 	"relatedarticles-read-more-heading": "Samankaltaiset sivut"
 }
