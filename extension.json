@@ -9,7 +9,7 @@
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:RelatedArticles",
 	"descriptionmsg": "relatedarticles-desc",
-	"license-name": "GPL-2.0",
+	"license-name": "GPL-2.0-only",
 	"type": "betafeatures",
 	"AutoloadClasses": {
 		"RelatedArticles\\ResourceLoaderMuHoganModule": "includes/ResourceLoaderMuHoganModule.php",
