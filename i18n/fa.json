@@ -2,9 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Reza1615",
-			"Ebraminio"
+			"Ebraminio",
+			"Ladsgroup"
 		]
 	},
-	"relatedarticles-desc": "اضافه کردن پیوند به صفحات مرتبط در نوار کناری",
-	"relatedarticles-read-more-heading": "مقاله‌های مرتبط"
+	"relatedarticles-desc": "پیوند به صفحات مرتبط را در پایین صفحه اضافه می‌کند",
+	"relatedarticles-read-more-heading": "صفحه‌های مرتبط"
 }
