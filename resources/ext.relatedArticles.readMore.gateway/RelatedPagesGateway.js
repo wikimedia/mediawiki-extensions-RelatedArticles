@@ -66,10 +66,9 @@
 		var parameters = {
 				action: 'query',
 				formatversion: 2,
-				prop: 'pageimages|pageterms',
+				prop: 'pageimages|description',
 				piprop: 'thumbnail',
-				pithumbsize: 160, // FIXME: Revert to 80 once pithumbmode is implemented
-				wbptterms: 'description'
+				pithumbsize: 160 // FIXME: Revert to 80 once pithumbmode is implemented
 			},
 			// Enforce limit
 			relatedPages = this.editorCuratedPages.slice( 0, limit );

@@ -17,21 +17,14 @@
 				var result = {
 					title: page.title,
 					url: mw.util.getUrl( page.title ),
-					hasThumbnail: false
+					hasThumbnail: false,
+					extract: page.description
 				};
 
 				if ( page.thumbnail ) {
 					result.hasThumbnail = true;
 					result.thumbnailUrl = page.thumbnail.source;
 					result.isThumbnailPortrait = page.thumbnail.height >= page.thumbnail.width;
-				}
-
-				if (
-					page.terms &&
-					page.terms.description &&
-					page.terms.description.length
-				) {
-					result.extract = page.terms.description[ 0 ];
 				}
 
 				return new CardView( new CardModel( result ) );
