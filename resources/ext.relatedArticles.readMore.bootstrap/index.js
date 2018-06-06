@@ -63,7 +63,7 @@
 				if ( pages.length ) {
 					mw.track( 'ext.relatedArticles.init', pages );
 				} else {
-					readMore.remove();
+					$( readMore ).remove();
 				}
 			} );
 			// detach handler to stop subsequent loads on scroll
