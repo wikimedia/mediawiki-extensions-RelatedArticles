@@ -11,9 +11,8 @@
 	"descriptionmsg": "relatedarticles-desc",
 	"license-name": "GPL-2.0-only",
 	"type": "betafeatures",
-	"AutoloadClasses": {
-		"RelatedArticles\\ResourceLoaderMuHoganModule": "includes/ResourceLoaderMuHoganModule.php",
-		"RelatedArticles\\Hooks": "includes/Hooks.php"
+	"AutoloadNamespaces": {
+		"RelatedArticles\\": "includes/"
 	},
 	"ExtensionMessagesFiles": {
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
