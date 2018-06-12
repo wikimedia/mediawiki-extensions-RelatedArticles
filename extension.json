@@ -36,9 +36,6 @@
 		"BeforePageDisplay": [
 			"RelatedArticles\\Hooks::onBeforePageDisplay"
 		],
-		"EventLoggingRegisterSchemas": [
-			"RelatedArticles\\Hooks::onEventLoggingRegisterSchemas"
-		],
 		"ResourceLoaderGetConfigVars": [
 			"RelatedArticles\\Hooks::onResourceLoaderGetConfigVars"
 		],
@@ -154,6 +151,9 @@
 				"mobile"
 			]
 		}
+	},
+	"EventLoggingSchemas": {
+		"RelatedArticles": 16352530
 	},
 	"config": {
 		"@RelatedArticlesCardLimit": "Maximum number of articles that should be shown in RelatedArticles widget. This limit is derived from limits in TextExtracts and PageImages extensions. Number should be between 1 and 20.",
