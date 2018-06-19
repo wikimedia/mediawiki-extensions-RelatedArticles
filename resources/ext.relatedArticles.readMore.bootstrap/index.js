@@ -59,7 +59,7 @@
 					'ext.relatedArticles.readMore'
 				] ),
 				relatedPages.getForCurrentPage( LIMIT )
-			).done( function ( _, pages ) {
+			).then( function ( _, pages ) {
 				if ( pages.length ) {
 					mw.track( 'ext.relatedArticles.init', pages );
 				} else {
