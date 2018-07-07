@@ -11,6 +11,9 @@
 	"descriptionmsg": "relatedarticles-desc",
 	"license-name": "GPL-2.0-only",
 	"type": "betafeatures",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"AutoloadNamespaces": {
 		"RelatedArticles\\": "includes/"
 	},
