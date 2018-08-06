@@ -164,7 +164,7 @@ class Hooks {
 		if ( class_exists( 'EventLogging' ) ) {
 			$dependencies[] = "mediawiki.user";
 			$dependencies[] = "mediawiki.viewport";
-			$dependencies[] = "ext.eventLogging.Schema";
+			$dependencies[] = "ext.eventLogging.subscriber";
 			$dependencies[] = "mediawiki.experiments";
 			$scripts[] = "resources/ext.relatedArticles.readMore.eventLogging/index.js";
 		}
