@@ -10,7 +10,7 @@
 		// Make sure this is never undefined as I'm paranoid
 		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 ),
 		debouncedLoad = $.debounce( 100, function () {
-			loadRelatedArticles(); // eslint-disable-line
+			loadRelatedArticles(); // eslint-disable-line no-use-before-define
 		} ),
 		$window = $( window ),
 		shouldShowReadMore;

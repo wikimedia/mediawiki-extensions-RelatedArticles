@@ -9,8 +9,5 @@
 		"mw": false,
 		"OO": false,
 		"mediaWiki": false
-	},
-	"rules": {
-		"no-use-before-define": 1
 	}
 }
