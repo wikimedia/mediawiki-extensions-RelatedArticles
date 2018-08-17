@@ -22,7 +22,7 @@
 
 		// We don't want to use template partials because we want to
 		// preserve event handlers of each card view.
-		$.each( this.cardViews, function ( i, cardView ) {
+		this.cardViews.forEach( function ( cardView ) {
 			self.$el.append( cardView.$el );
 		} );
 	}

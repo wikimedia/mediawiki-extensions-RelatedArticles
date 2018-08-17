@@ -13,7 +13,7 @@
 	 * @return {boolean}
 	 */
 	function supportsBeacon() {
-		return $.isFunction( window.navigator.sendBeacon );
+		return typeof window.navigator.sendBeacon === 'function';
 	}
 
 	/**

@@ -13,7 +13,7 @@
 		 * @return {mw.cards.CardView[]}
 		 */
 		function getCards( pages ) {
-			return $.map( pages, function ( page ) {
+			return pages.map( function ( page ) {
 				var result = {
 					title: page.title,
 					url: mw.util.getUrl( page.title ),
