@@ -6,7 +6,6 @@ use Parser;
 use OutputPage;
 use ParserOutput;
 use MediaWiki\MediaWikiServices;
-use ResourceLoader;
 use Skin;
 use User;
 use DisambiguatorHooks;
@@ -133,10 +132,6 @@ class Hooks {
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
-		$vars['wgRelatedArticlesLoggingBucketSize'] =
-			$config->get( 'RelatedArticlesLoggingBucketSize' );
-		$vars['wgRelatedArticlesEnabledBucketSize']
-			= $config->get( 'RelatedArticlesEnabledBucketSize' );
 
 		$limit = $config->get( 'RelatedArticlesCardLimit' );
 		$vars['wgRelatedArticlesCardLimit'] = $limit;
@@ -145,44 +140,6 @@ class Hooks {
 				'The value of wgRelatedArticlesCardLimit is not valid. It should be between 1 and 20.'
 			);
 		}
-		return true;
-	}
-
-	/**
-	 * Register the "ext.relatedArticles.readMore.eventLogging" module.
-	 * Optionally update the dependencies and scripts if EventLogging is installed.
-	 *
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
-	 *
-	 * @param ResourceLoader &$resourceLoader The ResourceLoader object
-	 * @return bool
-	 */
-	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		$dependencies = [];
-		$scripts = [];
-
-		if ( class_exists( 'EventLogging' ) ) {
-			$dependencies[] = "mediawiki.user";
-			$dependencies[] = "mediawiki.viewport";
-			$dependencies[] = "ext.eventLogging.subscriber";
-			$dependencies[] = "mediawiki.experiments";
-			$scripts[] = "resources/ext.relatedArticles.readMore.eventLogging/index.js";
-		}
-
-		$resourceLoader->register(
-			"ext.relatedArticles.readMore.eventLogging",
-			[
-				"dependencies" => $dependencies,
-				"scripts" => $scripts,
-				"targets" => [
-					"desktop",
-					"mobile"
-				],
-				"localBasePath" => __DIR__ . "/..",
-				"remoteExtPath" => "RelatedArticles"
-			]
-		);
-
 		return true;
 	}
 

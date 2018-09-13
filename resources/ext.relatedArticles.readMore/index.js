@@ -42,9 +42,6 @@
 				.append( cards.$el );
 
 			$( '.read-more-container' ).append( $readMore );
-
-			// the ReadMore code is ready
-			mw.track( 'ext.relatedArticles.logReady', { $readMore: $readMore } );
 		} );
 	} );
 

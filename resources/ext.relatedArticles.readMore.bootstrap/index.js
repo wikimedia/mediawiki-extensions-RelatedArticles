@@ -12,33 +12,7 @@
 		debouncedLoad = $.debounce( 100, function () {
 			loadRelatedArticles(); // eslint-disable-line no-use-before-define
 		} ),
-		$window = $( window ),
-		shouldShowReadMore;
-
-	/**
-	 * Gets whether the feature is enabled for the user.
-	 *
-	 * The user's session ID is used to determine the eligibility for
-	 * RelatedArticles functionality, based on the value of
-	 * `$wgRelatedArticlesEnabledBucketSize`. The result of the function will be
-	 * the same for the duration of their session.
-	 *
-	 * @return {boolean}
-	 */
-	function isEnabledForCurrentUser() {
-		var bucket,
-			bucketSize = mw.config.get( 'wgRelatedArticlesEnabledBucketSize', 1 );
-
-		bucket = mw.experiments.getBucket( {
-			name: 'ext.relatedArticles.visibility',
-			enabled: true,
-			buckets: {
-				control: 1 - bucketSize,
-				A: bucketSize
-			}
-		}, mw.user.sessionId() );
-		return bucket === 'A';
-	}
+		$window = $( window );
 
 	/**
 	 * Load related articles when the user scrolls past half of the window height.
@@ -71,8 +45,6 @@
 		}
 	}
 
-	shouldShowReadMore = isEnabledForCurrentUser();
-
 	function showReadMore() {
 		// Add container to DOM for checking distance on scroll
 		// If a skin has marked up a footer content area prepend it there
@@ -89,8 +61,5 @@
 		loadRelatedArticles();
 	}
 
-	if ( shouldShowReadMore ) {
-		$( showReadMore );
-	}
-	mw.track( 'ext.relatedArticles.logEnabled', { isEnabled: shouldShowReadMore } );
+	$( showReadMore );
 }() );
