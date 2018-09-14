@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	'use strict';
 
 	/**
@@ -34,4 +34,4 @@
 	CardListView.prototype.template = mw.template.get( 'ext.relatedArticles.cards', 'cards.muhogan' );
 
 	mw.cards.CardListView = CardListView;
-}( jQuery, mediaWiki ) );
+}() );

@@ -1,5 +1,5 @@
 // Register the Hogan compiler with MediaWiki.
-( function ( mw ) {
+( function () {
 	var compiler;
 	/*
 	 * Check if muhogan is already registered (by QuickSurveys). If not
@@ -17,4 +17,4 @@
 		// register hybrid compiler with core
 		mw.template.registerCompiler( 'muhogan', compiler );
 	}
-}( mediaWiki ) );
+}() );

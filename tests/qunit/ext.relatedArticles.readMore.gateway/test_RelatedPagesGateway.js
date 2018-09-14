@@ -1,4 +1,4 @@
-( function ( M, $ ) {
+( function () {
 	var RelatedPagesGateway = mw.relatedPages.RelatedPagesGateway,
 		lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ],
 		relatedPages = {
@@ -125,4 +125,4 @@
 		} );
 	} );
 
-}( mw.mobileFrontend, jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 
 	// FIXME: Move into separate file as this module becomes larger.
 	mw.relatedPages = {};
@@ -111,4 +111,4 @@
 	};
 
 	mw.relatedPages.RelatedPagesGateway = RelatedPagesGateway;
-}( jQuery, mediaWiki ) );
+}() );

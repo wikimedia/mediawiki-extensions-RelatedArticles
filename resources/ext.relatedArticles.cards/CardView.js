@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-( function ( $, mw ) {
+( function () {
 	'use strict';
 
 	/**
@@ -51,4 +51,4 @@
 	};
 
 	mw.cards.CardView = CardView;
-}( jQuery, mediaWiki ) );
+}() );

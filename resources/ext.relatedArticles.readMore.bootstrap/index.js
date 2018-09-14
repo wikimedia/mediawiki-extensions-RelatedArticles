@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 
 	var relatedPages = new mw.relatedPages.RelatedPagesGateway(
 			new mw.Api(),
@@ -93,4 +93,4 @@
 		$( showReadMore );
 	}
 	mw.track( 'ext.relatedArticles.logEnabled', { isEnabled: shouldShowReadMore } );
-}( jQuery, mediaWiki ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function () {
 	// Make sure 'ext.relatedArticles.cards' is loaded. It may not be because of the race
 	// condition in the bootstrap file.
 	mw.loader.using( 'ext.relatedArticles.cards' ).done( function () {
@@ -48,4 +48,4 @@
 		} );
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

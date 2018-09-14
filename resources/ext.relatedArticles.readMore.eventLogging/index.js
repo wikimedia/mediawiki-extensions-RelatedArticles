@@ -1,5 +1,5 @@
 // See https://meta.wikimedia.org/wiki/Schema:RelatedArticles
-( function ( $, mw ) {
+( function () {
 	var $readMore,
 		schemaRelatedPages,
 		skin = mw.config.get( 'skin' ),
@@ -104,4 +104,4 @@
 		} );
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );
