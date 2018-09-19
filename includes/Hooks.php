@@ -274,14 +274,14 @@ class Hooks {
 				'ext.relatedArticles.cards'
 			],
 			'scripts' => [
-				'ext.relatedArticles.cards/CardModel.js',
-				'ext.relatedArticles.cards/CardView.js',
+				'ext.relatedArticles.cards/CardModel.test.js',
+				'ext.relatedArticles.cards/CardView.test.js',
 			]
 		];
 
 		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + [
 			'scripts' => [
-				'ext.relatedArticles.readMore.gateway/test_RelatedPagesGateway.js',
+				'ext.relatedArticles.readMore.gateway/RelatedPagesGateway.test.js',
 			],
 			'dependencies' => [
 				'ext.relatedArticles.readMore.gateway',
