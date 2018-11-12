@@ -21,7 +21,7 @@
 			.eq( 0 )
 			.attr( 'style' );
 
-		assert.equal(
+		assert.strictEqual(
 			style,
 			'background-image: url( \'http\\:\\/\\/foo\\.bar\\/\\\'\\)\\;display\\:none\\;\\"\\/\\/baz\\.jpg\' );'
 		);

@@ -22,7 +22,7 @@
 		};
 
 	QUnit.module( 'ext.relatedArticles.gateway', {
-		setup: function () {
+		beforeEach: function () {
 			this.api = new mw.Api();
 		}
 	} );
@@ -53,7 +53,7 @@
 
 		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
 			assert.ok( Array.isArray( results ), 'Results must be an array' );
-			assert.ok( !spy.called, 'API is not invoked' );
+			assert.notOk( spy.called, 'API is not invoked' );
 			assert.strictEqual( results.length, 0 );
 		} );
 	} );
