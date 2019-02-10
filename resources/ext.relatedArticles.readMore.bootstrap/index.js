@@ -1,3 +1,4 @@
+/* eslint-disable jquery/no-global-selector */
 ( function () {
 
 	var relatedPages = new mw.relatedPages.RelatedPagesGateway(
@@ -49,9 +50,9 @@
 		// Add container to DOM for checking distance on scroll
 		// If a skin has marked up a footer content area prepend it there
 		if ( $( '.footer-content' ).length ) {
-			$( '<div class="read-more-container" />' ).prependTo( '.footer-content' );
+			$( '<div>' ).addClass( 'read-more-container' ).prependTo( '.footer-content' );
 		} else {
-			$( '<div class="read-more-container post-content" />' )
+			$( '<div>' ).addClass( 'read-more-container post-content' )
 				.insertAfter( '#content' );
 		}
 
