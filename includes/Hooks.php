@@ -168,17 +168,16 @@ class Hooks {
 	 *
 	 * @todo Test for uniqueness
 	 * @param Parser $parser Parser object
+	 * @param string ...$args
 	 *
 	 * @return string Always <code>''</code>
 	 */
-	public static function onFuncRelated( Parser $parser ) {
+	public static function onFuncRelated( Parser $parser, ...$args ) {
 		$parserOutput = $parser->getOutput();
 		$relatedPages = $parserOutput->getExtensionData( 'RelatedArticles' );
 		if ( !$relatedPages ) {
 			$relatedPages = [];
 		}
-		$args = func_get_args();
-		array_shift( $args );
 
 		// Add all the related pages passed by the parser function
 		// {{#related:Test with read more|Foo|Bar}}
