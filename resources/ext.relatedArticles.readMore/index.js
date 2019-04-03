@@ -41,7 +41,7 @@
 				.append( $( '<h2></h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
 				.append( cards.$el );
 
-			// eslint-disable-next-line jquery/no-global-selector
+			// eslint-disable-next-line no-jquery/no-global-selector
 			$( '.read-more-container' ).append( $readMore );
 		} );
 	} );
