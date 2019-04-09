@@ -50,16 +50,6 @@
 	},
 	"manifest_version": 1,
 	"ResourceModules": {
-		"mediawiki.template.muhogan": {
-			"class": "RelatedArticles\\ResourceLoaderMuHoganModule",
-			"scripts": [
-				"resources/mediawiki.template.muhogan/muhogan.js"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
 		"ext.relatedArticles.cards": {
 			"targets": [
 				"desktop",
@@ -78,11 +68,7 @@
 			],
 			"styles": [
 				"resources/ext.relatedArticles.cards/styles.less"
-			],
-			"templates": {
-				"card.muhogan": "resources/ext.relatedArticles.cards/card.muhogan",
-				"cards.muhogan": "resources/ext.relatedArticles.cards/cards.muhogan"
-			}
+			]
 		},
 		"ext.relatedArticles.lib": {
 			"targets": [

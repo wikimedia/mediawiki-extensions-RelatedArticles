@@ -25,11 +25,6 @@
 	OO.initClass( CardView );
 
 	/**
-	 * @property {Object} compiled template
-	 */
-	CardView.prototype.template = mw.template.get( 'ext.relatedArticles.cards', 'card.muhogan' );
-
-	/**
 	 * Replace the html of this.$el with a newly rendered html using the model
 	 * attributes.
 	 */
@@ -44,10 +39,45 @@
 	 * @return {string}
 	 */
 	CardView.prototype._render = function () {
-		var attributes = $.extend( {}, this.model.attributes );
+		var $listItem = $( '<li>' ),
+			attributes = $.extend( {}, this.model.attributes );
+
 		attributes.thumbnailUrl = CSS.escape( attributes.thumbnailUrl );
 
-		return this.template.render( attributes );
+		$listItem.attr( {
+			title: attributes.title,
+			class: 'ext-related-articles-card'
+		} );
+
+		$listItem.append( [
+			$( '<div>' )
+				.attr( {
+					class: 'ext-related-articles-card-thumb',
+					style: attributes.hasThumbnail ?
+						'background-image: url( \'' + attributes.thumbnailUrl + '\' );' :
+						null
+				} ),
+			$( '<a>' )
+				.attr( {
+					href: attributes.url,
+					'aria-hidden': 'true',
+					tabindex: -1
+				} ),
+			$( '<div>' )
+				.attr( { class: 'ext-related-articles-card-detail' } )
+				.append( [
+					$( '<h3>' ).append(
+						$( '<a>' )
+							.attr( { href: attributes.url } )
+							.text( attributes.title )
+					),
+					$( '<p>' )
+						.attr( { class: 'ext-related-articles-card-extract' } )
+						.text( attributes.extract )
+				] )
+		] );
+
+		return $listItem;
 	};
 
 	mw.cards.CardView = CardView;

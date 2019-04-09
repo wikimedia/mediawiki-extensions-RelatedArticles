@@ -18,7 +18,7 @@
 		/**
 		 * @property {jQuery}
 		 */
-		this.$el = $( this.template.render() );
+		this.$el = $( '<ul>' ).attr( { class: 'ext-related-articles-card-list' } );
 
 		// We don't want to use template partials because we want to
 		// preserve event handlers of each card view.
@@ -27,11 +27,6 @@
 		} );
 	}
 	OO.initClass( CardListView );
-
-	/**
-	 * @property {Object} compiled template
-	 */
-	CardListView.prototype.template = mw.template.get( 'ext.relatedArticles.cards', 'cards.muhogan' );
 
 	mw.cards.CardListView = CardListView;
 }() );
