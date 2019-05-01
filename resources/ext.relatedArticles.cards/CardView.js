@@ -49,14 +49,13 @@
 			class: 'ext-related-articles-card'
 		} );
 
-		$listItem.append( [
+		$listItem.append(
 			$( '<div>' )
-				.attr( {
-					class: 'ext-related-articles-card-thumb',
-					style: attributes.hasThumbnail ?
-						'background-image: url( \'' + attributes.thumbnailUrl + '\' );' :
-						null
-				} ),
+				.addClass( 'ext-related-articles-card-thumb' )
+				.css( 'background-image', attributes.hasThumbnail ?
+					'url(' + attributes.thumbnailUrl + ')' :
+					null
+				),
 			$( '<a>' )
 				.attr( {
 					href: attributes.url,
@@ -65,7 +64,7 @@
 				} ),
 			$( '<div>' )
 				.attr( { class: 'ext-related-articles-card-detail' } )
-				.append( [
+				.append(
 					$( '<h3>' ).append(
 						$( '<a>' )
 							.attr( { href: attributes.url } )
@@ -74,8 +73,8 @@
 					$( '<p>' )
 						.attr( { class: 'ext-related-articles-card-extract' } )
 						.text( attributes.extract )
-				] )
-		] );
+				)
+		);
 
 		return $listItem;
 	};
