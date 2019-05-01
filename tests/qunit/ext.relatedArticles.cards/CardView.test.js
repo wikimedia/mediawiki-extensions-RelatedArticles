@@ -23,7 +23,7 @@
 
 		assert.strictEqual(
 			style,
-			'background-image: url( \'http\\:\\/\\/foo\\.bar\\/\\\'\\)\\;display\\:none\\;\\"\\/\\/baz\\.jpg\' );'
+			"background-image: url(\"http://foo.bar/');display:none;\\\"//baz.jpg\");"
 		);
 	} );
 }() );
