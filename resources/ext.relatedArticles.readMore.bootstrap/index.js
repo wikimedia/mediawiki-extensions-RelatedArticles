@@ -1,12 +1,13 @@
 /* eslint-disable no-jquery/no-global-selector */
 ( function () {
 
-	var relatedPages = new mw.relatedPages.RelatedPagesGateway(
+	var data = require( './data.json' ),
+		relatedPages = new mw.relatedPages.RelatedPagesGateway(
 			new mw.Api(),
 			mw.config.get( 'wgPageName' ),
 			mw.config.get( 'wgRelatedArticles' ),
-			mw.config.get( 'wgRelatedArticlesUseCirrusSearch' ),
-			mw.config.get( 'wgRelatedArticlesOnlyUseCirrusSearch' )
+			data.useCirrusSearch,
+			data.onlyUseCirrusSearch
 		),
 		// Make sure this is never undefined as I'm paranoid
 		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 ),

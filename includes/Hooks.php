@@ -24,13 +24,7 @@ class Hooks {
 	 * @return bool Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()
-			->makeConfig( 'RelatedArticles' );
-
 		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
-		$vars['wgRelatedArticlesUseCirrusSearch'] = $config->get( 'RelatedArticlesUseCirrusSearch' );
-		$vars['wgRelatedArticlesOnlyUseCirrusSearch'] =
-			$config->get( 'RelatedArticlesOnlyUseCirrusSearch' );
 
 		return true;
 	}

@@ -95,7 +95,11 @@
 			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap",
 			"remoteExtPath": "RelatedArticles/resources/ext.relatedArticles.readMore.bootstrap",
 			"packageFiles": [
-				"index.js"
+				"index.js",
+				{ "name": "data.json", "config": {
+					"useCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch",
+					"onlyUseCirrusSearch": "RelatedArticlesUseCirrusSearch"
+				} }
 			],
 			"dependencies": [
 				"mediawiki.experiments",
