@@ -92,8 +92,10 @@
 			]
 		},
 		"ext.relatedArticles.readMore.bootstrap": {
-			"scripts": [
-				"resources/ext.relatedArticles.readMore.bootstrap/index.js"
+			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap",
+			"remoteExtPath": "RelatedArticles/resources/ext.relatedArticles.readMore.bootstrap",
+			"packageFiles": [
+				"index.js"
 			],
 			"dependencies": [
 				"mediawiki.experiments",
