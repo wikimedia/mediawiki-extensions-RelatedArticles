@@ -7,7 +7,7 @@
 	 * @class RelatedPagesGateway
 	 * @param {mw.Api} api
 	 * @param {string} currentPage the page that the editorCuratedPages relate to
-	 * @param {Array} editorCuratedPages a list of pages curated by editors for the current page
+	 * @param {Array|null} editorCuratedPages a list of pages curated by editors for the current page
 	 * @param {boolean} useCirrusSearch whether to hit the API when no editor-curated pages are available
 	 * @param {boolean} [onlyUseCirrusSearch=false] whether to ignore the list of editor-curated pages
 	 */

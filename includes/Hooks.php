@@ -21,12 +21,12 @@ class Hooks {
 	 *
 	 * @param array &$vars variables to be added into the output of OutputPage::headElement.
 	 * @param OutputPage $out OutputPage instance calling the hook
-	 * @return bool Always <code>true</code>
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
-		$vars['wgRelatedArticles'] = $out->getProperty( 'RelatedArticles' );
-
-		return true;
+		$editorCuratedPages = $out->getProperty( 'RelatedArticles' );
+		if ( $editorCuratedPages ) {
+			$vars['wgRelatedArticles'] = $editorCuratedPages;
+		}
 	}
 
 	/**
