@@ -97,8 +97,8 @@
 			"packageFiles": [
 				"index.js",
 				{ "name": "data.json", "config": {
-					"useCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch",
-					"onlyUseCirrusSearch": "RelatedArticlesUseCirrusSearch"
+					"useCirrusSearch": "RelatedArticlesUseCirrusSearch",
+					"onlyUseCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch"
 				} }
 			],
 			"dependencies": [
