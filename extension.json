@@ -41,6 +41,9 @@
 		],
 		"ResourceLoaderGetConfigVars": [
 			"RelatedArticles\\Hooks::onResourceLoaderGetConfigVars"
+		],
+		"SkinAfterContent": [
+			"RelatedArticles\\Hooks::onSkinAfterContent"
 		]
 	},
 	"MessagesDirs": {
@@ -127,10 +130,6 @@
 			],
 			"skinStyles": {
 				"default": "resources/ext.relatedArticles.readMore/readMore.default.less",
-				"monobook": [
-					"resources/ext.relatedArticles.readMore/readMore.default.less",
-					"resources/ext.relatedArticles.readMore/readMore.monobook.less"
-				],
 				"minerva": ""
 			},
 			"messages": [
@@ -148,7 +147,7 @@
 		"RelatedArticlesUseCirrusSearch": false,
 		"RelatedArticlesOnlyUseCirrusSearch": false,
 		"@RelatedArticlesFooterWhitelistedSkins": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
-		"RelatedArticlesFooterWhitelistedSkins": [ "minerva" ]
+		"RelatedArticlesFooterWhitelistedSkins": []
 	},
 	"ConfigRegistry": {
 		"RelatedArticles": "GlobalVarConfig::newInstance"

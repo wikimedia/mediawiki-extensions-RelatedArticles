@@ -48,15 +48,6 @@
 	}
 
 	function showReadMore() {
-		// Add container to DOM for checking distance on scroll
-		// If a skin has marked up a footer content area prepend it there
-		if ( $( '.footer-content' ).length ) {
-			$( '<div>' ).addClass( 'read-more-container' ).prependTo( '.footer-content' );
-		} else {
-			$( '<div>' ).addClass( 'read-more-container post-content' )
-				.insertAfter( '#content' );
-		}
-
 		// try related articles load on scroll
 		$window.on( 'scroll', debouncedLoad );
 		// try an initial load, in case of no scroll

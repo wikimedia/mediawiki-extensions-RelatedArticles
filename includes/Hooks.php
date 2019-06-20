@@ -61,8 +61,9 @@ class Hooks {
 	/**
 	 * Is ReadMore allowed on skin?
 	 *
-	 * The feature is allowed on all skins as long as they are whitelisted
-	 * in the configuration variable `RelatedArticlesFooterWhitelistedSkins`.
+	 * Some wikis may want to only enable the feature on some skins, so we'll only
+	 * show it if the whitelist (`RelatedArticlesFooterWhitelistedSkins`
+	 * configuration variable) is empty or the skin is listed.
 	 *
 	 * @param User $user
 	 * @param Skin $skin
@@ -73,7 +74,7 @@ class Hooks {
 			->makeConfig( 'RelatedArticles' );
 		$skins = $config->get( 'RelatedArticlesFooterWhitelistedSkins' );
 		$skinName = $skin->getSkinName();
-		return in_array( $skinName, $skins );
+		return empty( $skins ) || in_array( $skinName, $skins );
 	}
 
 	/**
@@ -238,5 +239,15 @@ class Hooks {
 			],
 		];
 		return true;
+	}
+
+	/**
+	 * Create container for ReadMore cards so that they're correctly placed in all skins.
+	 *
+	 * @param string &$data
+	 * @param Skin $skin
+	 */
+	public static function onSkinAfterContent( &$data, Skin $skin ) {
+		$data .= \Html::element( 'div', [ 'class' => 'read-more-container' ] );
 	}
 }
