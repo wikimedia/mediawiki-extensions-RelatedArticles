@@ -52,6 +52,10 @@
 		$listItem.append(
 			$( '<div>' )
 				.addClass( 'ext-related-articles-card-thumb' )
+				.addClass( attributes.hasThumbnail ?
+					'' :
+					'ext-related-articles-card-thumb-placeholder'
+				)
 				.css( 'background-image', attributes.hasThumbnail ?
 					'url(' + attributes.thumbnailUrl + ')' :
 					null

@@ -114,14 +114,18 @@
 
 	.ext-related-articles-card-thumb {
 		background-color: @colorGray14;
-		.background-image-svg( 'article.svg', 'article.png' );
 		background-repeat: no-repeat;
 		background-position: center center;
-		background-size: 40px 40px;
+		background-size: cover;
 		float: left;
 		height: 100%;
 		width: @thumbWidth;
 		margin-right: 10px;
+	}
+
+	.ext-related-articles-card-thumb-placeholder {
+		.background-image-svg( 'article.svg', 'article.png' );
+		background-size: 40px 40px;
 	}
 }
 
