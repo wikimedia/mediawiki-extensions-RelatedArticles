@@ -18,7 +18,8 @@
 					title: page.title,
 					url: mw.util.getUrl( page.title ),
 					hasThumbnail: false,
-					extract: page.description
+					extract: ( page.description || page.extract ||
+						( page.pageprops ? page.pageprops.description : '' ) )
 				};
 
 				if ( page.thumbnail ) {

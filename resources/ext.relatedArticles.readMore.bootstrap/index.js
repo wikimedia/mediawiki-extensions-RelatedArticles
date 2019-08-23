@@ -7,7 +7,8 @@
 			mw.config.get( 'wgPageName' ),
 			mw.config.get( 'wgRelatedArticles' ),
 			data.useCirrusSearch,
-			data.onlyUseCirrusSearch
+			data.onlyUseCirrusSearch,
+			data.descriptionSource
 		),
 		// Make sure this is never undefined as I'm paranoid
 		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 ),
