@@ -112,7 +112,7 @@
 				"mediawiki.Uri",
 				"mediawiki.viewport",
 				"ext.relatedArticles.readMore.gateway",
-				"jquery.throttle-debounce"
+				"mediawiki.util"
 			],
 			"targets": [
 				"mobile",
