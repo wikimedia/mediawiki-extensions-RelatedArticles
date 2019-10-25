@@ -3,9 +3,10 @@
 		"authors": [
 			"Reza1615",
 			"Ebraminio",
-			"Ladsgroup"
+			"Ladsgroup",
+			"Alireza Ivaz"
 		]
 	},
-	"relatedarticles-desc": "پیوند به صفحات مرتبط را در پایین صفحه اضافه می‌کند",
-	"relatedarticles-read-more-heading": "صفحه‌های مرتبط"
+	"relatedarticles-desc": "پیوندی به برگه‌های مرتبط را در پایین برگه اضافه می‌کند",
+	"relatedarticles-read-more-heading": "برگه‌های مرتبط"
 }
