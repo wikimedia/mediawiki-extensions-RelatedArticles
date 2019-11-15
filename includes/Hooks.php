@@ -6,6 +6,7 @@ use Parser;
 use OutputPage;
 use ParserOutput;
 use MediaWiki\MediaWikiServices;
+use ResourceLoader;
 use Skin;
 use User;
 use DisambiguatorHooks;
@@ -144,10 +145,10 @@ class Hooks {
 	 * Registers the <code>related</code> parser function (see
 	 * {@see Hooks::onFuncRelated}).
 	 *
-	 * @param Parser &$parser Parser object
+	 * @param Parser $parser Parser object
 	 * @return bool Always <code>true</code>
 	 */
-	public static function onParserFirstCallInit( Parser &$parser ) {
+	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setFunctionHook( 'related', 'RelatedArticles\\Hooks::onFuncRelated' );
 
 		return true;
@@ -191,11 +192,11 @@ class Hooks {
 	 * The list of related pages will be retrieved using
 	 * <code>ParserOutput#getExtensionData</code>.
 	 *
-	 * @param OutputPage &$out the OutputPage object
+	 * @param OutputPage $out the OutputPage object
 	 * @param ParserOutput $parserOutput ParserOutput object
 	 * @return bool Always <code>true</code>
 	 */
-	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
+	public static function onOutputPageParserOutput( OutputPage $out, ParserOutput $parserOutput ) {
 		$related = $parserOutput->getExtensionData( 'RelatedArticles' );
 
 		if ( $related ) {
@@ -210,10 +211,10 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
 	 * @param array &$modules array of javascript testing modules
-	 * @param \ResourceLoader &$rl Resource Loader
+	 * @param ResourceLoader $rl Resource Loader
 	 * @return bool
 	 */
-	public static function onResourceLoaderTestModules( &$modules, &$rl ) {
+	public static function onResourceLoaderTestModules( &$modules, ResourceLoader $rl ) {
 		$boilerplate = [
 			'localBasePath' => __DIR__ . '/../tests/qunit/',
 			'remoteExtPath' => 'RelatedArticles/tests/qunit',
