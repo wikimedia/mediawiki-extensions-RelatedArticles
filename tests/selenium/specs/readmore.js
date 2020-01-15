@@ -6,12 +6,12 @@ var assert = require( 'assert' ),
 
 describe( 'ReadMore', function () {
 
-	let name = 'Related Articles 1';
+	const name = 'Related Articles 1';
 
 	before( function () {
 		// Create page needed for the tests
 		browser.call( function () {
-			let content = '{{#related:related_articles_2}}';
+			const content = '{{#related:related_articles_2}}';
 			return Api.edit( name, content );
 		} );
 	} );

@@ -2,15 +2,15 @@
 
 namespace RelatedArticles;
 
-use Parser;
-use OutputPage;
-use ParserOutput;
+use DisambiguatorHooks;
 use MediaWiki\MediaWikiServices;
+use OutputPage;
+use Parser;
+use ParserOutput;
 use ResourceLoader;
 use Skin;
-use User;
-use DisambiguatorHooks;
 use Title;
+use User;
 
 class Hooks {
 
@@ -36,7 +36,7 @@ class Hooks {
 	 * If the Disambiguator extension isn't installed, then the test always fails, i.e. the page is
 	 * never a disambiguation page.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	private static function isDisambiguationPage( Title $title ) {
 		return \ExtensionRegistry::getInstance()->isLoaded( 'Disambiguator' ) &&
