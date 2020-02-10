@@ -2,9 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Urbanecm",
-			"Teslaton"
+			"Teslaton",
+			"TomášPolonec"
 		]
 	},
-	"relatedarticles-desc": "Pridáva do bočného panelu alebo päty odkaz na súvisiace stránky, pokiaľ si používateľ túto betafunkciu zapne.",
+	"relatedarticles-desc": "Pridáva do päty odkaz na súvisiace stránky",
 	"relatedarticles-read-more-heading": "Súvisiace stránky"
 }
