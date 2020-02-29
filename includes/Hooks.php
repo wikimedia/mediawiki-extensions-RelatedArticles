@@ -36,6 +36,7 @@ class Hooks {
 	 * If the Disambiguator extension isn't installed, then the test always fails, i.e. the page is
 	 * never a disambiguation page.
 	 *
+	 * @param Title $title
 	 * @return bool
 	 */
 	private static function isDisambiguationPage( Title $title ) {
