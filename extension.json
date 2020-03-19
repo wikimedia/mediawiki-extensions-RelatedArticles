@@ -132,7 +132,7 @@
 			],
 			"skinStyles": {
 				"default": "resources/ext.relatedArticles.readMore/readMore.default.less",
-				"minerva": ""
+				"minerva": "resources/ext.relatedArticles.readMore/readMore.minerva.less"
 			},
 			"messages": [
 				"relatedarticles-read-more-heading"
