@@ -3,9 +3,10 @@
 		"authors": [
 			"Ainali",
 			"Fader",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Technic2"
 		]
 	},
-	"relatedarticles-desc": "Lägger till en länk till relaterade sidor i sidofältet",
+	"relatedarticles-desc": "Lägger till länkar till relaterade sidor i sidfoten",
 	"relatedarticles-read-more-heading": "Relaterade sidor"
 }
