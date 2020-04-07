@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand",
-			"Sjoerddebruin",
 			"Dinosaur918",
-			"Mainframe98"
+			"Mainframe98",
+			"Siebrand",
+			"Sjoerddebruin"
 		]
 	},
 	"relatedarticles-desc": "Voegt koppelingen toe naar gerelateerde pagina's in de voettekst",
