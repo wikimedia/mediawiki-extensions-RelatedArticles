@@ -7,7 +7,6 @@ use MediaWiki\MediaWikiServices;
 use OutputPage;
 use Parser;
 use ParserOutput;
-use ResourceLoader;
 use Skin;
 use Title;
 use User;
@@ -204,42 +203,6 @@ class Hooks {
 			$out->setProperty( 'RelatedArticles', $related );
 		}
 
-		return true;
-	}
-
-	/**
-	 * Register QUnit tests.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
-	 *
-	 * @param array &$modules array of javascript testing modules
-	 * @param ResourceLoader $rl Resource Loader
-	 * @return bool
-	 */
-	public static function onResourceLoaderTestModules( &$modules, ResourceLoader $rl ) {
-		$boilerplate = [
-			'localBasePath' => __DIR__ . '/../tests/qunit/',
-			'remoteExtPath' => 'RelatedArticles/tests/qunit',
-			'targets' => [ 'desktop', 'mobile' ],
-		];
-
-		$modules['qunit']['ext.relatedArticles.cards.tests'] = $boilerplate + [
-			'dependencies' => [
-				'ext.relatedArticles.cards'
-			],
-			'scripts' => [
-				'ext.relatedArticles.cards/CardModel.test.js',
-				'ext.relatedArticles.cards/CardView.test.js',
-			]
-		];
-
-		$modules['qunit']['ext.relatedArticles.readMore.gateway.tests'] = $boilerplate + [
-			'scripts' => [
-				'ext.relatedArticles.readMore.gateway/RelatedPagesGateway.test.js',
-			],
-			'dependencies' => [
-				'ext.relatedArticles.readMore.gateway',
-			],
-		];
 		return true;
 	}
 

@@ -22,9 +22,6 @@
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
 	},
 	"Hooks": {
-		"ResourceLoaderTestModules": [
-			"RelatedArticles\\Hooks::onResourceLoaderTestModules"
-		],
 		"ParserFirstCallInit": [
 			"RelatedArticles\\Hooks::onParserFirstCallInit"
 		],
@@ -142,6 +139,19 @@
 				"mobile"
 			]
 		}
+	},
+	"QUnitTestModule": {
+		"localBasePath": "tests/qunit",
+		"remoteExtPath": "RelatedArticles/tests/qunit",
+		"scripts": [
+			"ext.relatedArticles.cards/CardModel.test.js",
+			"ext.relatedArticles.cards/CardView.test.js",
+			"ext.relatedArticles.readMore.gateway/RelatedPagesGateway.test.js"
+		],
+		"dependencies": [
+			"ext.relatedArticles.cards",
+			"ext.relatedArticles.readMore.gateway"
+		]
 	},
 	"config": {
 		"RelatedArticlesCardLimit": {
