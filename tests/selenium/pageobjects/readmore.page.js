@@ -5,11 +5,11 @@ const CARD_SELECTOR = '.ext-related-articles-card',
 
 class ReadMorePage extends Page {
 
-	get mobileView() { return browser.element( '#footer-places-mobileview' ); }
+	get mobileView() { return $( '#footer-places-mobileview' ); }
 
 	openDesktop( name ) {
 		super.openTitle( name );
-		this.resourceLoaderModuleStatus( READ_MORE_MODULE_NAME, 'registered' );
+		this.resourceLoaderModuleStatus( READ_MORE_MODULE_NAME, 'loading' );
 	}
 
 	openMobile( name ) {
@@ -19,37 +19,37 @@ class ReadMorePage extends Page {
 	}
 
 	get extCardsCard() {
-		return browser.element( '.ext-related-articles-card' );
+		return $( '.ext-related-articles-card' );
 	}
 
 	get readMore() {
 		this.readMoreCodeIsLoaded();
-		this.extCardsCard.waitForExist( 2000 );
+		this.extCardsCard.waitForExist( { timeout: 2000 } );
 		return this.extCardsCard;
 	}
 
 	isCardVisible() {
-		return browser.isVisible( CARD_SELECTOR );
+		return $( CARD_SELECTOR ).isDisplayed();
 	}
 
 	readMoreCodeIsLoaded() {
-		browser.waitUntil( function () {
-			return browser.execute( function ( status ) {
-				return mw && mw.loader && mw.loader.getState( 'ext.relatedArticles.readMore' ) === status;
+		browser.waitUntil( async () =>{
+			return await browser.execute( async ( status ) => {
+				return await mw && mw.loader && mw.loader.getState( 'ext.relatedArticles.readMore' ) === status;
 			}, 'ready' );
 		}, 2000, 'Related pages did not load' );
 	}
 
 	resourceLoaderModuleStatus( moduleName, moduleStatus ) {
-		return browser.waitUntil( function () {
-			return browser.execute( function ( module ) {
-				return mw && mw.loader && mw.loader.getState( module.name ) === module.status;
+		return browser.waitUntil( async () =>{
+			return await browser.execute( async ( module ) =>{
+				return await mw && mw.loader && mw.loader.getState( module.name ) === module.status;
 			}, { status: moduleStatus, name: moduleName } );
 		}, 10000, 'Related pages did not load' );
 	}
 
 	seeReadMore() {
-		browser.waitForExist( CARD_SELECTOR, 10000 );
+		$( CARD_SELECTOR ).waitForExist( { timeout: 10000 } );
 		return true;
 	}
 

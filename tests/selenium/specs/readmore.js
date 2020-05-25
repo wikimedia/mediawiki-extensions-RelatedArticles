@@ -5,14 +5,19 @@ var assert = require( 'assert' ),
 	ReadMorePage = require( '../pageobjects/readmore.page' );
 
 describe( 'ReadMore', function () {
+	let bot;
+
+	before( async () => {
+		bot = await Api.bot();
+	} );
 
 	const name = 'Related Articles 1';
 
 	before( function () {
 		// Create page needed for the tests
-		browser.call( function () {
+		browser.call( async () => {
 			const content = '{{#related:related_articles_2}}';
-			return Api.edit( name, content );
+			await bot.edit( name, content );
 		} );
 	} );
 
