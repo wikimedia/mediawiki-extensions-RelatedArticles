@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require( 'assert' ),
+const assert = require( 'assert' ),
 	Api = require( 'wdio-mediawiki/Api' ),
 	ReadMorePage = require( '../pageobjects/readmore.page' );
 
@@ -13,6 +13,7 @@ describe( 'ReadMore', function () {
 
 	const name = 'Related Articles 1';
 
+	// eslint-disable-next-line mocha/no-sibling-hooks
 	before( function () {
 		// Create page needed for the tests
 		browser.call( async () => {

@@ -33,7 +33,7 @@ class ReadMorePage extends Page {
 	}
 
 	readMoreCodeIsLoaded() {
-		browser.waitUntil( async () =>{
+		browser.waitUntil( async () => {
 			return await browser.execute( async ( status ) => {
 				return await mw && mw.loader && mw.loader.getState( 'ext.relatedArticles.readMore' ) === status;
 			}, 'ready' );
@@ -41,8 +41,8 @@ class ReadMorePage extends Page {
 	}
 
 	resourceLoaderModuleStatus( moduleName, moduleStatus ) {
-		return browser.waitUntil( async () =>{
-			return await browser.execute( async ( module ) =>{
+		return browser.waitUntil( async () => {
+			return await browser.execute( async ( module ) => {
 				return await mw && mw.loader && mw.loader.getState( module.name ) === module.status;
 			}, { status: moduleStatus, name: moduleName } );
 		}, 10000, 'Related pages did not load' );

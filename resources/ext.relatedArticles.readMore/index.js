@@ -39,7 +39,7 @@
 			cards = new CardListView( getCards( pages ) );
 
 			$readMore = $( '<aside>' ).addClass( 'ra-read-more noprint' )
-				.append( $( '<h2></h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
+				.append( $( '<h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
 				.append( cards.$el );
 
 			// eslint-disable-next-line no-jquery/no-global-selector
