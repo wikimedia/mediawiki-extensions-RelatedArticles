@@ -27,7 +27,7 @@ describe( 'ReadMore', function () {
 		assert( !ReadMorePage.isCardVisible(), 'No related pages cards are shown' );
 	} );
 
-	it( 'ReadMore is present in Minerva', function () {
+	it( 'ReadMore is present in Minerva @daily', function () {
 		ReadMorePage.openMobile( name );
 		assert( ReadMorePage.seeReadMore() );
 	} );

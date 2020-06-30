@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"scripts": {
-		"selenium-daily": "npm run selenium-test",
+		"selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
 		"selenium-test": "wdio tests/selenium/wdio.conf.js",
 		"test": "grunt test"
 	},
