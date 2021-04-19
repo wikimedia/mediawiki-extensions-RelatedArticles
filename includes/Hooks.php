@@ -73,10 +73,7 @@ class Hooks {
 	private static function isReadMoreAllowedOnSkin( User $user, Skin $skin ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
-		$skins = array_merge(
-			$config->get( 'RelatedArticlesFooterAllowedSkins' ),
-			$config->get( 'RelatedArticlesFooterWhitelistedSkins' )
-		);
+		$skins = $config->get( 'RelatedArticlesFooterAllowedSkins' );
 		$skinName = $skin->getSkinName();
 		return empty( $skins ) || in_array( $skinName, $skins );
 	}

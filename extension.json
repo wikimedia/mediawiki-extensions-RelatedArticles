@@ -159,10 +159,6 @@
 		"RelatedArticlesFooterAllowedSkins": {
 			"description": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
 			"value": []
-		},
-		"RelatedArticlesFooterWhitelistedSkins": {
-			"description": "DEPRECATED: Use $wgRelatedArticlesFooterAllowedSkins instead",
-			"value": []
 		}
 	},
 	"ConfigRegistry": {
