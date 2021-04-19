@@ -63,7 +63,7 @@ class Hooks {
 	 * Is ReadMore allowed on skin?
 	 *
 	 * Some wikis may want to only enable the feature on some skins, so we'll only
-	 * show it if the whitelist (`RelatedArticlesFooterWhitelistedSkins`
+	 * show it if the allow list (`RelatedArticlesFooterAllowedSkins`
 	 * configuration variable) is empty or the skin is listed.
 	 *
 	 * @param User $user
@@ -73,7 +73,10 @@ class Hooks {
 	private static function isReadMoreAllowedOnSkin( User $user, Skin $skin ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
-		$skins = $config->get( 'RelatedArticlesFooterWhitelistedSkins' );
+		$skins = array_merge(
+			$config->get( 'RelatedArticlesFooterAllowedSkins' ),
+			$config->get( 'RelatedArticlesFooterWhitelistedSkins' )
+		);
 		$skinName = $skin->getSkinName();
 		return empty( $skins ) || in_array( $skinName, $skins );
 	}

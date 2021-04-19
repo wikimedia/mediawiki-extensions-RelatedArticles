@@ -156,8 +156,12 @@
 			"description": "Source to get the page description from (string, or false to not fetch the description). Possible values: wikidata, textextracts, pagedescription.",
 			"value": false
 		},
-		"RelatedArticlesFooterWhitelistedSkins": {
+		"RelatedArticlesFooterAllowedSkins": {
 			"description": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
+			"value": []
+		},
+		"RelatedArticlesFooterWhitelistedSkins": {
+			"description": "DEPRECATED: Use $wgRelatedArticlesFooterAllowedSkins instead",
 			"value": []
 		}
 	},
