@@ -26,6 +26,11 @@
 		var readMore = $( '.read-more-container' ).get( 0 ),
 			scrollThreshold = $window.height() * 2;
 
+		if ( !readMore ) {
+			// The container is not in the HTML for some reason and cannot be queried.
+			// See T281547
+			return;
+		}
 		if ( mw.viewport.isElementCloseToViewport( readMore, scrollThreshold ) ) {
 			$.when(
 				// Note we load dependencies here rather than ResourceLoader
