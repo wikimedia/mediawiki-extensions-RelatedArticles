@@ -22,12 +22,12 @@ describe( 'ReadMore', function () {
 		} );
 	} );
 
-	it( 'ReadMore is not present on Vector', function () {
+	it.skip( 'ReadMore is not present on Vector', function () {
 		ReadMorePage.openDesktop( name );
 		assert( !ReadMorePage.isCardVisible(), 'No related pages cards are shown' );
 	} );
 
-	it( 'ReadMore is present in Minerva @daily', function () {
+	it.skip( 'ReadMore is present in Minerva @daily', function () {
 		ReadMorePage.openMobile( name );
 		assert( ReadMorePage.seeReadMore() );
 	} );
