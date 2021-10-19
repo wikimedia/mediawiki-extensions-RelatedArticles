@@ -2,7 +2,7 @@
 
 namespace RelatedArticles;
 
-use DisambiguatorHooks;
+use MediaWiki\Extension\Disambiguator\Hooks as DisambiguatorHooks;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use Parser;
