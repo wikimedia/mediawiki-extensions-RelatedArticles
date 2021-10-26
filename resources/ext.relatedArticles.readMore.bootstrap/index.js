@@ -11,11 +11,7 @@
 			data.descriptionSource
 		),
 		// Make sure this is never undefined as I'm paranoid
-		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 ),
-		debouncedLoad = mw.util.debounce( 100, function () {
-			loadRelatedArticles(); // eslint-disable-line no-use-before-define
-		} ),
-		$window = $( window );
+		LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 );
 
 	/**
 	 * Load related articles when the user scrolls past half of the window height.
@@ -23,15 +19,19 @@
 	 * @ignore
 	 */
 	function loadRelatedArticles() {
-		var readMore = $( '.read-more-container' ).get( 0 ),
-			scrollThreshold = $window.height() * 2;
+		var readMore = document.querySelector( '.read-more-container' ),
+			isSupported = 'IntersectionObserver' in window;
 
-		if ( !readMore ) {
+		if ( !readMore || !isSupported ) {
 			// The container is not in the HTML for some reason and cannot be queried.
 			// See T281547
 			return;
 		}
-		if ( mw.viewport.isElementCloseToViewport( readMore, scrollThreshold ) ) {
+
+		/**
+		 * @param {Element} container
+		 */
+		function initRelatedArticlesModule( container ) {
 			$.when(
 				// Note we load dependencies here rather than ResourceLoader
 				// to avoid PHP exceptions when Cards not installed
@@ -44,18 +44,37 @@
 			).then( function ( _, pages ) {
 				if ( pages.length ) {
 					mw.track( 'ext.relatedArticles.init', pages );
-				} else {
-					$( readMore ).remove();
+				} else if ( container.parentNode ) {
+					container.parentNode.removeChild( container );
 				}
 			} );
-			// detach handler to stop subsequent loads on scroll
-			$window.off( 'scroll', debouncedLoad );
 		}
+
+		var doc = document.documentElement;
+		// IntersectionObserver will not work if the component is already visible on the page.
+		// To handle this case, we compare scroll height to viewport height.
+		if ( ( doc.scrollHeight / 2 ) < doc.clientHeight ) {
+			// Load straight away. We are on a stub page.
+			initRelatedArticlesModule( readMore );
+			return;
+		}
+		// eslint-disable-next-line compat/compat
+		var observer = /** @type {IntersectionObserver} */( new IntersectionObserver( function ( entries ) {
+			if ( !entries[ 0 ].isIntersecting ) {
+				return;
+			}
+			// @ts-ignore
+			observer.unobserve( readMore );
+			observer.disconnect();
+			// @ts-ignore
+			initRelatedArticlesModule( readMore );
+		}, {
+			rootMargin: '-100% 0% 0% 0%'
+		} ) );
+		observer.observe( readMore );
 	}
 
 	function showReadMore() {
-		// try related articles load on scroll
-		$window.on( 'scroll', debouncedLoad );
 		// try an initial load, in case of no scroll
 		loadRelatedArticles();
 	}

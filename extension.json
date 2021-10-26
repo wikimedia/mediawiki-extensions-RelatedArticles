@@ -96,7 +96,6 @@
 				"mediawiki.user",
 				"mediawiki.api",
 				"mediawiki.Uri",
-				"mediawiki.viewport",
 				"ext.relatedArticles.readMore.gateway",
 				"mediawiki.util"
 			],
