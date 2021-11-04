@@ -36,6 +36,13 @@
 	},
 	"manifest_version": 2,
 	"ResourceModules": {
+		"ext.relatedArticles.styles": {
+			"styles": "resources/ext.relatedArticles.styles.less",
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"ext.relatedArticles.cards": {
 			"targets": [
 				"desktop",

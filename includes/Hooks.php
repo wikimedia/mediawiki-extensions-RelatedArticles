@@ -113,6 +113,7 @@ class Hooks {
 			self::isReadMoreAllowedOnSkin( $out->getUser(), $skin )
 		) {
 			$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
+			$out->addModuleStyles( [ 'ext.relatedArticles.styles' ] );
 		}
 
 		return true;

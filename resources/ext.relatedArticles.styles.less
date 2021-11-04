@@ -1,0 +1,19 @@
+@import 'mediawiki.ui/variables';
+
+// Reserve space for the related articles cards.
+// https://phabricator.wikimedia.org/T223844
+// Note this is optimized for 3 related articles which is the majority of cases.
+// There will be a jump when:
+// - a page has no related articles,
+// - a page has more than 3 related articles
+// and there will be visible whitespace on mobile for a page with less than 3.
+.client-js {
+	.read-more-container {
+		// Assumes 3 cards at 78px.
+		min-height: 274px;
+
+		@media ( min-width: @width-breakpoint-desktop ) {
+			min-height: 124px;
+		}
+	}
+}
