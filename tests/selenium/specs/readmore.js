@@ -14,21 +14,19 @@ describe( 'ReadMore', function () {
 	const name = 'Related Articles 1';
 
 	// eslint-disable-next-line mocha/no-sibling-hooks
-	before( function () {
+	before( async function () {
 		// Create page needed for the tests
-		browser.call( async () => {
-			const content = '{{#related:related_articles_2}}';
-			await bot.edit( name, content );
-		} );
+		const content = '{{#related:related_articles_2}}';
+		await bot.edit( name, content );
 	} );
 
-	it.skip( 'ReadMore is not present on Vector', function () {
-		ReadMorePage.openDesktop( name );
-		assert( !ReadMorePage.isCardVisible(), 'No related pages cards are shown' );
+	it.skip( 'ReadMore is not present on Vector', async function () {
+		await ReadMorePage.openDesktop( name );
+		assert( await !ReadMorePage.isCardVisible(), 'No related pages cards are shown' );
 	} );
 
-	it.skip( 'ReadMore is present in Minerva @daily', function () {
-		ReadMorePage.openMobile( name );
-		assert( ReadMorePage.seeReadMore() );
+	it.skip( 'ReadMore is present in Minerva @daily', async function () {
+		await ReadMorePage.openMobile( name );
+		assert( await ReadMorePage.seeReadMore() );
 	} );
 } );
