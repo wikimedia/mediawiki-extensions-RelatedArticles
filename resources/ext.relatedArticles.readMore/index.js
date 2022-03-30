@@ -1,7 +1,8 @@
 ( function () {
-	// Make sure 'ext.relatedArticles.cards' is loaded. It may not be because of the race
-	// condition in the bootstrap file.
-	mw.loader.using( 'ext.relatedArticles.cards' ).done( function () {
+	/**
+	 * Renders the related articles.
+	 */
+	function main() {
 		var CardModel = mw.cards.CardModel,
 			CardView = mw.cards.CardView,
 			CardListView = mw.cards.CardListView;
@@ -45,6 +46,7 @@
 			// eslint-disable-next-line no-jquery/no-global-selector
 			$( '.read-more-container' ).append( $readMore );
 		} );
-	} );
+	}
+	main();
 
 }() );

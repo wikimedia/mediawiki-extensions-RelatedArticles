@@ -113,7 +113,8 @@
 		},
 		"ext.relatedArticles.readMore": {
 			"dependencies": [
-				"mediawiki.util"
+				"mediawiki.util",
+				"ext.relatedArticles.cards"
 			],
 			"scripts": [
 				"resources/ext.relatedArticles.readMore/index.js"

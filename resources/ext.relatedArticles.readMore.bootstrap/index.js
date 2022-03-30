@@ -33,13 +33,7 @@
 		 */
 		function initRelatedArticlesModule( container ) {
 			$.when(
-				// Note we load dependencies here rather than ResourceLoader
-				// to avoid PHP exceptions when Cards not installed
-				// which should never happen given the if statement.
-				mw.loader.using( [
-					'ext.relatedArticles.cards',
-					'ext.relatedArticles.readMore'
-				] ),
+				mw.loader.using( 'ext.relatedArticles.readMore' ),
 				relatedPages.getForCurrentPage( LIMIT )
 			).then( function ( _, pages ) {
 				if ( pages.length ) {
