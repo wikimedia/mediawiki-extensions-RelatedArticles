@@ -6,6 +6,7 @@
 		"wikimedia/mediawiki"
 	],
 	"rules": {
+		"no-implicit-globals": "off",
 		"max-len": "off",
 		"compat/compat": "warn"
 	}

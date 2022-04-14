@@ -1,8 +1,8 @@
-/* eslint-disable no-jquery/no-global-selector */
 ( function () {
 
 	var data = require( './data.json' ),
-		relatedPages = new mw.relatedPages.RelatedPagesGateway(
+		RelatedPagesGateway = require( '../ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js' ),
+		relatedPages = new RelatedPagesGateway(
 			new mw.Api(),
 			mw.config.get( 'wgPageName' ),
 			mw.config.get( 'wgRelatedArticles' ),

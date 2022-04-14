@@ -1,5 +1,5 @@
 ( function () {
-	var RelatedPagesGateway = mw.relatedPages.RelatedPagesGateway,
+	var RelatedPagesGateway = require( '../../resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js' ),
 		lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ],
 		relatedPages = {
 			query: {

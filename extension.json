@@ -43,26 +43,6 @@
 				"desktop"
 			]
 		},
-		"ext.relatedArticles.cards": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"dependencies": [
-				"oojs",
-				"mediawiki.util",
-				"ext.relatedArticles.lib"
-			],
-			"scripts": [
-				"resources/ext.relatedArticles.cards/init.js",
-				"resources/ext.relatedArticles.cards/CardModel.js",
-				"resources/ext.relatedArticles.cards/CardView.js",
-				"resources/ext.relatedArticles.cards/CardListView.js"
-			],
-			"styles": [
-				"resources/ext.relatedArticles.cards/styles.less"
-			]
-		},
 		"ext.relatedArticles.lib": {
 			"targets": [
 				"desktop",
@@ -72,25 +52,14 @@
 				"resources/ext.relatedArticles.lib/CSS.escape/css.escape.js"
 			]
 		},
-		"ext.relatedArticles.readMore.gateway": {
-			"scripts": [
-				"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js"
-			],
-			"dependencies": [
-				"oojs"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
-			]
-		},
 		"ext.relatedArticles.readMore.bootstrap": {
-			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap",
-			"remoteExtPath": "RelatedArticles/resources/ext.relatedArticles.readMore.bootstrap",
+			"localBasePath": "",
+			"remoteExtPath": "RelatedArticles",
 			"packageFiles": [
-				"index.js",
+				"resources/ext.relatedArticles.readMore.bootstrap/index.js",
+				"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js",
 				{
-					"name": "data.json",
+					"name": "resources/ext.relatedArticles.readMore.bootstrap/data.json",
 					"config": {
 						"useCirrusSearch": "RelatedArticlesUseCirrusSearch",
 						"onlyUseCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch",
@@ -103,7 +72,7 @@
 				"mediawiki.user",
 				"mediawiki.api",
 				"mediawiki.Uri",
-				"ext.relatedArticles.readMore.gateway",
+				"oojs",
 				"mediawiki.util"
 			],
 			"targets": [
@@ -113,13 +82,18 @@
 		},
 		"ext.relatedArticles.readMore": {
 			"dependencies": [
+				"ext.relatedArticles.lib",
 				"mediawiki.util",
-				"ext.relatedArticles.cards"
+				"oojs"
 			],
-			"scripts": [
-				"resources/ext.relatedArticles.readMore/index.js"
+			"packageFiles": [
+				"resources/ext.relatedArticles.readMore/index.js",
+				"resources/ext.relatedArticles.cards/CardModel.js",
+				"resources/ext.relatedArticles.cards/CardView.js",
+				"resources/ext.relatedArticles.cards/CardListView.js"
 			],
 			"styles": [
+				"resources/ext.relatedArticles.readMore/styles.less",
 				"resources/ext.relatedArticles.readMore/readMore.less"
 			],
 			"skinStyles": {
@@ -136,16 +110,16 @@
 		}
 	},
 	"QUnitTestModule": {
-		"localBasePath": "tests/qunit",
-		"remoteExtPath": "RelatedArticles/tests/qunit",
-		"scripts": [
-			"ext.relatedArticles.cards/CardModel.test.js",
-			"ext.relatedArticles.cards/CardView.test.js",
-			"ext.relatedArticles.readMore.gateway/RelatedPagesGateway.test.js"
-		],
-		"dependencies": [
-			"ext.relatedArticles.cards",
-			"ext.relatedArticles.readMore.gateway"
+		"localBasePath": "",
+		"remoteExtPath": "RelatedArticles",
+		"packageFiles": [
+			"tests/qunit/index.js",
+			"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js",
+			"resources/ext.relatedArticles.cards/CardView.js",
+			"resources/ext.relatedArticles.cards/CardModel.js",
+			"tests/qunit/CardModel.test.js",
+			"tests/qunit/CardView.test.js",
+			"tests/qunit/RelatedPagesGateway.test.js"
 		]
 	},
 	"config": {
