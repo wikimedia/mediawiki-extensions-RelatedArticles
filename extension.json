@@ -72,7 +72,6 @@
 				"mediawiki.user",
 				"mediawiki.api",
 				"mediawiki.Uri",
-				"oojs",
 				"mediawiki.util"
 			],
 			"targets": [

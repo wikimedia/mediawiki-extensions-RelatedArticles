@@ -27,7 +27,6 @@ function RelatedPagesGateway(
 	this.editorCuratedPages = editorCuratedPages || [];
 
 }
-OO.initClass( RelatedPagesGateway );
 
 /**
  * @ignore
