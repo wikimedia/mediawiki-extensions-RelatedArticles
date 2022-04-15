@@ -1,8 +1,11 @@
+// eslint-disable-next-line spaced-comment
+/// <reference path="../mw.ts" />
+
 /**
  * @class RelatedPagesGateway
- * @param {mw.Api} api
+ * @param {MwApi} api
  * @param {string} currentPage the page that the editorCuratedPages relate to
- * @param {Array|null} editorCuratedPages a list of pages curated by editors for the current page
+ * @param {string[]|null} editorCuratedPages a list of pages curated by editors for the current page
  * @param {boolean} useCirrusSearch whether to hit the API when no editor-curated pages are available
  * @param {boolean} [onlyUseCirrusSearch=false] whether to ignore the list of editor-curated pages
  * @param {boolean|string} [descriptionSource=false] source to get the page description from
@@ -30,8 +33,8 @@ function RelatedPagesGateway(
 
 /**
  * @ignore
- * @param {Object} result
- * @return {Array}
+ * @param {MwApiQueryResponse} result
+ * @return {MwApiPageObject[]}}
  */
 function getPages( result ) {
 	return result && result.query && result.query.pages ? result.query.pages : [];
@@ -57,17 +60,17 @@ function getPages( result ) {
  *
  * @method
  * @param {number} limit of pages to get. Should be between 1-20.
- * @return {jQuery.Promise}
+ * @return {JQuery.Promise<MwApiPageObject[]>}
  */
 RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
-	const parameters = {
+	const parameters = /** @type {MwApiActionQuery} */ ( {
 			action: 'query',
 			formatversion: 2,
 			origin: '*',
 			prop: 'pageimages',
 			piprop: 'thumbnail',
 			pithumbsize: 160 // FIXME: Revert to 80 once pithumbmode is implemented
-		},
+		} ),
 		// Enforce limit
 		relatedPages = this.editorCuratedPages.slice( 0, limit );
 

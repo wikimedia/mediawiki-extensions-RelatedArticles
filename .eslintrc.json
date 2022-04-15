@@ -14,6 +14,7 @@
 		"ecmaVersion": 6
 	},
 	"rules": {
+		"jsdoc/no-undefined-types": "off",
 		"no-implicit-globals": "off",
 		"max-len": "off",
 		"compat/compat": "warn"
