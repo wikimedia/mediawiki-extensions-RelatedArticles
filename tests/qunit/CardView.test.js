@@ -1,8 +1,8 @@
 ( function () {
 	'use strict';
 
-	var CardModel = require( '../../resources/ext.relatedArticles.cards/CardModel.js' ),
-		CardView = require( '../../resources/ext.relatedArticles.cards/CardView.js' );
+	var CardModel = require( '../../resources/ext.relatedArticles.readMore/CardModel.js' ),
+		CardView = require( '../../resources/ext.relatedArticles.readMore/CardView.js' );
 
 	QUnit.module( 'ext.relatedArticles.cards/CardView' );
 

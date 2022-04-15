@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	var CardModel = require( '../../resources/ext.relatedArticles.cards/CardModel.js' );
+	var CardModel = require( '../../resources/ext.relatedArticles.readMore/CardModel.js' );
 
 	QUnit.module( 'ext.relatedArticles.cards/CardModel' );
 

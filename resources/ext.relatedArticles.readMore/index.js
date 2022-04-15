@@ -3,9 +3,9 @@
 	 * Renders the related articles.
 	 */
 	function main() {
-		var CardModel = require( '../ext.relatedArticles.cards/CardModel.js' ),
-			CardView = require( '../ext.relatedArticles.cards/CardView.js' ),
-			CardListView = require( '../ext.relatedArticles.cards/CardListView.js' );
+		var CardModel = require( './CardModel.js' ),
+			CardView = require( './CardView.js' ),
+			CardListView = require( './CardListView.js' );
 
 		/**
 		 * Generates `mw.cards.CardView`s from pages

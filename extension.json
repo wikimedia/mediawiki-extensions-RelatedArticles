@@ -53,13 +53,13 @@
 			]
 		},
 		"ext.relatedArticles.readMore.bootstrap": {
-			"localBasePath": "",
+			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap/",
 			"remoteExtPath": "RelatedArticles",
 			"packageFiles": [
-				"resources/ext.relatedArticles.readMore.bootstrap/index.js",
-				"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js",
+				"index.js",
+				"RelatedPagesGateway.js",
 				{
-					"name": "resources/ext.relatedArticles.readMore.bootstrap/data.json",
+					"name": "data.json",
 					"config": {
 						"useCirrusSearch": "RelatedArticlesUseCirrusSearch",
 						"onlyUseCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch",
@@ -88,9 +88,9 @@
 			],
 			"packageFiles": [
 				"resources/ext.relatedArticles.readMore/index.js",
-				"resources/ext.relatedArticles.cards/CardModel.js",
-				"resources/ext.relatedArticles.cards/CardView.js",
-				"resources/ext.relatedArticles.cards/CardListView.js"
+				"resources/ext.relatedArticles.readMore/CardModel.js",
+				"resources/ext.relatedArticles.readMore/CardView.js",
+				"resources/ext.relatedArticles.readMore/CardListView.js"
 			],
 			"styles": [
 				"resources/ext.relatedArticles.readMore/styles.less",
@@ -114,9 +114,9 @@
 		"remoteExtPath": "RelatedArticles",
 		"packageFiles": [
 			"tests/qunit/index.js",
-			"resources/ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js",
-			"resources/ext.relatedArticles.cards/CardView.js",
-			"resources/ext.relatedArticles.cards/CardModel.js",
+			"resources/ext.relatedArticles.readMore.bootstrap/RelatedPagesGateway.js",
+			"resources/ext.relatedArticles.readMore/CardView.js",
+			"resources/ext.relatedArticles.readMore/CardModel.js",
 			"tests/qunit/CardModel.test.js",
 			"tests/qunit/CardView.test.js",
 			"tests/qunit/RelatedPagesGateway.test.js"

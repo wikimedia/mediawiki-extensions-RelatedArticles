@@ -1,7 +1,7 @@
 ( function () {
 
 	var data = require( './data.json' ),
-		RelatedPagesGateway = require( '../ext.relatedArticles.readMore.gateway/RelatedPagesGateway.js' ),
+		RelatedPagesGateway = require( './RelatedPagesGateway.js' ),
 		relatedPages = new RelatedPagesGateway(
 			new mw.Api(),
 			mw.config.get( 'wgPageName' ),
