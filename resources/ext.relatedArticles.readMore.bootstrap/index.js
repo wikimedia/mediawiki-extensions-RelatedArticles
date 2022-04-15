@@ -35,9 +35,12 @@
 			$.when(
 				mw.loader.using( 'ext.relatedArticles.readMore' ),
 				relatedPages.getForCurrentPage( LIMIT )
-			).then( function ( _, pages ) {
+			).then( function ( require, pages ) {
 				if ( pages.length ) {
-					mw.track( 'ext.relatedArticles.init', pages );
+					require( 'ext.relatedArticles.readMore' ).render(
+						pages,
+						readMore
+					);
 				} else if ( container.parentNode ) {
 					container.parentNode.removeChild( container );
 				}
