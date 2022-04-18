@@ -3,7 +3,11 @@
 	var data = require( './data.json' ),
 		RelatedPagesGateway = require( './RelatedPagesGateway.js' ),
 		relatedPages = new RelatedPagesGateway(
-			new mw.Api(),
+			new mw.Api( {
+				ajax: {
+					url: data.searchUrl
+				}
+			} ),
 			mw.config.get( 'wgPageName' ),
 			mw.config.get( 'wgRelatedArticles' ),
 			data.useCirrusSearch,

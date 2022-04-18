@@ -61,6 +61,7 @@
 				{
 					"name": "data.json",
 					"config": {
+						"searchUrl": "RelatedArticlesUseCirrusSearchApiUrl",
 						"useCirrusSearch": "RelatedArticlesUseCirrusSearch",
 						"onlyUseCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch",
 						"descriptionSource": "RelatedArticlesDescriptionSource"
@@ -121,6 +122,10 @@
 		]
 	},
 	"config": {
+		"RelatedArticlesUseCirrusSearchApiUrl": {
+			"description": "During development use a different API for sourcing related articles.",
+			"value": "/w/api.php"
+		},
 		"RelatedArticlesCardLimit": {
 			"description": "Maximum number of articles that should be shown in RelatedArticles widget. This limit is derived from limits in TextExtracts and PageImages extensions. Number should be between 1 and 20.",
 			"value": 3

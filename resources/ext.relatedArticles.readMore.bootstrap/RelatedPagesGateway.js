@@ -63,6 +63,7 @@ RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
 	var parameters = {
 			action: 'query',
 			formatversion: 2,
+			origin: '*',
 			prop: 'pageimages',
 			piprop: 'thumbnail',
 			pithumbsize: 160 // FIXME: Revert to 80 once pithumbmode is implemented
