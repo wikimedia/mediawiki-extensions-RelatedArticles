@@ -68,7 +68,6 @@
 				}
 			],
 			"dependencies": [
-				"mediawiki.experiments",
 				"mediawiki.user",
 				"mediawiki.api",
 				"mediawiki.Uri",
