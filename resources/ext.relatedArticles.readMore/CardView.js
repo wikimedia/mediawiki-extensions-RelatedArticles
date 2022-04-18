@@ -38,7 +38,7 @@ CardView.prototype.render = function () {
  * @return {string}
  */
 CardView.prototype._render = function () {
-	var $listItem = $( '<li>' ),
+	const $listItem = $( '<li>' ),
 		attributes = $.extend( {}, this.model.attributes );
 
 	attributes.thumbnailUrl = CSS.escape( attributes.thumbnailUrl );

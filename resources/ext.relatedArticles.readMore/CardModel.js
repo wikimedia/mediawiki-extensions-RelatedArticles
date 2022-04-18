@@ -32,7 +32,7 @@ OO.inheritClass( CardModel, OO.EventEmitter );
  *  the 'change' event will be emitted.
  */
 CardModel.prototype.set = function ( key, value, silent ) {
-	var event = {};
+	const event = {};
 
 	this.attributes[ key ] = value;
 	if ( !silent ) {

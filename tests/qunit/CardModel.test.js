@@ -1,12 +1,12 @@
 ( function () {
 	'use strict';
 
-	var CardModel = require( '../../resources/ext.relatedArticles.readMore/CardModel.js' );
+	const CardModel = require( '../../resources/ext.relatedArticles.readMore/CardModel.js' );
 
 	QUnit.module( 'ext.relatedArticles.cards/CardModel' );
 
 	QUnit.test( '#set', function ( assert ) {
-		var model = new CardModel( {} );
+		let model = new CardModel( {} );
 
 		model.on( 'change', function ( attributes ) {
 			assert.strictEqual(
@@ -26,7 +26,7 @@
 	} );
 
 	QUnit.test( '#get', function ( assert ) {
-		var model = new CardModel( {} );
+		const model = new CardModel( {} );
 
 		model.set( 'foo', 'bar' );
 		assert.strictEqual( model.get( 'foo' ), 'bar', 'Got the correct value.' );

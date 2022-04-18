@@ -1,6 +1,6 @@
 ( function () {
 
-	var data = require( './data.json' ),
+	const data = require( './data.json' ),
 		RelatedPagesGateway = require( './RelatedPagesGateway.js' ),
 		relatedPages = new RelatedPagesGateway(
 			new mw.Api( {
@@ -23,8 +23,8 @@
 	 * @ignore
 	 */
 	function loadRelatedArticles() {
-		var readMore = document.querySelector( '.read-more-container' ),
-			isSupported = 'IntersectionObserver' in window;
+		const readMore = document.querySelector( '.read-more-container' ),
+			isSupported = 'IntersectionObserver' in window && CSS.escape !== undefined;
 
 		if ( !readMore || !isSupported ) {
 			// The container is not in the HTML for some reason and cannot be queried.
@@ -51,7 +51,7 @@
 			} );
 		}
 
-		var doc = document.documentElement;
+		const doc = document.documentElement;
 		// IntersectionObserver will not work if the component is already visible on the page.
 		// To handle this case, we compare scroll height to viewport height.
 		if ( ( doc.scrollHeight / 2 ) < doc.clientHeight ) {
@@ -60,7 +60,7 @@
 			return;
 		}
 		// eslint-disable-next-line compat/compat
-		var observer = /** @type {IntersectionObserver} */( new IntersectionObserver( function ( entries ) {
+		const observer = /** @type {IntersectionObserver} */( new IntersectionObserver( function ( entries ) {
 			if ( !entries[ 0 ].isIntersecting ) {
 				return;
 			}
@@ -75,10 +75,5 @@
 		observer.observe( readMore );
 	}
 
-	function showReadMore() {
-		// try an initial load, in case of no scroll
-		loadRelatedArticles();
-	}
-
-	$( showReadMore );
+	$( loadRelatedArticles );
 }() );

@@ -43,16 +43,8 @@
 				"desktop"
 			]
 		},
-		"ext.relatedArticles.lib": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"scripts": [
-				"resources/ext.relatedArticles.lib/CSS.escape/css.escape.js"
-			]
-		},
 		"ext.relatedArticles.readMore.bootstrap": {
+			"es6": true,
 			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap/",
 			"remoteExtPath": "RelatedArticles",
 			"packageFiles": [
@@ -80,8 +72,8 @@
 			]
 		},
 		"ext.relatedArticles.readMore": {
+			"es6": true,
 			"dependencies": [
-				"ext.relatedArticles.lib",
 				"mediawiki.util",
 				"oojs"
 			],

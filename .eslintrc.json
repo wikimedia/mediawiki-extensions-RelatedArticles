@@ -1,14 +1,18 @@
 {
 	"root": true,
 	"env": {
+		"es6": true,
 		"browser": true,
 		"commonjs": true
 	},
 	"extends": [
-		"wikimedia/client-es5",
+		"wikimedia/client-es6",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"parserOptions": {
+		"ecmaVersion": 6
+	},
 	"rules": {
 		"no-implicit-globals": "off",
 		"max-len": "off",

@@ -7,7 +7,7 @@
  * @param {mw.cards.CardView[]} cardViews
  */
 function CardListView( cardViews ) {
-	var self = this;
+	const self = this;
 
 	/**
 	 * @property {mw.cards.CardView[]|Array}

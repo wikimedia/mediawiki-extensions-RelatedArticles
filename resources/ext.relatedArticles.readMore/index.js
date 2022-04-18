@@ -1,4 +1,4 @@
-var CardModel = require( './CardModel.js' ),
+const CardModel = require( './CardModel.js' ),
 	CardView = require( './CardView.js' ),
 	CardListView = require( './CardListView.js' );
 /**
@@ -9,7 +9,7 @@ var CardModel = require( './CardModel.js' ),
  */
 function getCards( pages ) {
 	return pages.map( function ( page ) {
-		var result = {
+		const result = {
 			title: page.title,
 			url: mw.util.getUrl( page.title ),
 			hasThumbnail: false,
@@ -34,7 +34,7 @@ function getCards( pages ) {
  * @param {Element} el
  */
 function render( pages, el ) {
-	var cards = new CardListView( getCards( pages ) ),
+	const cards = new CardListView( getCards( pages ) ),
 		$readMore = $( '<aside>' ).addClass( 'ra-read-more noprint' )
 			.append( $( '<h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
 			.append( cards.$el );
@@ -43,6 +43,6 @@ function render( pages, el ) {
 }
 
 module.exports = {
-	render: render,
-	getCards: getCards
+	render,
+	getCards
 };

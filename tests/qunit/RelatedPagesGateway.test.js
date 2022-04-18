@@ -1,5 +1,5 @@
 ( function () {
-	var RelatedPagesGateway = require( '../../resources/ext.relatedArticles.readMore.bootstrap/RelatedPagesGateway.js' ),
+	const RelatedPagesGateway = require( '../../resources/ext.relatedArticles.readMore.bootstrap/RelatedPagesGateway.js' ),
 		lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ],
 		relatedPages = {
 			query: {
@@ -28,7 +28,7 @@
 	} );
 
 	QUnit.test( 'Returns an array with the results when api responds', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
 		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
@@ -38,7 +38,7 @@
 	} );
 
 	QUnit.test( 'Empty related pages is handled fine.', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
 
 		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
@@ -48,7 +48,7 @@
 	} );
 
 	QUnit.test( 'Empty related pages with no cirrus search is handled fine. No API request.', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', [], false ),
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', [], false ),
 			spy = this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
 		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
@@ -59,7 +59,7 @@
 	} );
 
 	QUnit.test( 'Related pages from editor curated content', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', [ { title: 1 } ], false );
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', [ { title: 1 } ], false );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
 		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
@@ -69,7 +69,7 @@
 	} );
 
 	QUnit.test( 'When limit is higher than number of cards, no limit is enforced.', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
 			// needed to get page images etc..
 			stub = this.sandbox.stub( this.api, 'get' )
 				.returns( $.Deferred().resolve( relatedPages ) );
@@ -80,7 +80,7 @@
 	} );
 
 	QUnit.test( 'When limit is 2, results are restricted.', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
 			// needed to get page images etc..
 			stub = this.sandbox.stub( this.api, 'get' )
 				.returns( $.Deferred().resolve( relatedPages ) );
@@ -91,7 +91,7 @@
 	} );
 
 	QUnit.test( 'What if editor curated pages is undefined?', function ( assert ) {
-		var gateway = new RelatedPagesGateway( this.api, 'Foo', undefined, true );
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', undefined, true );
 		// needed to get page images etc..
 		this.sandbox.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
@@ -103,19 +103,18 @@
 	} );
 
 	QUnit.test( 'Ignore related pages from editor curated content', function ( assert ) {
-		var wgRelatedArticles = [
+		const wgRelatedArticles = [
 				'Bar',
 				'Baz',
 				'Qux'
 			],
-			gateway = new RelatedPagesGateway( this.api, 'Foo', wgRelatedArticles, true, true ),
-			spy;
+			gateway = new RelatedPagesGateway( this.api, 'Foo', wgRelatedArticles, true, true );
 
-		spy = this.sandbox.stub( this.api, 'get' )
+		const spy = this.sandbox.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
 
 		return gateway.getForCurrentPage( 1 ).then( function () {
-			var parameters = spy.lastCall.args[ 0 ];
+			const parameters = spy.lastCall.args[ 0 ];
 
 			assert.strictEqual(
 				parameters.generator,

@@ -1,14 +1,12 @@
-var wikimediaTestingUtils = require( '@wikimedia/mw-node-qunit' );
-var fn = function () {};
+const wikimediaTestingUtils = require( '@wikimedia/mw-node-qunit' );
+const fn = () => {};
 
 global.CSS = {
-	escape: function ( str ) {
-		return str;
-	}
+	escape: ( str ) => str
 };
 
 global.OO = {
-	inheritClass: function ( ClassNameObject ) {
+	inheritClass: ( ClassNameObject ) => {
 		ClassNameObject.super = fn;
 		ClassNameObject.prototype.on = fn;
 	},

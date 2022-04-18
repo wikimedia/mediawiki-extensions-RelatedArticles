@@ -60,7 +60,7 @@ function getPages( result ) {
  * @return {jQuery.Promise}
  */
 RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
-	var parameters = {
+	const parameters = {
 			action: 'query',
 			formatversion: 2,
 			origin: '*',
