@@ -79,6 +79,26 @@ class Hooks {
 	}
 
 	/**
+	 * Can the page show related articles?
+	 *
+	 * @param Skin $skin
+	 * @return bool
+	 */
+	private static function hasRelatedArticles( Skin $skin ): bool {
+		$out = $skin->getOutput();
+		$title = $out->getContext()->getTitle();
+		$action = $out->getRequest()->getText( 'action', 'view' );
+		return $title->inNamespace( NS_MAIN ) &&
+			// T120735
+			$action === 'view' &&
+			!$title->isMainPage() &&
+			$title->exists() &&
+			!self::isDisambiguationPage( $title ) &&
+			!self::isDiffPage( $out ) &&
+			self::isReadMoreAllowedOnSkin( $out->getUser(), $out->getSkin() );
+	}
+
+	/**
 	 * Handler for the <code>BeforePageDisplay</code> hook.
 	 *
 	 * Adds the <code>ext.relatedArticles.readMore.bootstrap</code> module
@@ -100,18 +120,7 @@ class Hooks {
 	 * @return bool Always <code>true</code>
 	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$title = $out->getContext()->getTitle();
-		$action = $out->getRequest()->getText( 'action', 'view' );
-
-		if (
-			$title->inNamespace( NS_MAIN ) &&
-			// T120735
-			$action === 'view' &&
-			!$title->isMainPage() &&
-			!self::isDisambiguationPage( $title ) &&
-			!self::isDiffPage( $out ) &&
-			self::isReadMoreAllowedOnSkin( $out->getUser(), $skin )
-		) {
+		if ( self::hasRelatedArticles( $skin ) ) {
 			$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
 			$out->addModuleStyles( [ 'ext.relatedArticles.styles' ] );
 		}
@@ -214,6 +223,8 @@ class Hooks {
 	 * @param Skin $skin
 	 */
 	public static function onSkinAfterContent( &$data, Skin $skin ) {
-		$data .= \Html::element( 'div', [ 'class' => 'read-more-container' ] );
+		if ( self::hasRelatedArticles( $skin ) ) {
+			$data .= \Html::element( 'div', [ 'class' => 'read-more-container' ] );
+		}
 	}
 }
