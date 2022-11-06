@@ -4,7 +4,6 @@
 @baseFontSize: 1em;
 @thumbWidth: 80px;
 @cardBorder: 1px solid rgba( 0, 0, 0, 0.2 );
-@borderRadius: 2px;
 
 .ext-related-articles-card-list {
 	.flex-display();
@@ -62,11 +61,11 @@
 
 		// Apply radius to top & bottom cards when stacked
 		&:first-child {
-			border-radius: @borderRadius @borderRadius 0 0;
+			border-radius: @border-radius-base @border-radius-base 0 0;
 		}
 
 		&:last-child {
-			border-radius: 0 0 @borderRadius @borderRadius;
+			border-radius: 0 0 @border-radius-base @border-radius-base;
 		}
 	}
 
@@ -143,7 +142,7 @@
 			&,
 			&:first-child,
 			&:last-child {
-				border-radius: @borderRadius;
+				border-radius: @border-radius-base;
 			}
 
 			&:last-child {
