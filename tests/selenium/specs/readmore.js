@@ -20,12 +20,7 @@ describe( 'ReadMore', function () {
 		await bot.edit( name, content );
 	} );
 
-	it.skip( 'ReadMore is not present on Vector', async function () {
-		await ReadMorePage.openDesktop( name );
-		assert( await !ReadMorePage.isCardVisible(), 'No related pages cards are shown' );
-	} );
-
-	it.skip( 'ReadMore is present in Minerva @daily', async function () {
+	it( 'ReadMore is present in Minerva @daily', async function () {
 		await ReadMorePage.openMobile( name );
 		assert( await ReadMorePage.seeReadMore() );
 	} );
