@@ -3,8 +3,10 @@
 		"authors": [
 			"Milicevic01",
 			"Srdjan m",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Kizule"
 		]
 	},
-	"relatedarticles-desc": "Dodaje veze ka povezanim stranicama u podnožju"
+	"relatedarticles-desc": "Dodaje veze do povezanih stranica u podnožju",
+	"relatedarticles-read-more-heading": "Povezane stranice"
 }
