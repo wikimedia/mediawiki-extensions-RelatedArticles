@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lloffiwr"
+			"Lloffiwr",
+			"Afalau"
 		]
 	},
-	"relatedarticles-desc": "Yn ychwanegu cyswllt at dudalennau perthnasol i'r bar llywio"
+	"relatedarticles-desc": "Yn ychwanegu dolenni i dudalennau perthnasol yn y troedyn",
+	"relatedarticles-read-more-heading": "Tudalennau perthnasol"
 }
