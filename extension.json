@@ -13,7 +13,7 @@
 	"license-name": "GPL-2.0-only",
 	"type": "betafeatures",
 	"requires": {
-		"MediaWiki": ">= 1.31.0"
+		"MediaWiki": ">= 1.40.0"
 	},
 	"AutoloadNamespaces": {
 		"RelatedArticles\\": "includes/"
@@ -37,11 +37,7 @@
 	"manifest_version": 2,
 	"ResourceModules": {
 		"ext.relatedArticles.styles": {
-			"styles": "resources/ext.relatedArticles.styles.less",
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			"styles": "resources/ext.relatedArticles.styles.less"
 		},
 		"ext.relatedArticles.readMore.bootstrap": {
 			"es6": true,
@@ -65,10 +61,6 @@
 				"mediawiki.api",
 				"mediawiki.Uri",
 				"mediawiki.util"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.relatedArticles.readMore": {
@@ -93,10 +85,6 @@
 			},
 			"messages": [
 				"relatedarticles-read-more-heading"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		}
 	},
