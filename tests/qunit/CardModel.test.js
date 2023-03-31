@@ -19,7 +19,7 @@
 
 		model = new CardModel( {} );
 		model.on( 'change', function () {
-			assert.ok( false, 'It doesn\'t emit an event when silenced.' );
+			assert.true( false, 'It doesn\'t emit an event when silenced.' );
 		} );
 
 		model.set( 'foo', 'bar', true );
