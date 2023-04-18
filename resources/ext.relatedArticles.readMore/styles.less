@@ -1,5 +1,5 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
 
 @baseFontSize: 1em;
 @thumbWidth: 80px;
@@ -30,7 +30,7 @@
 		font-weight: 500;
 
 		a {
-			color: #000;
+			color: @color-emphasized;
 		}
 
 		&::after {
@@ -47,7 +47,7 @@
 
 	// flex-item
 	.ext-related-articles-card {
-		background-color: #fff;
+		background-color: @background-color-base;
 		box-sizing: border-box;
 		margin: 0;
 		height: @thumbWidth;
@@ -99,7 +99,7 @@
 	}
 
 	.ext-related-articles-card-extract {
-		color: @colorGray7;
+		color: @color-subtle;
 		font-size: 0.8em;
 		white-space: nowrap;
 		overflow: hidden;
@@ -108,7 +108,7 @@
 	}
 
 	.ext-related-articles-card-thumb {
-		background-color: @colorGray14;
+		background-color: #eaecf0;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
