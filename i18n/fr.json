@@ -3,9 +3,10 @@
 		"authors": [
 			"Gomoko",
 			"Nemo bis",
-			"Wladek92"
+			"Wladek92",
+			"Verdy p"
 		]
 	},
-	"relatedarticles-desc": "Ajoute un lien aux pages associées dans le pied de page.",
-	"relatedarticles-read-more-heading": "Pages associées"
+	"relatedarticles-desc": "ajoute des liens vers les pages associées dans le pied de page",
+	"relatedarticles-read-more-heading": "pages associées"
 }
