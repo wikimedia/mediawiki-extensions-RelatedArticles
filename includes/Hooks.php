@@ -4,11 +4,11 @@ namespace RelatedArticles;
 
 use MediaWiki\Extension\Disambiguator\Hooks as DisambiguatorHooks;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use OutputPage;
 use Parser;
 use ParserOutput;
 use Skin;
-use Title;
 use User;
 
 class Hooks {
