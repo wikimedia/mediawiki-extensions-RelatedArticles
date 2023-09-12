@@ -1,22 +1,12 @@
 {
 	"root": true,
-	"env": {
-		"es6": true,
-		"browser": true,
-		"commonjs": true
-	},
 	"extends": [
-		"wikimedia/client-es6",
-		"wikimedia/jquery",
-		"wikimedia/mediawiki"
+		"wikimedia/server"
 	],
-	"parserOptions": {
-		"ecmaVersion": 6
-	},
 	"rules": {
-		"jsdoc/no-undefined-types": "off",
-		"no-implicit-globals": "off",
-		"max-len": "off",
-		"compat/compat": "warn"
+		"node/no-unsupported-features/node-builtins": [ "error", {
+			"version": ">=14",
+			"ignores": []
+		} ]
 	}
 }

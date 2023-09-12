@@ -1,0 +1,17 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"commonjs": true
+	},
+	"extends": [
+		"wikimedia/client-es6",
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
+	],
+	"rules": {
+		"jsdoc/no-undefined-types": "off",
+		"no-implicit-globals": "off",
+		"max-len": "off"
+	}
+}
