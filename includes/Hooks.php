@@ -159,7 +159,7 @@ class Hooks {
 	 * @return bool Always <code>true</code>
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setFunctionHook( 'related', 'RelatedArticles\\Hooks::onFuncRelated' );
+		$parser->setFunctionHook( 'related', [ self::class, 'onFuncRelated' ] );
 
 		return true;
 	}
