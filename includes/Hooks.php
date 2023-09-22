@@ -2,6 +2,7 @@
 
 namespace RelatedArticles;
 
+use IContextSource;
 use MediaWiki\Extension\Disambiguator\Hooks as DisambiguatorHooks;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -9,7 +10,6 @@ use OutputPage;
 use Parser;
 use ParserOutput;
 use Skin;
-use User;
 
 class Hooks {
 
@@ -46,15 +46,15 @@ class Hooks {
 	/**
 	 * Check whether the output page is a diff page
 	 *
-	 * @param OutputPage $out
+	 * @param IContextSource $context
 	 * @return bool
 	 */
-	private static function isDiffPage( OutputPage $out ) {
-		$request = $out->getRequest();
-		$type = $request->getText( 'type' );
-		$diff = $request->getText( 'diff' );
-		$oldId = $request->getText( 'oldid' );
-		$isSpecialMobileDiff = $out->getTitle()->isSpecial( 'MobileDiff' );
+	private static function isDiffPage( IContextSource $context ) {
+		$request = $context->getRequest();
+		$type = $request->getRawVal( 'type' );
+		$diff = $request->getCheck( 'diff' );
+		$oldId = $request->getCheck( 'oldid' );
+		$isSpecialMobileDiff = $context->getTitle()->isSpecial( 'MobileDiff' );
 
 		return $type === 'revision' || $diff || $oldId || $isSpecialMobileDiff;
 	}
@@ -66,11 +66,10 @@ class Hooks {
 	 * show it if the allow list (`RelatedArticlesFooterAllowedSkins`
 	 * configuration variable) is empty or the skin is listed.
 	 *
-	 * @param User $user
 	 * @param Skin $skin
 	 * @return bool
 	 */
-	private static function isReadMoreAllowedOnSkin( User $user, Skin $skin ) {
+	private static function isReadMoreAllowedOnSkin( Skin $skin ) {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
 		$skins = $config->get( 'RelatedArticlesFooterAllowedSkins' );
@@ -85,17 +84,16 @@ class Hooks {
 	 * @return bool
 	 */
 	private static function hasRelatedArticles( Skin $skin ): bool {
-		$out = $skin->getOutput();
-		$title = $out->getContext()->getTitle();
-		$action = $out->getRequest()->getText( 'action', 'view' );
+		$title = $skin->getTitle();
+		$action = $skin->getRequest()->getRawVal( 'action', 'view' );
 		return $title->inNamespace( NS_MAIN ) &&
 			// T120735
 			$action === 'view' &&
 			!$title->isMainPage() &&
 			$title->exists() &&
+			!self::isDiffPage( $skin ) &&
 			!self::isDisambiguationPage( $title ) &&
-			!self::isDiffPage( $out ) &&
-			self::isReadMoreAllowedOnSkin( $out->getUser(), $out->getSkin() );
+			self::isReadMoreAllowedOnSkin( $skin );
 	}
 
 	/**
