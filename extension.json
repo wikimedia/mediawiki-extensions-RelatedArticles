@@ -22,12 +22,17 @@
 		"RelatedArticlesMagic": "RelatedArticles.i18n.magic.php"
 	},
 	"Hooks": {
-		"ParserFirstCallInit": "RelatedArticles\\Hooks::onParserFirstCallInit",
-		"OutputPageParserOutput": "RelatedArticles\\Hooks::onOutputPageParserOutput",
-		"MakeGlobalVariablesScript": "RelatedArticles\\Hooks::onMakeGlobalVariablesScript",
-		"BeforePageDisplay": "RelatedArticles\\Hooks::onBeforePageDisplay",
-		"ResourceLoaderGetConfigVars": "RelatedArticles\\Hooks::onResourceLoaderGetConfigVars",
-		"SkinAfterContent": "RelatedArticles\\Hooks::onSkinAfterContent"
+		"ParserFirstCallInit": "main",
+		"OutputPageParserOutput": "main",
+		"MakeGlobalVariablesScript": "main",
+		"BeforePageDisplay": "main",
+		"ResourceLoaderGetConfigVars": "main",
+		"SkinAfterContent": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "RelatedArticles\\Hooks"
+		}
 	},
 	"MessagesDirs": {
 		"RelatedArticles": [

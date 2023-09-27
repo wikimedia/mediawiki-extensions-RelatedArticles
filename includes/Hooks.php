@@ -3,15 +3,29 @@
 namespace RelatedArticles;
 
 use IContextSource;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\Disambiguator\Hooks as DisambiguatorHooks;
+use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
+use MediaWiki\Hook\OutputPageParserOutputHook;
+use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 use MediaWiki\Title\Title;
 use OutputPage;
 use Parser;
 use ParserOutput;
 use Skin;
 
-class Hooks {
+class Hooks implements
+	ParserFirstCallInitHook,
+	OutputPageParserOutputHook,
+	MakeGlobalVariablesScriptHook,
+	BeforePageDisplayHook,
+	ResourceLoaderGetConfigVarsHook,
+	SkinAfterContentHook
+{
 
 	/**
 	 * Handler for the <code>MakeGlobalVariablesScript</code> hook.
@@ -22,7 +36,7 @@ class Hooks {
 	 * @param array &$vars variables to be added into the output of OutputPage::headElement.
 	 * @param OutputPage $out OutputPage instance calling the hook
 	 */
-	public static function onMakeGlobalVariablesScript( &$vars, OutputPage $out ) {
+	public function onMakeGlobalVariablesScript( &$vars, $out ): void {
 		$editorCuratedPages = $out->getProperty( 'RelatedArticles' );
 		if ( $editorCuratedPages ) {
 			$vars['wgRelatedArticles'] = $editorCuratedPages;
@@ -115,15 +129,12 @@ class Hooks {
 	 *
 	 * @param OutputPage $out The OutputPage object
 	 * @param Skin $skin Skin object that will be used to generate the page
-	 * @return bool Always <code>true</code>
 	 */
-	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
+	public function onBeforePageDisplay( $out, $skin ): void {
 		if ( self::hasRelatedArticles( $skin ) ) {
 			$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
 			$out->addModuleStyles( [ 'ext.relatedArticles.styles' ] );
 		}
-
-		return true;
 	}
 
 	/**
@@ -131,9 +142,10 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars
 	 *
 	 * @param array &$vars Array of variables to be added into the output of the startup module.
-	 * @return bool
+	 * @param string $skin
+	 * @param Config $config
 	 */
-	public static function onResourceLoaderGetConfigVars( &$vars ) {
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'RelatedArticles' );
 
@@ -144,7 +156,6 @@ class Hooks {
 				'The value of wgRelatedArticlesCardLimit is not valid. It should be between 1 and 20.'
 			);
 		}
-		return true;
 	}
 
 	/**
@@ -154,12 +165,9 @@ class Hooks {
 	 * {@see Hooks::onFuncRelated}).
 	 *
 	 * @param Parser $parser Parser object
-	 * @return bool Always <code>true</code>
 	 */
-	public static function onParserFirstCallInit( Parser $parser ) {
+	public function onParserFirstCallInit( $parser ) {
 		$parser->setFunctionHook( 'related', [ self::class, 'onFuncRelated' ] );
-
-		return true;
 	}
 
 	/**
@@ -202,16 +210,13 @@ class Hooks {
 	 *
 	 * @param OutputPage $out the OutputPage object
 	 * @param ParserOutput $parserOutput ParserOutput object
-	 * @return bool Always <code>true</code>
 	 */
-	public static function onOutputPageParserOutput( OutputPage $out, ParserOutput $parserOutput ) {
+	public function onOutputPageParserOutput( $out, $parserOutput ): void {
 		$related = $parserOutput->getExtensionData( 'RelatedArticles' );
 
 		if ( $related ) {
 			$out->setProperty( 'RelatedArticles', $related );
 		}
-
-		return true;
 	}
 
 	/**
@@ -220,7 +225,7 @@ class Hooks {
 	 * @param string &$data
 	 * @param Skin $skin
 	 */
-	public static function onSkinAfterContent( &$data, Skin $skin ) {
+	public function onSkinAfterContent( &$data, $skin ) {
 		if ( self::hasRelatedArticles( $skin ) ) {
 			$data .= \Html::element( 'div', [ 'class' => 'read-more-container' ] );
 		}
