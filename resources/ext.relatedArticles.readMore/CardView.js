@@ -52,7 +52,7 @@ CardView.prototype._render = function () {
 		$( '<div>' )
 			.addClass( 'ext-related-articles-card-thumb' )
 			.addClass( attributes.hasThumbnail ?
-				'' :
+				'mw-no-invert' :
 				'ext-related-articles-card-thumb-placeholder'
 			)
 			.css( 'background-image', attributes.hasThumbnail ?
