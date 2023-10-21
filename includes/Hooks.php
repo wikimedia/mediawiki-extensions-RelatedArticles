@@ -88,7 +88,7 @@ class Hooks implements
 			->makeConfig( 'RelatedArticles' );
 		$skins = $config->get( 'RelatedArticlesFooterAllowedSkins' );
 		$skinName = $skin->getSkinName();
-		return empty( $skins ) || in_array( $skinName, $skins );
+		return !$skins || in_array( $skinName, $skins );
 	}
 
 	/**
