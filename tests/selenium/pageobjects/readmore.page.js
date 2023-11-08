@@ -1,7 +1,7 @@
 'use strict';
 const CARD_SELECTOR = '.ext-related-articles-card',
 	Page = require( 'wdio-mediawiki/Page' ),
-	READ_MORE_MODULE_NAME = 'ext.relatedArticles.readMore';
+	READ_MORE_MODULE_NAME = 'ext.relatedArticles.readMore.bootstrap';
 
 class ReadMorePage extends Page {
 

@@ -1,7 +1,6 @@
 {
 	"include": [
-		"resources/ext.relatedArticles.readMore.bootstrap/index.js",
-		"resources/ext.relatedArticles.readMore.bootstrap/RelatedPagesGateway.js"
+		"resources/**/*"
 	],
 	"compilerOptions": {
 		"resolveJsonModule": true,

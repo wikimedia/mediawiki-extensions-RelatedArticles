@@ -32,6 +32,14 @@ function RelatedPagesGateway(
 }
 
 /**
+ * @param {JQuery.Promise<any>} jQP
+ * @return {Promise<any>}
+ */
+const toPromise = ( jQP ) => new Promise( ( resolve, reject ) => {
+	jQP.then( ( pages ) => resolve( pages ), ( e ) => reject( e ) );
+} );
+
+/**
  * @ignore
  * @param {MwApiQueryResponse} result
  * @return {MwApiPageObject[]}}
@@ -41,7 +49,7 @@ function getPages( result ) {
 }
 
 /**
- * Gets the related pages for the current page.
+ * Gets the related pages for the list of pages
  *
  * If there are related pages assigned to this page using the `related`
  * parser function, then they are returned.
@@ -58,21 +66,17 @@ function getPages( result ) {
  * * The thumbnail, if any
  * * The page description, if any
  *
- * @method
- * @param {number} limit of pages to get. Should be between 1-20.
- * @return {JQuery.Promise<MwApiPageObject[]>}
+ * @param {MwApiActionQuery} params for api
+ * @return {Promise<MwApiPageObject[]>}
  */
-RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
-	const parameters = /** @type {MwApiActionQuery} */ ( {
-			action: 'query',
-			formatversion: 2,
-			origin: '*',
-			prop: 'pageimages',
-			piprop: 'thumbnail',
-			pithumbsize: 160 // FIXME: Revert to 80 once pithumbmode is implemented
-		} ),
-		// Enforce limit
-		relatedPages = this.editorCuratedPages.slice( 0, limit );
+RelatedPagesGateway.prototype.getPagesFromApi = function ( params ) {
+	const parameters = /** @type {MwApiActionQuery} */ Object.assign( {
+		formatversion: 2,
+		origin: '*',
+		prop: 'pageimages',
+		piprop: 'thumbnail',
+		pithumbsize: 160 // FIXME: Revert to 80 once pithumbmode is implemented
+	}, params );
 
 	switch ( this.descriptionSource ) {
 		case 'wikidata':
@@ -90,16 +94,45 @@ RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
 			break;
 	}
 
-	if ( relatedPages.length ) {
-		parameters.pilimit = relatedPages.length;
-		parameters.continue = '';
+	return toPromise(
+		this.api.get( parameters )
+			.then( getPages )
+	);
+};
 
-		parameters.titles = relatedPages;
+/**
+ * Gets the related pages for the list of pages
+ *
+ * @param {string[]} titles
+ * @return {Promise<MwApiPageObject[]>}
+ */
+RelatedPagesGateway.prototype.getPages = function ( titles ) {
+	return this.getPagesFromApi( {
+		action: 'query',
+		pilimit: titles.length,
+		continue: '',
+		titles
+	} );
+};
+
+/**
+ * Gets the related pages for the list of pages
+ *
+ * @param {number} limit of pages to get. Should be between 1-20.
+ * @return {Promise<MwApiPageObject[]>}
+ */
+RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
+	const relatedPages = this.editorCuratedPages.slice( 0, limit );
+	if ( relatedPages.length ) {
+		return this.getPages( relatedPages );
 	} else if ( this.useCirrusSearch ) {
+		const parameters = /** @type {MwApiActionQuery} */( {
+			action: 'query'
+		} );
 		parameters.pilimit = limit;
 
 		parameters.generator = 'search';
-		parameters.gsrsearch = 'morelike:' + this.currentPage;
+		parameters.gsrsearch = `morelike:${this.currentPage}`;
 		parameters.gsrnamespace = '0';
 		parameters.gsrlimit = limit;
 		parameters.gsrqiprofile = 'classic_noboostlinks';
@@ -119,12 +152,10 @@ RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
 
 		// Instruct the browser that the response will become stale in 24 hours.
 		parameters.maxage = 86400;
+		return this.getPagesFromApi( parameters ).then( ( pages ) => Promise.resolve( pages ) );
 	} else {
-		return $.Deferred().resolve( [] );
+		return Promise.resolve( [] );
 	}
-
-	return this.api.get( parameters )
-		.then( getPages );
 };
 
 module.exports = RelatedPagesGateway;

@@ -42,11 +42,35 @@
 	"manifest_version": 2,
 	"ResourceModules": {
 		"ext.relatedArticles.styles": {
-			"styles": "resources/ext.relatedArticles.styles.less"
+			"styles": "resources/ext.relatedArticles.styles.less",
+			"skinStyles": {
+				"default": [ "skinStyles/ext.relatedArticles.styles/default.less" ],
+				"minerva": []
+			}
 		},
 		"ext.relatedArticles.readMore.bootstrap": {
 			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap/",
 			"remoteExtPath": "RelatedArticles",
+			"packageFiles": [
+				"index.js"
+			],
+			"dependencies": [
+				"mediawiki.user",
+				"mediawiki.api",
+				"mediawiki.Uri",
+				"mediawiki.util"
+			]
+		},
+		"ext.relatedArticles.readMore": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"codexStyleOnly": "true",
+			"codexComponents": [
+				"CdxCard"
+			],
+			"dependencies": [
+				"mediawiki.util"
+			],
+			"localBasePath": "resources/ext.relatedArticles.readMore/",
 			"packageFiles": [
 				"index.js",
 				"RelatedPagesGateway.js",
@@ -58,34 +82,12 @@
 						"onlyUseCirrusSearch": "RelatedArticlesOnlyUseCirrusSearch",
 						"descriptionSource": "RelatedArticlesDescriptionSource"
 					}
-				}
-			],
-			"dependencies": [
-				"mediawiki.user",
-				"mediawiki.api",
-				"mediawiki.Uri",
-				"mediawiki.util"
-			]
-		},
-		"ext.relatedArticles.readMore": {
-			"dependencies": [
-				"mediawiki.util",
-				"oojs"
-			],
-			"packageFiles": [
-				"resources/ext.relatedArticles.readMore/index.js",
-				"resources/ext.relatedArticles.readMore/CardModel.js",
-				"resources/ext.relatedArticles.readMore/CardView.js",
-				"resources/ext.relatedArticles.readMore/CardListView.js"
+				},
+				"RelatedArticles.js"
 			],
 			"styles": [
-				"resources/ext.relatedArticles.readMore/styles.less",
-				"resources/ext.relatedArticles.readMore/readMore.less"
+				"styles.less"
 			],
-			"skinStyles": {
-				"default": "resources/ext.relatedArticles.readMore/readMore.default.less",
-				"minerva": "resources/ext.relatedArticles.readMore/readMore.minerva.less"
-			},
 			"messages": [
 				"relatedarticles-read-more-heading"
 			]
@@ -96,11 +98,7 @@
 		"remoteExtPath": "RelatedArticles",
 		"packageFiles": [
 			"tests/qunit/index.js",
-			"resources/ext.relatedArticles.readMore.bootstrap/RelatedPagesGateway.js",
-			"resources/ext.relatedArticles.readMore/CardView.js",
-			"resources/ext.relatedArticles.readMore/CardModel.js",
-			"tests/qunit/CardModel.test.js",
-			"tests/qunit/CardView.test.js",
+			"resources/ext.relatedArticles.readMore/RelatedPagesGateway.js",
 			"tests/qunit/RelatedPagesGateway.test.js"
 		]
 	},
@@ -111,7 +109,7 @@
 		},
 		"RelatedArticlesCardLimit": {
 			"description": "Maximum number of articles that should be shown in RelatedArticles widget. This limit is derived from limits in TextExtracts and PageImages extensions. Number should be between 1 and 20.",
-			"value": 3
+			"value": 5
 		},
 		"RelatedArticlesUseCirrusSearch": {
 			"value": false

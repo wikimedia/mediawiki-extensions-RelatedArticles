@@ -8,5 +8,15 @@
 			"version": ">=14",
 			"ignores": []
 		} ]
-	}
+	},
+	"overrides": [
+		{
+			"files": "**/**/*.vue",
+			"extends": "wikimedia/vue-es6",
+			"rules": {
+				"es/no-block-scoped-variables": "off",
+				"es/no-object-assign": "off"
+			}
+		}
+	]
 }

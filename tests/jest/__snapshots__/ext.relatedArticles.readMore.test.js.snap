@@ -1,3 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ext.relatedArticles.readMore.bootstrap renders without error 1`] = `"<aside class=\\"ra-read-more noprint\\"><h2>relatedarticles-read-more-heading</h2><ul class=\\"ext-related-articles-card-list\\"><li title=\\"Hello no description\\" class=\\"ext-related-articles-card\\"><div class=\\"ext-related-articles-card-thumb ext-related-articles-card-thumb-placeholder\\"></div><a href=\\"Hello no description\\" aria-hidden=\\"true\\" tabindex=\\"-1\\"></a><div class=\\"ext-related-articles-card-detail\\"><h3><a href=\\"Hello no description\\">Hello no description</a></h3><p class=\\"ext-related-articles-card-extract\\"></p></div></li><li title=\\"Hello\\" class=\\"ext-related-articles-card\\"><div class=\\"ext-related-articles-card-thumb mw-no-invert\\" style=\\"background-image: url(hello.gif);\\"></div><a href=\\"Hello\\" aria-hidden=\\"true\\" tabindex=\\"-1\\"></a><div class=\\"ext-related-articles-card-detail\\"><h3><a href=\\"Hello\\">Hello</a></h3><p class=\\"ext-related-articles-card-extract\\">Description</p></div></li><li title=\\"Hello with extract\\" class=\\"ext-related-articles-card\\"><div class=\\"ext-related-articles-card-thumb mw-no-invert\\" style=\\"background-image: url(helloEx.gif);\\"></div><a href=\\"Hello with extract\\" aria-hidden=\\"true\\" tabindex=\\"-1\\"></a><div class=\\"ext-related-articles-card-detail\\"><h3><a href=\\"Hello with extract\\">Hello with extract</a></h3><p class=\\"ext-related-articles-card-extract\\">Extract</p></div></li><li title=\\"Hello with pageprops\\" class=\\"ext-related-articles-card\\"><div class=\\"ext-related-articles-card-thumb ext-related-articles-card-thumb-placeholder\\"></div><a href=\\"Hello with pageprops\\" aria-hidden=\\"true\\" tabindex=\\"-1\\"></a><div class=\\"ext-related-articles-card-detail\\"><h3><a href=\\"Hello with pageprops\\">Hello with pageprops</a></h3><p class=\\"ext-related-articles-card-extract\\">Page props desc</p></div></li></ul></aside>"`;
+exports[`ext.relatedArticles.readMore.bootstrap init with pages 1`] = `""`;
+
+exports[`ext.relatedArticles.readMore.bootstrap init with zero pages and parent container 1`] = `"<div></div>"`;
+
+exports[`ext.relatedArticles.readMore.bootstrap init with zero pages without parent container 1`] = `""`;
+
+exports[`ext.relatedArticles.readMore.bootstrap renders with small container and custom heading 1`] = `
+"<div class=\\"read-more-container read-more-container-small\\">
+<aside class=\\"noprint\\">
+<h2 class=\\"read-more-container-heading\\">Hello world</h2>
+<ul class=\\"read-more-container-card-list\\">
+
+</ul>
+</aside>
+</div>"
+`;
+
+exports[`ext.relatedArticles.readMore.bootstrap renders without error 1`] = `
+"<div class=\\"read-more-container read-more-container-small\\">
+<aside class=\\"noprint\\">
+
+<ul class=\\"read-more-container-card-list\\">
+<li title=\\"Hello no description\\">
+					<a href=\\"/wiki/Hello no description\\"><span class=\\"cdx-card\\">
+						<span class=\\"cdx-card__thumbnail cdx-thumbnail\\">
+						<span class=\\"cdx-thumbnail__placeholder\\">
+								<span class=\\"cdx-thumbnail__placeholder__icon\\"></span>
+							</span>
+						</span>
+						<span class=\\"cdx-card__text\\">
+							<span class=\\"cdx-card__text__title\\">Hello no description</span>
+							<span class=\\"cdx-card__text__description\\"></span>
+						</span>
+					</span></a>
+				</li>
+<li title=\\"Hello\\">
+					<a href=\\"/wiki/Hello\\"><span class=\\"cdx-card\\">
+						<span class=\\"cdx-card__thumbnail cdx-thumbnail\\">
+						<span class=\\"cdx-thumbnail__image\\" style=\\"background-image: url('hello.gif')\\"></span>
+						</span>
+						<span class=\\"cdx-card__text\\">
+							<span class=\\"cdx-card__text__title\\">Hello</span>
+							<span class=\\"cdx-card__text__description\\">Description</span>
+						</span>
+					</span></a>
+				</li>
+<li title=\\"Hello with extract\\">
+					<a href=\\"/wiki/Hello with extract\\"><span class=\\"cdx-card\\">
+						<span class=\\"cdx-card__thumbnail cdx-thumbnail\\">
+						<span class=\\"cdx-thumbnail__image\\" style=\\"background-image: url('helloEx.gif')\\"></span>
+						</span>
+						<span class=\\"cdx-card__text\\">
+							<span class=\\"cdx-card__text__title\\">Hello with extract</span>
+							<span class=\\"cdx-card__text__description\\">Extract</span>
+						</span>
+					</span></a>
+				</li>
+<li title=\\"Hello with pageprops\\">
+					<a href=\\"/wiki/Hello with pageprops\\"><span class=\\"cdx-card\\">
+						<span class=\\"cdx-card__thumbnail cdx-thumbnail\\">
+						<span class=\\"cdx-thumbnail__placeholder\\">
+								<span class=\\"cdx-thumbnail__placeholder__icon\\"></span>
+							</span>
+						</span>
+						<span class=\\"cdx-card__text\\">
+							<span class=\\"cdx-card__text__title\\">Hello with pageprops</span>
+							<span class=\\"cdx-card__text__description\\">Page props desc</span>
+						</span>
+					</span></a>
+				</li>
+</ul>
+</aside>
+</div>"
+`;

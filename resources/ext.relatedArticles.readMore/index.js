@@ -1,48 +1,85 @@
-const CardModel = require( './CardModel.js' ),
-	CardView = require( './CardView.js' ),
-	CardListView = require( './CardListView.js' );
+// eslint-disable-next-line spaced-comment
+/// <reference path="./codex.ts" />
+const RelatedArticles = require( './RelatedArticles.js' );
+const data = require( './data.json' );
+const RelatedPagesGateway = require( './RelatedPagesGateway.js' );
+const relatedPages = new RelatedPagesGateway(
+	new mw.Api( {
+		ajax: {
+			url: data.searchUrl
+		}
+	} ),
+	mw.config.get( 'wgPageName' ),
+	mw.config.get( 'wgRelatedArticles' ),
+	data.useCirrusSearch,
+	data.onlyUseCirrusSearch,
+	data.descriptionSource
+);
+const LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 );
+
 /**
- * Generates `mw.cards.CardView`s from pages
+ * Generates suggestion objects from pages
  *
- * @param {Object[]} pages
- * @return {mw.cards.CardView[]}
+ * @param {MwApiPageObject[]} pages
+ * @return {Codex.ListTitleObject[]}
  */
 function getCards( pages ) {
 	return pages.map( function ( page ) {
 		const result = {
-			title: page.title,
+			id: page.title,
+			label: page.title,
 			url: mw.util.getUrl( page.title ),
-			hasThumbnail: false,
-			extract: ( page.description || page.extract ||
+			thumbnail: page.thumbnail ? {
+				width: page.thumbnail.width,
+				height: page.thumbnail.height,
+				url: page.thumbnail.source
+			} : undefined,
+			description: ( page.description || page.extract ||
 				( page.pageprops ? page.pageprops.description : '' ) )
 		};
 
-		if ( page.thumbnail ) {
-			result.hasThumbnail = true;
-			result.thumbnailUrl = page.thumbnail.source;
-			result.isThumbnailPortrait = page.thumbnail.height >= page.thumbnail.width;
-		}
-
-		return new CardView( new CardModel( result ) );
+		return result;
 	} );
 }
 
 /**
- * Renders the related articles.
- *
- * @param {Object[]} pages
+ * @param {MwApiPageObject[]} pages
  * @param {Element} el
+ * @param {string} heading
+ * @param {boolean} isContainerSmall
  */
-function render( pages, el ) {
-	const cards = new CardListView( getCards( pages ) ),
-		$readMore = $( '<aside>' ).addClass( 'ra-read-more noprint' )
-			.append( $( '<h2>' ).text( mw.msg( 'relatedarticles-read-more-heading' ) ) )
-			.append( cards.$el );
+function render( pages, el, heading, isContainerSmall ) {
+	el.innerHTML = RelatedArticles( {
+		isContainerSmall,
+		heading,
+		cards: getCards( pages )
+	} );
+}
 
-	$( el ).append( $readMore );
+/**
+ * @param {HTMLElement} container to initialize into
+ */
+function init( container ) {
+	relatedPages.getForCurrentPage( LIMIT ).then( ( /** @type {MwApiPageObject[]} */ pages ) => {
+		if ( pages.length ) {
+			render(
+				pages,
+				container,
+				mw.msg( 'relatedarticles-read-more-heading' ),
+				// Take up multiple columns if possible
+				false
+			);
+		} else if ( container.parentNode ) {
+			container.parentNode.removeChild( container );
+		}
+	} );
 }
 
 module.exports = {
+	init,
 	render,
-	getCards
+	getCards,
+	test: {
+		relatedPages
+	}
 };

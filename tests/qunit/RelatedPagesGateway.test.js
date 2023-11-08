@@ -1,5 +1,5 @@
 ( function () {
-	const RelatedPagesGateway = require( '../../resources/ext.relatedArticles.readMore.bootstrap/RelatedPagesGateway.js' ),
+	const RelatedPagesGateway = require( '../../resources/ext.relatedArticles.readMore/RelatedPagesGateway.js' ),
 		lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ],
 		relatedPages = {
 			query: {
