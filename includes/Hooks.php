@@ -10,12 +10,13 @@ use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\OutputPageParserOutputHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAfterContentHook;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 use MediaWiki\Title\Title;
-use OutputPage;
 use Parser;
-use ParserOutput;
 use Skin;
 
 class Hooks implements
@@ -227,7 +228,7 @@ class Hooks implements
 	 */
 	public function onSkinAfterContent( &$data, $skin ) {
 		if ( self::hasRelatedArticles( $skin ) ) {
-			$data .= \Html::element( 'div', [ 'class' => 'read-more-container' ] );
+			$data .= Html::element( 'div', [ 'class' => 'read-more-container' ] );
 		}
 	}
 }
