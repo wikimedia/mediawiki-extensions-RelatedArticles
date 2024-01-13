@@ -45,7 +45,6 @@
 			"styles": "resources/ext.relatedArticles.styles.less"
 		},
 		"ext.relatedArticles.readMore.bootstrap": {
-			"es6": true,
 			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap/",
 			"remoteExtPath": "RelatedArticles",
 			"packageFiles": [
@@ -69,7 +68,6 @@
 			]
 		},
 		"ext.relatedArticles.readMore": {
-			"es6": true,
 			"dependencies": [
 				"mediawiki.util",
 				"oojs"
