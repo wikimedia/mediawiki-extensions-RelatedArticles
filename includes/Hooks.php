@@ -4,7 +4,6 @@ namespace RelatedArticles;
 
 use IContextSource;
 use MediaWiki\Config\Config;
-use MediaWiki\Extension\Disambiguator\Hooks as DisambiguatorHooks;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\OutputPageParserOutputHook;
@@ -54,8 +53,12 @@ class Hooks implements
 	 * @return bool
 	 */
 	private static function isDisambiguationPage( Title $title ) {
-		return \ExtensionRegistry::getInstance()->isLoaded( 'Disambiguator' ) &&
-			DisambiguatorHooks::isDisambiguationPage( $title );
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->hasService( 'DisambiguatorLookup' ) ) {
+			return false;
+		}
+		return $services->getService( 'DisambiguatorLookup' )
+			->isDisambiguationPage( $title );
 	}
 
 	/**
