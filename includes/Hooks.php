@@ -4,6 +4,7 @@ namespace RelatedArticles;
 
 use IContextSource;
 use MediaWiki\Config\Config;
+use MediaWiki\Extension\Disambiguator\Lookup;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\OutputPageParserOutputHook;
@@ -26,6 +27,13 @@ class Hooks implements
 	ResourceLoaderGetConfigVarsHook,
 	SkinAfterContentHook
 {
+
+	/** Either a Lookup from the Disambiguator extension, or null if that is not installed */
+	private ?Lookup $disambiguatorLookup;
+
+	public function __construct( ?Lookup $disambiguatorLookup ) {
+		$this->disambiguatorLookup = $disambiguatorLookup;
+	}
 
 	/**
 	 * Handler for the <code>MakeGlobalVariablesScript</code> hook.
@@ -52,13 +60,9 @@ class Hooks implements
 	 * @param Title $title
 	 * @return bool
 	 */
-	private static function isDisambiguationPage( Title $title ) {
-		$services = MediaWikiServices::getInstance();
-		if ( !$services->hasService( 'DisambiguatorLookup' ) ) {
-			return false;
-		}
-		return $services->getService( 'DisambiguatorLookup' )
-			->isDisambiguationPage( $title );
+	private function isDisambiguationPage( Title $title ) {
+		return $this->disambiguatorLookup &&
+			$this->disambiguatorLookup->isDisambiguationPage( $title );
 	}
 
 	/**
@@ -101,7 +105,7 @@ class Hooks implements
 	 * @param Skin $skin
 	 * @return bool
 	 */
-	private static function hasRelatedArticles( Skin $skin ): bool {
+	private function hasRelatedArticles( Skin $skin ): bool {
 		$title = $skin->getTitle();
 		$action = $skin->getRequest()->getRawVal( 'action', 'view' );
 		return $title->inNamespace( NS_MAIN ) &&
@@ -110,7 +114,7 @@ class Hooks implements
 			!$title->isMainPage() &&
 			$title->exists() &&
 			!self::isDiffPage( $skin ) &&
-			!self::isDisambiguationPage( $title ) &&
+			!$this->isDisambiguationPage( $title ) &&
 			self::isReadMoreAllowedOnSkin( $skin );
 	}
 
@@ -135,7 +139,7 @@ class Hooks implements
 	 * @param Skin $skin Skin object that will be used to generate the page
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void {
-		if ( self::hasRelatedArticles( $skin ) ) {
+		if ( $this->hasRelatedArticles( $skin ) ) {
 			$out->addModules( [ 'ext.relatedArticles.readMore.bootstrap' ] );
 			$out->addModuleStyles( [ 'ext.relatedArticles.styles' ] );
 		}
@@ -230,7 +234,7 @@ class Hooks implements
 	 * @param Skin $skin
 	 */
 	public function onSkinAfterContent( &$data, $skin ) {
-		if ( self::hasRelatedArticles( $skin ) ) {
+		if ( $this->hasRelatedArticles( $skin ) ) {
 			$data .= Html::element( 'div', [ 'class' => 'read-more-container' ] );
 		}
 	}

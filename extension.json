@@ -31,7 +31,10 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "RelatedArticles\\Hooks"
+			"class": "RelatedArticles\\Hooks",
+			"optional_services": [
+				"DisambiguatorLookup"
+			]
 		}
 	},
 	"MessagesDirs": {
