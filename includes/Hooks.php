@@ -4,6 +4,7 @@ namespace RelatedArticles;
 
 use IContextSource;
 use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Extension\Disambiguator\Lookup;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
@@ -11,7 +12,6 @@ use MediaWiki\Hook\OutputPageParserOutputHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Html\Html;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
@@ -28,10 +28,13 @@ class Hooks implements
 	SkinAfterContentHook
 {
 
+	private Config $relatedArticlesConfig;
+
 	/** Either a Lookup from the Disambiguator extension, or null if that is not installed */
 	private ?Lookup $disambiguatorLookup;
 
-	public function __construct( ?Lookup $disambiguatorLookup ) {
+	public function __construct( ConfigFactory $configFactory, ?Lookup $disambiguatorLookup ) {
+		$this->relatedArticlesConfig = $configFactory->makeConfig( 'RelatedArticles' );
 		$this->disambiguatorLookup = $disambiguatorLookup;
 	}
 
@@ -91,10 +94,8 @@ class Hooks implements
 	 * @param Skin $skin
 	 * @return bool
 	 */
-	private static function isReadMoreAllowedOnSkin( Skin $skin ) {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()
-			->makeConfig( 'RelatedArticles' );
-		$skins = $config->get( 'RelatedArticlesFooterAllowedSkins' );
+	private function isReadMoreAllowedOnSkin( Skin $skin ) {
+		$skins = $this->relatedArticlesConfig->get( 'RelatedArticlesFooterAllowedSkins' );
 		$skinName = $skin->getSkinName();
 		return !$skins || in_array( $skinName, $skins );
 	}
@@ -115,7 +116,7 @@ class Hooks implements
 			$title->exists() &&
 			!self::isDiffPage( $skin ) &&
 			!$this->isDisambiguationPage( $title ) &&
-			self::isReadMoreAllowedOnSkin( $skin );
+			$this->isReadMoreAllowedOnSkin( $skin );
 	}
 
 	/**
@@ -154,10 +155,7 @@ class Hooks implements
 	 * @param Config $config
 	 */
 	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()
-			->makeConfig( 'RelatedArticles' );
-
-		$limit = $config->get( 'RelatedArticlesCardLimit' );
+		$limit = $this->relatedArticlesConfig->get( 'RelatedArticlesCardLimit' );
 		$vars['wgRelatedArticlesCardLimit'] = $limit;
 		if ( $limit < 1 || $limit > 20 ) {
 			throw new \RuntimeException(
