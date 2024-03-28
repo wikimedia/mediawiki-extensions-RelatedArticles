@@ -5,10 +5,9 @@
 	 * @ignore
 	 */
 	function loadRelatedArticles() {
-		const readMore = document.querySelector( '.read-more-container' ),
-			isSupported = 'IntersectionObserver' in window && CSS.escape !== undefined;
+		const readMore = document.querySelector( '.read-more-container' );
 
-		if ( !readMore || !isSupported ) {
+		if ( !readMore ) {
 			// The container is not in the HTML for some reason and cannot be queried.
 			// See T281547
 			return;
