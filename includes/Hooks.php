@@ -72,9 +72,8 @@ class Hooks implements
 		$type = $request->getRawVal( 'type' );
 		$diff = $request->getCheck( 'diff' );
 		$oldId = $request->getCheck( 'oldid' );
-		$isSpecialMobileDiff = $context->getTitle()->isSpecial( 'MobileDiff' );
 
-		return $type === 'revision' || $diff || $oldId || $isSpecialMobileDiff;
+		return $type === 'revision' || $diff || $oldId;
 	}
 
 	/**
