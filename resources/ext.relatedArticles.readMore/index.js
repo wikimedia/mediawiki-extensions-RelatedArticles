@@ -28,7 +28,9 @@ function getCards( pages ) {
 		const result = {
 			id: page.title,
 			label: page.title,
-			url: mw.util.getUrl( page.title ),
+			url: mw.util.getUrl( page.title, {
+				wprov: 'rarw1'
+			} ),
 			thumbnail: page.thumbnail ? {
 				width: page.thumbnail.width,
 				height: page.thumbnail.height,
