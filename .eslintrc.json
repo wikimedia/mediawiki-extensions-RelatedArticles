@@ -3,15 +3,6 @@
 	"extends": [
 		"wikimedia/server"
 	],
-	"rules": {
-		"node/no-unsupported-features/node-builtins": [
-			"error",
-			{
-				"version": ">=14",
-				"ignores": []
-			}
-		]
-	},
 	"overrides": [
 		{
 			"files": "**/**/*.vue",

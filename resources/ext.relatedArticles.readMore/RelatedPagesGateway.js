@@ -132,7 +132,7 @@ RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
 		parameters.pilimit = limit;
 
 		parameters.generator = 'search';
-		parameters.gsrsearch = `morelike:${this.currentPage}`;
+		parameters.gsrsearch = `morelike:${ this.currentPage }`;
 		parameters.gsrnamespace = '0';
 		parameters.gsrlimit = limit;
 		parameters.gsrqiprofile = 'classic_noboostlinks';

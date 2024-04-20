@@ -15,7 +15,7 @@ const PAGE_WITH_DESCRIPTION = {
 
 describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 	beforeEach( () => {
-		mw.util.getUrl = jest.fn( ( title ) => `/wiki/${title}` );
+		mw.util.getUrl = jest.fn( ( title ) => `/wiki/${ title }` );
 	} );
 
 	it( 'init with zero pages and parent container', () => {
@@ -57,7 +57,7 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 		const plugin = {
 			install: function ( app ) {
 				app.config.globalProperties.$i18n = () => ( {
-					text: ( key ) => `<${key}>`
+					text: ( key ) => `<${ key }>`
 				} );
 			}
 		};

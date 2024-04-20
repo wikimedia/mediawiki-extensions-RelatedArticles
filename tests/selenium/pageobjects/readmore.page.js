@@ -5,7 +5,9 @@ const CARD_SELECTOR = '.ext-related-articles-card',
 
 class ReadMorePage extends Page {
 
-	get mobileView() { return $( '#footer-places-mobileview' ); }
+	get mobileView() {
+		return $( '#footer-places-mobileview' );
+	}
 
 	openDesktop( name ) {
 		super.openTitle( name );
