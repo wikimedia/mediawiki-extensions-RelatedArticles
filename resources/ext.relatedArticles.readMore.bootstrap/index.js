@@ -19,9 +19,9 @@
 		function initRelatedArticlesModule( container ) {
 			$.when(
 				mw.loader.using( 'ext.relatedArticles.readMore' )
-			).then( function (
+			).then( (
 				/** @type {Function} */ require
-			) {
+			) => {
 				require( 'ext.relatedArticles.readMore' ).init(
 					container
 				);
@@ -37,7 +37,7 @@
 			return;
 		}
 		// eslint-disable-next-line compat/compat
-		const observer = /** @type {IntersectionObserver} */( new IntersectionObserver( function ( entries ) {
+		const observer = /** @type {IntersectionObserver} */( new IntersectionObserver( ( ( entries ) => {
 			if ( !entries[ 0 ].isIntersecting ) {
 				return;
 			}
@@ -46,7 +46,7 @@
 			observer.disconnect();
 			// @ts-ignore
 			initRelatedArticlesModule( readMore );
-		}, {
+		} ), {
 			rootMargin: '-100% 0% 0% 0%'
 		} ) );
 		observer.observe( readMore );

@@ -24,7 +24,7 @@ const LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 );
  * @return {Codex.ListTitleObject[]}
  */
 function getCards( pages ) {
-	return pages.map( function ( page ) {
+	return pages.map( ( page ) => {
 		const result = {
 			id: page.title,
 			label: page.title,

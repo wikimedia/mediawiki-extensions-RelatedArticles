@@ -45,7 +45,7 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 
 	it( 'renders with small container and custom heading', () => {
 		const element = document.createElement( 'div' );
-		render( [], element, 'Hello world', function ( options ) {
+		render( [], element, 'Hello world', ( options ) => {
 			const app = createApp( options );
 			return app;
 		}, true );
@@ -79,7 +79,7 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 					description: 'Page props desc'
 				}
 			}
-		], element, '', function ( options ) {
+		], element, '', ( options ) => {
 			const app = createApp( options );
 			app.use( plugin );
 			return app;

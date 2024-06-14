@@ -31,7 +31,7 @@
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
 			assert.true( Array.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results[ 0 ].title, 'Oh noes' );
 		} );
@@ -41,7 +41,7 @@
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
 			assert.true( Array.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results.length, 0 );
 		} );
@@ -51,7 +51,7 @@
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', [], false ),
 			spy = this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
 			assert.true( Array.isArray( results ), 'Results must be an array' );
 			assert.false( spy.called, 'API is not invoked' );
 			assert.strictEqual( results.length, 0 );
@@ -62,7 +62,7 @@
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', [ { title: 1 } ], false );
 		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
 			assert.strictEqual( results.length, 1,
 				'API still hit despite cirrus being disabled.' );
 		} );
@@ -74,7 +74,7 @@
 			stub = this.sandbox.stub( this.api, 'get' )
 				.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 20 ).then( function () {
+		return gateway.getForCurrentPage( 20 ).then( () => {
 			assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, lotsaRelatedPages.length );
 		} );
 	} );
@@ -85,7 +85,7 @@
 			stub = this.sandbox.stub( this.api, 'get' )
 				.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 2 ).then( function () {
+		return gateway.getForCurrentPage( 2 ).then( () => {
 			assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, 2 );
 		} );
 	} );
@@ -96,7 +96,7 @@
 		this.sandbox.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( function ( results ) {
+		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
 			assert.true( Array.isArray( results ), 'Results must be an array' );
 			assert.strictEqual( results.length, 1, 'API is invoked to source articles.' );
 		} );
@@ -113,7 +113,7 @@
 		const spy = this.sandbox.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( function () {
+		return gateway.getForCurrentPage( 1 ).then( () => {
 			const parameters = spy.lastCall.args[ 0 ];
 
 			assert.strictEqual(

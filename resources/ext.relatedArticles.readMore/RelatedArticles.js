@@ -9,8 +9,7 @@
  * @param {Codex.ListTitleObject[]} options.cards
  * @return {string}
  */
-const RelatedArticles = ( options ) => {
-	return [
+const RelatedArticles = ( options ) => [
 		`<div class="read-more-container ${ ( options.isContainerSmall ) ? 'read-more-container-small' : 'read-more-container-large' }">`,
 			`<aside class="noprint">`,
 				( options.heading ) ?
@@ -35,6 +34,5 @@ const RelatedArticles = ( options ) => {
 			`</aside>`,
 		`</div>`
 	].join( '\n' );
-};
 
 module.exports = RelatedArticles;

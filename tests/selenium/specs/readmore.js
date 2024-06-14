@@ -4,7 +4,7 @@ const assert = require( 'assert' ),
 	Api = require( 'wdio-mediawiki/Api' ),
 	ReadMorePage = require( '../pageobjects/readmore.page' );
 
-describe( 'ReadMore', function () {
+describe( 'ReadMore', () => {
 	let bot;
 
 	before( async () => {
@@ -14,13 +14,13 @@ describe( 'ReadMore', function () {
 	const name = 'Related Articles 1';
 
 	// eslint-disable-next-line mocha/no-sibling-hooks
-	before( async function () {
+	before( async () => {
 		// Create page needed for the tests
 		const content = '{{#related:related_articles_2}}';
 		await bot.edit( name, content );
 	} );
 
-	it( 'ReadMore is present in Minerva @daily', async function () {
+	it( 'ReadMore is present in Minerva @daily', async () => {
 		await ReadMorePage.openMobile( name );
 		assert( await ReadMorePage.seeReadMore() );
 	} );
