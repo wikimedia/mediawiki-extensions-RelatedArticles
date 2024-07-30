@@ -10,7 +10,10 @@ const relatedPages = new RelatedPagesGateway(
 		}
 	} ),
 	mw.config.get( 'wgPageName' ),
-	mw.config.get( 'wgRelatedArticles' ),
+	Object.keys( mw.config.get( 'wgRelatedArticles' ) || Object.create( null ) )
+		// Backward compatibility with old parser cache contents
+		// This .concat can be removed once no longer needed (T371421)
+		.concat( mw.config.get( 'wgRelatedArticlesCompat' ) ),
 	data.useCirrusSearch,
 	data.onlyUseCirrusSearch,
 	data.descriptionSource

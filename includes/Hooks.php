@@ -10,7 +10,6 @@ use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Output\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Output\Hook\OutputPageParserOutputHook;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
@@ -22,7 +21,6 @@ use Skin;
 class Hooks implements
 	ParserFirstCallInitHook,
 	OutputPageParserOutputHook,
-	MakeGlobalVariablesScriptHook,
 	BeforePageDisplayHook,
 	ResourceLoaderGetConfigVarsHook,
 	SkinAfterContentHook
@@ -36,22 +34,6 @@ class Hooks implements
 	public function __construct( ConfigFactory $configFactory, ?Lookup $disambiguatorLookup ) {
 		$this->relatedArticlesConfig = $configFactory->makeConfig( 'RelatedArticles' );
 		$this->disambiguatorLookup = $disambiguatorLookup;
-	}
-
-	/**
-	 * Handler for the <code>MakeGlobalVariablesScript</code> hook.
-	 *
-	 * Sets the value of the <code>wgRelatedArticles</code> global variable
-	 * to the list of related articles in the cached parser output.
-	 *
-	 * @param array &$vars variables to be added into the output of OutputPage::headElement.
-	 * @param OutputPage $out OutputPage instance calling the hook
-	 */
-	public function onMakeGlobalVariablesScript( &$vars, $out ): void {
-		$editorCuratedPages = $out->getProperty( 'RelatedArticles' );
-		if ( $editorCuratedPages ) {
-			$vars['wgRelatedArticles'] = $editorCuratedPages;
-		}
 	}
 
 	/**
@@ -191,17 +173,11 @@ class Hooks implements
 	 */
 	public static function onFuncRelated( Parser $parser, ...$args ) {
 		$parserOutput = $parser->getOutput();
-		$relatedPages = $parserOutput->getExtensionData( 'RelatedArticles' );
-		if ( !$relatedPages ) {
-			$relatedPages = [];
-		}
-
 		// Add all the related pages passed by the parser function
 		// {{#related:Test with read more|Foo|Bar}}
 		foreach ( $args as $relatedPage ) {
-			$relatedPages[] = $relatedPage;
+			$parserOutput->appendJsConfigVar( 'wgRelatedArticles', $relatedPage );
 		}
-		$parserOutput->setExtensionData( 'RelatedArticles', $relatedPages );
 
 		return '';
 	}
@@ -213,15 +189,14 @@ class Hooks implements
 	 * The list of related pages will be retrieved using
 	 * <code>ParserOutput#getExtensionData</code>.
 	 *
-	 * @param OutputPage $out the OutputPage object
+	 * @param OutputPage $outputPage the OutputPage object
 	 * @param ParserOutput $parserOutput ParserOutput object
 	 */
-	public function onOutputPageParserOutput( $out, $parserOutput ): void {
-		$related = $parserOutput->getExtensionData( 'RelatedArticles' );
-
-		if ( $related ) {
-			$out->setProperty( 'RelatedArticles', $related );
-		}
+	public function onOutputPageParserOutput( $outputPage, $parserOutput ): void {
+		// Backwards-compatibility with old cached content (T371421)
+		// This hook can be removed once this is no longer needed.
+		$related = $parserOutput->getExtensionData( 'RelatedArticles' ) ?? [];
+		$outputPage->addJsConfigVars( 'wgRelatedArticlesCompat', $related );
 	}
 
 	/**

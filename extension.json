@@ -24,7 +24,6 @@
 	"Hooks": {
 		"ParserFirstCallInit": "main",
 		"OutputPageParserOutput": "main",
-		"MakeGlobalVariablesScript": "main",
 		"BeforePageDisplay": "main",
 		"ResourceLoaderGetConfigVars": "main",
 		"SkinAfterContent": "main"
