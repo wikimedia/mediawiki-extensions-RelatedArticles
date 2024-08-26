@@ -13,7 +13,7 @@
 	"license-name": "GPL-2.0-only",
 	"type": "betafeatures",
 	"requires": {
-		"MediaWiki": ">= 1.42"
+		"MediaWiki": ">= 1.43"
 	},
 	"AutoloadNamespaces": {
 		"RelatedArticles\\": "includes/"
@@ -49,7 +49,9 @@
 		"ext.relatedArticles.styles": {
 			"styles": "resources/ext.relatedArticles.styles.less",
 			"skinStyles": {
-				"default": [ "skinStyles/ext.relatedArticles.styles/default.less" ],
+				"default": [
+					"skinStyles/ext.relatedArticles.styles/default.less"
+				],
 				"minerva": []
 			}
 		},
