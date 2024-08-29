@@ -10,17 +10,14 @@ use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Output\Hook\OutputPageParserOutputHook;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\ParserOutput;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 use MediaWiki\Title\Title;
 use Skin;
 
 class Hooks implements
 	ParserFirstCallInitHook,
-	OutputPageParserOutputHook,
 	BeforePageDisplayHook,
 	ResourceLoaderGetConfigVarsHook,
 	SkinAfterContentHook
@@ -184,23 +181,6 @@ class Hooks implements
 		}
 
 		return '';
-	}
-
-	/**
-	 * Passes the related pages list from the cached parser output
-	 * object to the output page for rendering.
-	 *
-	 * The list of related pages will be retrieved using
-	 * <code>ParserOutput#getExtensionData</code>.
-	 *
-	 * @param OutputPage $outputPage the OutputPage object
-	 * @param ParserOutput $parserOutput ParserOutput object
-	 */
-	public function onOutputPageParserOutput( $outputPage, $parserOutput ): void {
-		// Backwards-compatibility with old cached content (T371421)
-		// This hook can be removed once this is no longer needed.
-		$related = $parserOutput->getExtensionData( 'RelatedArticles' ) ?? [];
-		$outputPage->addJsConfigVars( 'wgRelatedArticlesCompat', $related );
 	}
 
 	/**
