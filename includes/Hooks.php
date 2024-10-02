@@ -89,7 +89,7 @@ class Hooks implements
 	 */
 	private function hasRelatedArticles( Skin $skin ): bool {
 		$title = $skin->getTitle();
-		$action = $skin->getRequest()->getRawVal( 'action', 'view' );
+		$action = $skin->getRequest()->getRawVal( 'action' ) ?? 'view';
 		return $title->inNamespace( NS_MAIN ) &&
 			// T120735
 			$action === 'view' &&
