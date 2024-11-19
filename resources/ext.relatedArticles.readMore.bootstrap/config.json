@@ -1,0 +1,11 @@
+{
+	"RelatedArticlesABTestEnrollment": {
+		"name": "RelatedArticles test experiment",
+		"enabled": false,
+		"buckets": {
+			"nonExperiment-unsampled": 1,
+			"experimentEnabled": 0,
+			"experimentDisabled": 0
+		}
+	}
+}
