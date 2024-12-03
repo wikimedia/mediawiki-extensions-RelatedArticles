@@ -137,7 +137,11 @@ class Hooks implements
 	 */
 	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
 		$limit = $this->relatedArticlesConfig->get( 'RelatedArticlesCardLimit' );
+		$abTestConfig = $this->relatedArticlesConfig->get( 'RelatedArticlesABTestEnrollment' );
+
 		$vars['wgRelatedArticlesCardLimit'] = $limit;
+		$vars['wgRelatedArticlesABTestEnrollment'] = $abTestConfig;
+
 		if ( $limit < 1 || $limit > 20 ) {
 			throw new \RuntimeException(
 				'The value of wgRelatedArticlesCardLimit is not valid. It should be between 1 and 20.'
