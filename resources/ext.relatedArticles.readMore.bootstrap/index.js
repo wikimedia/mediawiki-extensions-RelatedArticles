@@ -1,6 +1,32 @@
 const config = require( './config.json' );
 const CLICK_EVENT_FOOTER = 'relatedArticles.footer';
 const CLICK_EVENT_EMPTY_SEARCH = 'relatedArticles.emptySearch';
+const STORED_AB_BUCKET_KEY = 'relatedArticles.token';
+
+/**
+ * Get AB test token, factoring in locally stored bucket and URL override.
+ *
+ * @return String - Token used for AB test bucketing
+ */
+function getABTestToken() {
+	// @ts-ignore FIXME mw.storage.set/get should be added to types-mediawiki repo.
+	const storedToken = mw.storage.get( STORED_AB_BUCKET_KEY );
+	const storageExpiry = 90 * 24 * 60 * 60; // 90 days in seconds.
+	let bucketingToken;
+
+	// If a valid AB test token exists in localStorage, use that.
+	if ( storedToken ) {
+		bucketingToken = storedToken;
+	} else {
+		bucketingToken = mw.user.sessionId();
+	}
+
+	// Store the bucketing token for 90 days.
+	// @ts-ignore FIXME mw.storage.set/get should be added to types-mediawiki repo.
+	mw.storage.set( STORED_AB_BUCKET_KEY, bucketingToken, storageExpiry );
+
+	return bucketingToken;
+}
 
 /**
  * Load related articles when the user scrolls past half of the window height.
@@ -49,10 +75,9 @@ function loadRelatedArticles() {
 	}
 
 	const experiment = config.RelatedArticlesABTestEnrollment;
-	const group = mw.experiments.getBucket(
-		experiment,
-		mw.user.sessionId()
-	);
+	const bucketingToken = getABTestToken();
+	const group = mw.experiments.getBucket( experiment, bucketingToken );
+
 	const WEB_AB_TEST_ENROLLMENT_HOOK = 'mediawiki.web_AB_test_enrollment';
 	if ( experiment.enabled && group.indexOf( '-unsampled' ) === -1 ) {
 		mw.hook( WEB_AB_TEST_ENROLLMENT_HOOK ).fire( {
@@ -93,3 +118,9 @@ function loadRelatedArticles() {
 }
 
 $( loadRelatedArticles );
+
+// Exports for unit testing.
+module.exports = {
+	getABTestToken: getABTestToken,
+	storageKey: STORED_AB_BUCKET_KEY
+};
