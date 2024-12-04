@@ -1,4 +1,7 @@
 {
+	"exclude": [
+		"node_modules"
+	],
 	"include": [
 		"resources/**/*"
 	],
@@ -9,6 +12,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
+		"noImplicitAny": false,
 		"newLine": "lf",
 		"forceConsistentCasingInFileNames": true,
 		"pretty": true,
