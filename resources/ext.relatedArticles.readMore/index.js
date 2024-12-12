@@ -52,19 +52,22 @@ function getCards( pages ) {
  * @param {Element} el
  * @param {string} heading
  * @param {boolean} isContainerSmall
+ * @param {string} [clickEventName]
  */
-function render( pages, el, heading, isContainerSmall ) {
+function render( pages, el, heading, isContainerSmall, clickEventName ) {
 	el.innerHTML = RelatedArticles( {
 		isContainerSmall,
 		heading,
-		cards: getCards( pages )
+		cards: getCards( pages ),
+		clickEventName
 	} );
 }
 
 /**
  * @param {HTMLElement} container to initialize into
+ * @param {string} [clickEventName] that fires when cards are clicked
  */
-function init( container ) {
+function init( container, clickEventName ) {
 	relatedPages.getForCurrentPage( LIMIT ).then( ( /** @type {MwApiPageObject[]} */ pages ) => {
 		if ( pages.length ) {
 			render(
@@ -72,7 +75,8 @@ function init( container ) {
 				container,
 				mw.msg( 'relatedarticles-read-more-heading' ),
 				// Take up multiple columns if possible
-				false
+				false,
+				clickEventName
 			);
 		} else if ( container.parentNode ) {
 			container.parentNode.removeChild( container );

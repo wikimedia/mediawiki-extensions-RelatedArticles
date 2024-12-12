@@ -7,6 +7,7 @@
  * @param {string} options.heading
  * @param {boolean} options.isContainerSmall
  * @param {Codex.ListTitleObject[]} options.cards
+ * @param {string} [options.clickEventName]
  * @return {string}
  */
 const RelatedArticles = ( options ) => [
@@ -16,7 +17,7 @@ const RelatedArticles = ( options ) => [
 				`<h2 class="read-more-container-heading">${ options.heading }</h2>` : ``,
 				`<ul class="read-more-container-card-list">`,
 					options.cards.map( ( card ) => `<li title="${ card.label }">
-					<a href="${ card.url }"><span class="cdx-card">
+					<a href="${ card.url }" ${ options.clickEventName ? `data-event-name="${ options.clickEventName }"` : '' }><span class="cdx-card">
 						<span class="cdx-card__thumbnail cdx-thumbnail">
 						${ ( card.thumbnail && card.thumbnail.url ) ?
 							`<span class="cdx-thumbnail__image" style="background-image: url('${ card.thumbnail.url }')"></span>` :

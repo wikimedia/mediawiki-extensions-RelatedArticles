@@ -1,4 +1,6 @@
 const config = require( './config.json' );
+const CLICK_EVENT_FOOTER = 'relatedArticles.footer';
+const CLICK_EVENT_EMPTY_SEARCH = 'relatedArticles.emptySearch';
 
 /**
  * Load related articles when the user scrolls past half of the window height.
@@ -10,15 +12,17 @@ function loadRelatedArticles() {
 
 	/**
 	 * @param {Element} container
+	 * @param {string} clickEventName that fires when cards are clicked
 	 */
-	function initRelatedArticlesModule( container ) {
+	function initRelatedArticlesModule( container, clickEventName ) {
 		$.when(
 			mw.loader.using( 'ext.relatedArticles.readMore' )
 		).then( (
 			/** @type {Function} */ require
 		) => {
 			require( 'ext.relatedArticles.readMore' ).init(
-				container
+				container,
+				clickEventName
 			);
 		} );
 	}
@@ -34,7 +38,7 @@ function loadRelatedArticles() {
 			node.appendChild( relatedContainer );
 		}
 		relatedContainer.removeAttribute( 'style' );
-		initRelatedArticlesModule( relatedContainer );
+		initRelatedArticlesModule( relatedContainer, CLICK_EVENT_EMPTY_SEARCH );
 	};
 
 	/**
@@ -69,7 +73,7 @@ function loadRelatedArticles() {
 	// To handle this case, we compare scroll height to viewport height.
 	if ( ( doc.scrollHeight / 2 ) < doc.clientHeight ) {
 		// Load straight away. We are on a stub page.
-		initRelatedArticlesModule( readMore );
+		initRelatedArticlesModule( readMore, CLICK_EVENT_FOOTER );
 		return;
 	}
 	// eslint-disable-next-line compat/compat
@@ -81,7 +85,7 @@ function loadRelatedArticles() {
 		observer.unobserve( readMore );
 		observer.disconnect();
 		// @ts-ignore
-		initRelatedArticlesModule( readMore );
+		initRelatedArticlesModule( readMore, CLICK_EVENT_FOOTER );
 	} ), {
 		rootMargin: '-100% 0% 0% 0%'
 	} ) );
