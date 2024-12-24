@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Lokesha kunchadka",
-			"రహ్మానుద్దీన్"
+			"రహ్మానుద్దీన్",
+			"ChiK"
 		]
 	},
-	"relatedarticles-read-more-heading": "ಸಂಬಂಧ ಪಡೆಯಿನ ಪುಟೊಲು"
+	"relatedarticles-desc": "ಅಡಿಟಿಪ್ಪಣಿಡ್ ಸಂಬಂಧಿತ ಪುಟೊಕುಲೆಗ್ ಕೊಂಡಿಲೆನ್ ಸೇರಾವೊಡು",
+	"relatedarticles-read-more-heading": "ಸಮ್ಮಂದದ ಪುಟೊಕುಲು"
 }
