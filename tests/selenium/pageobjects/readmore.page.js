@@ -9,13 +9,13 @@ class ReadMorePage extends Page {
 		return $( '#footer-places-mobileview' );
 	}
 
-	openDesktop( name ) {
-		super.openTitle( name );
+	async openDesktop( name ) {
+		await super.openTitle( name );
 		this.resourceLoaderModuleStatus( READ_MORE_MODULE_NAME, 'loading' );
 	}
 
-	openMobile( name ) {
-		super.openTitle( name );
+	async openMobile( name ) {
+		await super.openTitle( name );
 		this.mobileView.click();
 		this.resourceLoaderModuleStatus( READ_MORE_MODULE_NAME, 'ready' );
 	}
