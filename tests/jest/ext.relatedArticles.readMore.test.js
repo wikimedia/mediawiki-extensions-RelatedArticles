@@ -52,6 +52,59 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 		expect( element.innerHTML ).toMatchSnapshot();
 	} );
 
+	it( 'renders cards that fire hooks when clicked', () => {
+		const element = document.createElement( 'div' );
+		const EVENT_NAME = 'testEvent';
+		render( [
+			PAGE_WITH_DESCRIPTION
+		], element, 'Hello world', false, EVENT_NAME );
+		const cardLink = element.querySelector( 'a[data-event-name]' );
+		const fireSpy = jest.fn();
+		const hookSpy = jest.fn( () => ( {
+			fire: fireSpy
+		} ) );
+		mw.hook = hookSpy;
+		cardLink.dispatchEvent(
+			new Event( 'click', {
+				bubbles: true
+			} )
+		);
+		expect( cardLink ).not.toBe( undefined );
+		expect( hookSpy ).toHaveBeenCalledWith( 'ext.relatedArticles.click' );
+		expect( fireSpy ).toHaveBeenCalledWith( EVENT_NAME );
+	} );
+
+	it( 'renders cards that fire hooks when clicked', () => {
+		const element = document.createElement( 'div' );
+		const EVENT_NAME = 'testEvent';
+		render( [
+			PAGE_WITH_DESCRIPTION
+		], element, 'Hello world', false, EVENT_NAME );
+		const cardLink = element.querySelector( 'a[data-event-name]' );
+		const fireSpy = jest.fn();
+		const hookSpy = jest.fn( () => ( {
+			fire: fireSpy
+		} ) );
+
+		// Check clicks on non-links to do not trigger hook.
+		element.dispatchEvent(
+			new Event( 'click', {
+				bubbles: true
+			} )
+		);
+		expect( hookSpy ).not.toHaveBeenCalledWith( 'ext.relatedArticles.click' );
+
+		mw.hook = hookSpy;
+		cardLink.dispatchEvent(
+			new Event( 'click', {
+				bubbles: true
+			} )
+		);
+		expect( cardLink ).not.toBe( undefined );
+		expect( hookSpy ).toHaveBeenCalledWith( 'ext.relatedArticles.click' );
+		expect( fireSpy ).toHaveBeenCalledWith( EVENT_NAME );
+	} );
+
 	it( 'renders without error', () => {
 		const element = document.createElement( 'div' );
 		const plugin = {

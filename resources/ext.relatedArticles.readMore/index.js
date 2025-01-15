@@ -61,6 +61,13 @@ function render( pages, el, heading, isContainerSmall, clickEventName ) {
 		cards: getCards( pages ),
 		clickEventName
 	} );
+	el.addEventListener( 'click', ( ev ) => {
+		const target = /** @type {HTMLElement} */( ev.target );
+		const link = target.closest( 'a[data-event-name]' );
+		if ( link ) {
+			mw.hook( 'ext.relatedArticles.click' ).fire( clickEventName );
+		}
+	} );
 }
 
 /**
