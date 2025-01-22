@@ -23,7 +23,6 @@
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "main",
-		"OutputPageParserOutput": "main",
 		"BeforePageDisplay": "main",
 		"ResourceLoaderGetConfigVars": "main",
 		"SkinAfterContent": "main"
