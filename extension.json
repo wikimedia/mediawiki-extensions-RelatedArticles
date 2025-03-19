@@ -13,7 +13,7 @@
 	"license-name": "GPL-2.0-only",
 	"type": "betafeatures",
 	"requires": {
-		"MediaWiki": ">= 1.43"
+		"MediaWiki": ">= 1.44"
 	},
 	"AutoloadNamespaces": {
 		"RelatedArticles\\": "includes/"
