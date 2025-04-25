@@ -58,16 +58,9 @@
 			"localBasePath": "resources/ext.relatedArticles.readMore.bootstrap/",
 			"remoteExtPath": "RelatedArticles",
 			"packageFiles": [
-				"index.js",
-				{
-					"name": "config.json",
-					"config": [
-						"RelatedArticlesABTestEnrollment"
-					]
-				}
+				"index.js"
 			],
 			"dependencies": [
-				"mediawiki.experiments",
 				"mediawiki.user",
 				"mediawiki.api",
 				"mediawiki.Uri",
