@@ -152,7 +152,7 @@ RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
 
 		// Instruct the browser that the response will become stale in 24 hours.
 		parameters.maxage = 86400;
-		return this.getPagesFromApi( parameters ).then( ( pages ) => Promise.resolve( pages ) );
+		return this.getPagesFromApi( parameters ).then( ( pages ) => pages );
 	} else {
 		return Promise.resolve( [] );
 	}
