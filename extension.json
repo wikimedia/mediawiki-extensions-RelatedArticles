@@ -129,18 +129,6 @@
 		"RelatedArticlesFooterAllowedSkins": {
 			"description": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
 			"value": []
-		},
-		"RelatedArticlesABTestEnrollment": {
-			"description": "A config that enables A/B test bucketing through the mw.experiments.getBucket() method e.g:`{ name:String, enabled:Boolean, buckets:{ control:0.9 ,test:0.1} }",
-			"value": {
-				"name": "RelatedArticles test experiment",
-				"enabled": false,
-				"buckets": {
-					"nonExperiment-unsampled": 0.5,
-					"experimentEnabled": 0.25,
-					"experimentDisabled": 0.25
-				}
-			}
 		}
 	},
 	"ConfigRegistry": {
