@@ -63,7 +63,6 @@
 			"dependencies": [
 				"mediawiki.user",
 				"mediawiki.api",
-				"mediawiki.Uri",
 				"mediawiki.util"
 			]
 		},
