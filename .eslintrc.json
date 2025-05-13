@@ -6,7 +6,7 @@
 	"overrides": [
 		{
 			"files": "**/**/*.vue",
-			"extends": "wikimedia/vue-es6",
+			"extends": "wikimedia/vue/es6",
 			"rules": {
 				"es/no-block-scoped-variables": "off",
 				"es/no-object-assign": "off"
