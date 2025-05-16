@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\Minerva\Tests\Structure;
+namespace RelatedArticles\Tests\Structure;
 
 class BundleSizeTest extends \MediaWiki\Tests\Structure\BundleSizeTestBase {
 
