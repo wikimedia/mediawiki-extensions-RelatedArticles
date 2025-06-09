@@ -133,7 +133,7 @@ RelatedPagesGateway.prototype.getForCurrentPage = function ( limit ) {
 
 		parameters.generator = 'search';
 		parameters.gsrsearch = `morelike:${ this.currentPage }`;
-		parameters.gsrnamespace = '0';
+		parameters.gsrnamespace = mw.config.get( 'wgNamespaceNumber' );
 		parameters.gsrlimit = limit;
 		parameters.gsrqiprofile = 'classic_noboostlinks';
 

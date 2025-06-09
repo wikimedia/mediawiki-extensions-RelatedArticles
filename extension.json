@@ -107,6 +107,7 @@
 			"tests/qunit/RelatedPagesGateway.test.js"
 		]
 	},
+	"callback": "RelatedArticles\\Hooks::onRegistration",
 	"config": {
 		"RelatedArticlesUseCirrusSearchApiUrl": {
 			"description": "During development use a different API for sourcing related articles.",
@@ -129,6 +130,13 @@
 		"RelatedArticlesFooterAllowedSkins": {
 			"description": "List of skin names (e.g. 'minerva') where related articles will be shown in the footer.",
 			"value": []
+		},
+		"RelatedArticlesFooterAllowedNamespaces": {
+			"description": "List of namespaces where related articles will be shown in the footer. If this is set to false, the value of $wgContentNamespaces will be used.",
+			"value": [
+				0
+			],
+			"merge_strategy": "provide_default"
 		}
 	},
 	"ConfigRegistry": {

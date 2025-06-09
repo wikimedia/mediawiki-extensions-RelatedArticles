@@ -9,10 +9,12 @@ use MediaWiki\Extension\Disambiguator\Lookup;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 
@@ -86,7 +88,7 @@ class Hooks implements
 	private function hasRelatedArticles( Skin $skin ): bool {
 		$title = $skin->getTitle();
 		$action = $skin->getRequest()->getRawVal( 'action' ) ?? 'view';
-		return $title->inNamespace( NS_MAIN ) &&
+		return $title->inNamespaces( $this->relatedArticlesConfig->get( 'RelatedArticlesFooterAllowedNamespaces' ) ) &&
 			// T120735
 			$action === 'view' &&
 			!$title->isMainPage() &&
@@ -105,7 +107,7 @@ class Hooks implements
 	 * <ol>
 	 *   <li>On mobile, the output is being rendered with
 	 *     <code>SkinMinervaBeta<code></li>
-	 *   <li>The page is in mainspace</li>
+	 *   <li>The page is in a namespace listed in $wgRelatedArticlesFooterAllowedNamespaces</li>
 	 *   <li>The action is 'view'</li>
 	 *   <li>The page is not the Main Page</li>
 	 *   <li>The page is not a disambiguation page</li>
@@ -189,6 +191,21 @@ class Hooks implements
 	public function onSkinAfterContent( &$data, $skin ) {
 		if ( $this->hasRelatedArticles( $skin ) ) {
 			$data .= Html::element( 'div', [ 'class' => 'read-more-container' ] );
+		}
+	}
+
+	/**
+	 * Default allowed namespaces to $wgContentNamespaces if set to false.
+	 * @param array $extInfo
+	 * @param SettingsBuilder $settings
+	 * @return void
+	 */
+	public static function onRegistration( array $extInfo, SettingsBuilder $settings ) {
+		if ( $settings->getConfig()->get( 'RelatedArticlesFooterAllowedNamespaces' ) === false ) {
+			$settings->overrideConfigValue(
+				'RelatedArticlesFooterAllowedNamespaces',
+				$settings->getConfig()->get( MainConfigNames::ContentNamespaces )
+			);
 		}
 	}
 }
