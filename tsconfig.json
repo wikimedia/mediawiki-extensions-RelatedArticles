@@ -6,6 +6,7 @@
 		"resources/**/*"
 	],
 	"compilerOptions": {
+		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"strict": true,
