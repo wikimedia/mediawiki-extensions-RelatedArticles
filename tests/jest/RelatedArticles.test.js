@@ -11,7 +11,8 @@ describe( 'RelatedArticles', () => {
 					id: '4',
 					label: 'Title',
 					value: 'Title',
-					description: 'Description'
+					description: 'Description',
+					url: 'http://example.com/'
 				}
 			]
 		} );
