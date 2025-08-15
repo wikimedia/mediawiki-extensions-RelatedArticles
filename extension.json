@@ -132,7 +132,7 @@
 		}
 	},
 	"ConfigRegistry": {
-		"RelatedArticles": "GlobalVarConfig::newInstance"
+		"RelatedArticles": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
