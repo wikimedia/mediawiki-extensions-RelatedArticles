@@ -23,14 +23,13 @@ class Hooks implements
 	SkinAfterContentHook
 {
 
-	private Config $relatedArticlesConfig;
+	private readonly Config $relatedArticlesConfig;
 
-	/** Either a Lookup from the Disambiguator extension, or null if that is not installed */
-	private ?Lookup $disambiguatorLookup;
-
-	public function __construct( ConfigFactory $configFactory, ?Lookup $disambiguatorLookup ) {
+	public function __construct(
+		ConfigFactory $configFactory,
+		private readonly ?Lookup $disambiguatorLookup,
+	) {
 		$this->relatedArticlesConfig = $configFactory->makeConfig( 'RelatedArticles' );
-		$this->disambiguatorLookup = $disambiguatorLookup;
 	}
 
 	/**
