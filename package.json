@@ -22,7 +22,7 @@
 		"@wdio/spec-reporter": "9.15.0",
 		"@wikimedia/codex": "1.16.0",
 		"@wikimedia/mw-node-qunit": "7.2.0",
-		"@wikimedia/types-wikimedia": "0.4.4",
+		"@wikimedia/types-wikimedia": "0.5.0",
 		"eslint-config-wikimedia": "0.29.1",
 		"grunt-banana-checker": "0.13.0",
 		"jest": "30.1.3",
