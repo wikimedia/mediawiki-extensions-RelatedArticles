@@ -7,6 +7,9 @@
 	],
 	"rules": {
 		"jsdoc/no-undefined-types": "off",
-		"max-len": "off"
+		"max-len": "off",
+		"@typescript-eslint/no-namespace": "warn",
+		"@typescript-eslint/no-unused-vars": "warn",
+		"@typescript-eslint/no-explicit-any": "warn"
 	}
 }
