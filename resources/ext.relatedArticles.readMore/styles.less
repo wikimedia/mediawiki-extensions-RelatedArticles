@@ -37,20 +37,18 @@
 	}
 }
 
-@supports ( display: grid ) {
-	@media all and ( min-width: @min-width-breakpoint-desktop ) {
-		.read-more-container-card-list {
-			grid-template-columns: repeat( 3, 1fr );
-			column-gap: 10px;
+@media all and ( min-width: @min-width-breakpoint-desktop ) {
+	.read-more-container-card-list {
+		grid-template-columns: repeat( 3, 1fr );
+		column-gap: 10px;
 
-			.read-more-container-card {
-				width: 100%;
-			}
+		.read-more-container-card {
+			width: 100%;
+		}
 
-			.cdx-card {
-				height: 100%;
-				box-sizing: border-box;
-			}
+		.cdx-card {
+			height: 100%;
+			box-sizing: border-box;
 		}
 	}
 }
