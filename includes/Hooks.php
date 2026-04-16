@@ -6,15 +6,15 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\Disambiguator\Lookup;
-use MediaWiki\Hook\ParserFirstCallInitHook;
-use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Skin\Hook\SkinAfterContentHook;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 
