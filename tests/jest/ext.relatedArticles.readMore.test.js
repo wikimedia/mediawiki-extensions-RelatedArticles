@@ -1,9 +1,9 @@
 const { render, init, getCards, test } = require( '../../resources/ext.relatedArticles.readMore/index.js' );
 const { createApp } = require( 'vue' );
-const PAGE = {
+const /** @type {MwApiPageObject} */ PAGE = {
 	title: 'Hello no description'
 };
-const PAGE_WITH_DESCRIPTION = {
+const /** @type {MwApiPageObject} */ PAGE_WITH_DESCRIPTION = {
 	title: 'Hello',
 	description: 'Description',
 	thumbnail: {
@@ -174,7 +174,7 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 				{
 					id: 'Title',
 					label: 'Title',
-					url: '/wiki/Title',
+					url: 'http://localhost/wiki/Title?wprov=rarw1',
 					thumbnail: {
 						width: 100,
 						height: 100,
@@ -198,7 +198,7 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 			{
 				id: 'Title',
 				label: 'Title',
-				url: '/wiki/Title',
+				url: 'http://localhost/wiki/Title?wprov=rarw1',
 				description: '',
 				thumbnail: undefined
 			}

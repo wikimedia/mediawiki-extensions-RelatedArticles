@@ -25,12 +25,12 @@ const LIMIT = mw.config.get( 'wgRelatedArticlesCardLimit', 3 );
  */
 function getCards( pages ) {
 	return pages.map( ( page ) => {
+		const url = new URL( mw.util.getUrl( page.title ), location.href );
+		url.searchParams.set( 'wprov', 'rarw1' );
 		const result = {
 			id: page.title,
 			label: page.title,
-			url: mw.util.getUrl( page.title, {
-				wprov: 'rarw1'
-			} ),
+			url: url.toString(),
 			thumbnail: page.thumbnail ? {
 				width: page.thumbnail.width,
 				height: page.thumbnail.height,

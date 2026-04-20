@@ -23,7 +23,7 @@ exports[`ext.relatedArticles.readMore.bootstrap renders without error 1`] = `
 
 <ul class="read-more-container-card-list">
 <li title="Hello no description">
-					<a href="/wiki/Hello no description"><span class="cdx-card">
+					<a href="http://localhost/wiki/Hello%20no%20description?wprov=rarw1"><span class="cdx-card">
 						<span class="cdx-card__thumbnail cdx-thumbnail">
 						<span class="cdx-thumbnail__placeholder">
 								<span class="cdx-thumbnail__placeholder__icon"></span>
@@ -36,7 +36,7 @@ exports[`ext.relatedArticles.readMore.bootstrap renders without error 1`] = `
 					</span></a>
 				</li>
 <li title="Hello">
-					<a href="/wiki/Hello"><span class="cdx-card">
+					<a href="http://localhost/wiki/Hello?wprov=rarw1"><span class="cdx-card">
 						<span class="cdx-card__thumbnail cdx-thumbnail">
 						<span class="cdx-thumbnail__image" style="background-image: url('hello.gif')"></span>
 						</span>
@@ -47,7 +47,7 @@ exports[`ext.relatedArticles.readMore.bootstrap renders without error 1`] = `
 					</span></a>
 				</li>
 <li title="Hello with extract">
-					<a href="/wiki/Hello with extract"><span class="cdx-card">
+					<a href="http://localhost/wiki/Hello%20with%20extract?wprov=rarw1"><span class="cdx-card">
 						<span class="cdx-card__thumbnail cdx-thumbnail">
 						<span class="cdx-thumbnail__image" style="background-image: url('helloEx.gif')"></span>
 						</span>
@@ -58,7 +58,7 @@ exports[`ext.relatedArticles.readMore.bootstrap renders without error 1`] = `
 					</span></a>
 				</li>
 <li title="Hello with pageprops">
-					<a href="/wiki/Hello with pageprops"><span class="cdx-card">
+					<a href="http://localhost/wiki/Hello%20with%20pageprops?wprov=rarw1"><span class="cdx-card">
 						<span class="cdx-card__thumbnail cdx-thumbnail">
 						<span class="cdx-thumbnail__placeholder">
 								<span class="cdx-thumbnail__placeholder__icon"></span>
