@@ -2,8 +2,6 @@
 	"name": "RelatedArticles",
 	"private": true,
 	"scripts": {
-		"selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
-		"selenium-test": "wdio tests/selenium/wdio.conf.js",
 		"test": "npx tsc && npm -s run lint && npm run test:unit",
 		"test:unit": "jest",
 		"lint": "npm -s run lint:js && npm -s run lint:styles && npm -s run lint:i18n",
