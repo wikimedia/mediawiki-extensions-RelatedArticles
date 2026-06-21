@@ -204,4 +204,34 @@ describe( 'ext.relatedArticles.readMore.bootstrap', () => {
 			}
 		] );
 	} );
+
+	describe( 'with custom searchUrl', () => {
+		it( 'instantiates mw.Api with custom searchUrl', () => {
+			jest.mock( '../../resources/ext.relatedArticles.readMore/data.json', () => ( {
+				searchUrl: '/custom/api.php',
+				useCirrusSearch: false,
+				onlyUseCirrusSearch: false,
+				descriptionSource: 'pagedescription'
+			} ), { virtual: true } );
+
+			const apiSpy = jest.fn();
+			const originalApi = global.mw.Api;
+			global.mw.Api = apiSpy;
+
+			try {
+				jest.isolateModules( () => {
+					require( '../../resources/ext.relatedArticles.readMore/index.js' );
+				} );
+
+				expect( apiSpy ).toHaveBeenCalledWith( {
+					ajax: {
+						url: '/custom/api.php'
+					}
+				} );
+			} finally {
+				global.mw.Api = originalApi;
+				jest.unmock( '../../resources/ext.relatedArticles.readMore/data.json' );
+			}
+		} );
+	} );
 } );

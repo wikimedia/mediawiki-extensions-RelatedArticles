@@ -4,6 +4,7 @@
 		"../../resources/.eslintrc.json"
 	],
 	"env": {
-		"jest": true
+		"jest": true,
+		"node": true
 	}
 }

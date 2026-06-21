@@ -3,12 +3,14 @@
 const RelatedArticles = require( './RelatedArticles.js' );
 const data = require( './data.json' );
 const RelatedPagesGateway = require( './RelatedPagesGateway.js' );
+const apiOptions = {};
+if ( data.searchUrl ) {
+	apiOptions.ajax = {
+		url: data.searchUrl
+	};
+}
 const relatedPages = new RelatedPagesGateway(
-	new mw.Api( {
-		ajax: {
-			url: data.searchUrl
-		}
-	} ),
+	new mw.Api( apiOptions ),
 	mw.config.get( 'wgPageName' ),
 	Object.keys( mw.config.get( 'wgRelatedArticles', {} ) ),
 	data.useCirrusSearch,

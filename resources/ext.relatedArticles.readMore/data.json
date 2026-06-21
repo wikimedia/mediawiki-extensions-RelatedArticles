@@ -1,5 +1,5 @@
 {
-	"searchUrl": "/w/api.php",
+	"searchUrl": null,
 	"useCirrusSearch": false,
 	"onlyUseCirrusSearch": false,
 	"descriptionSource": "pagedescription"
