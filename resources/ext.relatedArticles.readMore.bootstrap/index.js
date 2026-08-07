@@ -38,7 +38,6 @@ function loadRelatedArticles() {
 		initRelatedArticlesModule( readMore, CLICK_EVENT_FOOTER );
 		return;
 	}
-	// eslint-disable-next-line compat/compat
 	const observer = /** @type {IntersectionObserver} */( new IntersectionObserver( ( ( entries ) => {
 		if ( !entries[ 0 ].isIntersecting ) {
 			return;
