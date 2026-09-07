@@ -32,9 +32,6 @@
 			"class": "RelatedArticles\\Hooks",
 			"services": [
 				"ConfigFactory"
-			],
-			"optional_services": [
-				"DisambiguatorLookup"
 			]
 		}
 	},

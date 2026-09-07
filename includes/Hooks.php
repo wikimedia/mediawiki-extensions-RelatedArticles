@@ -3,9 +3,10 @@
 namespace RelatedArticles;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Extension\Disambiguator\Lookup;
+use MediaWiki\Extension\Disambiguator\Lookup as DisambiguatorLookup;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
@@ -16,7 +17,6 @@ use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Skin\Hook\SkinAfterContentHook;
 use MediaWiki\Skin\Skin;
-use MediaWiki\Title\Title;
 
 class Hooks implements
 	ParserFirstCallInitHook,
@@ -29,7 +29,6 @@ class Hooks implements
 
 	public function __construct(
 		ConfigFactory $configFactory,
-		private readonly ?Lookup $disambiguatorLookup,
 	) {
 		$this->relatedArticlesConfig = $configFactory->makeConfig( 'RelatedArticles' );
 	}
@@ -39,22 +38,16 @@ class Hooks implements
 	 *
 	 * If the Disambiguator extension isn't installed, then the test always fails, i.e. the page is
 	 * never a disambiguation page.
-	 *
-	 * @param Title $title
-	 * @return bool
 	 */
-	private function isDisambiguationPage( Title $title ) {
-		return $this->disambiguatorLookup &&
-			$this->disambiguatorLookup->isDisambiguationPage( $title );
+	private function isDisambiguationPage( OutputPage $outputPage ): bool {
+		return class_exists( DisambiguatorLookup::class ) &&
+			DisambiguatorLookup::isMarkedAsDisambiguationPage( $outputPage );
 	}
 
 	/**
 	 * Check whether the output page is a diff page
-	 *
-	 * @param IContextSource $context
-	 * @return bool
 	 */
-	private static function isDiffPage( IContextSource $context ) {
+	private static function isDiffPage( IContextSource $context ): bool {
 		$request = $context->getRequest();
 		$type = $request->getRawVal( 'type' );
 		$diff = $request->getCheck( 'diff' );
@@ -69,11 +62,8 @@ class Hooks implements
 	 * Some wikis may want to only enable the feature on some skins, so we'll only
 	 * show it if the allow list (`RelatedArticlesFooterAllowedSkins`
 	 * configuration variable) is empty or the skin is listed.
-	 *
-	 * @param Skin $skin
-	 * @return bool
 	 */
-	private function isReadMoreAllowedOnSkin( Skin $skin ) {
+	private function isReadMoreAllowedOnSkin( Skin $skin ): bool {
 		$skins = $this->relatedArticlesConfig->get( 'RelatedArticlesFooterAllowedSkins' );
 		$skinName = $skin->getSkinName();
 		return !$skins || in_array( $skinName, $skins );
@@ -81,9 +71,6 @@ class Hooks implements
 
 	/**
 	 * Can the page show related articles?
-	 *
-	 * @param Skin $skin
-	 * @return bool
 	 */
 	private function hasRelatedArticles( Skin $skin ): bool {
 		$title = $skin->getTitle();
@@ -94,7 +81,7 @@ class Hooks implements
 			!$title->isMainPage() &&
 			$title->exists() &&
 			!self::isDiffPage( $skin ) &&
-			!$this->isDisambiguationPage( $title ) &&
+			!$this->isDisambiguationPage( $skin->getOutput() ) &&
 			$this->isReadMoreAllowedOnSkin( $skin );
 	}
 
@@ -139,7 +126,7 @@ class Hooks implements
 		$vars['wgRelatedArticlesCardLimit'] = $limit;
 
 		if ( $limit < 1 || $limit > 20 ) {
-			throw new \RuntimeException(
+			throw new ConfigException(
 				'The value of wgRelatedArticlesCardLimit is not valid. It should be between 1 and 20.'
 			);
 		}
