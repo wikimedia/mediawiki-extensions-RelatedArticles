@@ -26,7 +26,7 @@ QUnit.module( 'ext.relatedArticles.gateway', ( hooks ) => {
 	} );
 
 	QUnit.test( 'getForCurrentPage [Cirrus-only with results]', async function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', [], true );
 		sinon.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
 		const results = await gateway.getForCurrentPage( 1 );
@@ -41,7 +41,7 @@ QUnit.module( 'ext.relatedArticles.gateway', ( hooks ) => {
 	} );
 
 	QUnit.test( 'getForCurrentPage [Cirrus-only empty]', async function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', [], true );
 		sinon.stub( this.api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
 
 		const results = await gateway.getForCurrentPage( 1 );
@@ -83,20 +83,6 @@ QUnit.module( 'ext.relatedArticles.gateway', ( hooks ) => {
 
 		await gateway.getForCurrentPage( 2 );
 		assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, 2, 'Results restricted to limit' );
-	} );
-
-	// TODO: Change RelatedPagesGateway type to require string[]. We don't need to
-	// support null/undefined, because readMore/index.js defaults to Object.keys({})
-	// even if wgRelatedArticles was undefined for some reason.
-	QUnit.test( 'getForCurrentPage [wgRelatedArticles=undefined]', async function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', undefined, true );
-		// needed to get page images etc..
-		sinon.stub( this.api, 'get' )
-			.returns( $.Deferred().resolve( relatedPages ) );
-
-		const results = await gateway.getForCurrentPage( 1 );
-		assert.true( Array.isArray( results ), 'Results must be an array' );
-		assert.strictEqual( results.length, 1, 'API is invoked to source articles' );
 	} );
 
 	QUnit.test( 'getForCurrentPage [wgRelatedArticlesOnlyUseCirrusSearch=true ignores curated pages]', async function ( assert ) {

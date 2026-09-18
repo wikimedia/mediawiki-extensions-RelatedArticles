@@ -5,7 +5,7 @@
  * @class RelatedPagesGateway
  * @param {MwApi} api
  * @param {string} currentPage The page that the editorCuratedPages relate to
- * @param {string[]|null} editorCuratedPages A list of pages curated by editors for the current page
+ * @param {string[]} editorCuratedPages A list of pages curated by editors for the current page
  * @param {boolean} useCirrusSearch Whether to hit the API when no editor-curated pages are available
  * @param {boolean} [onlyUseCirrusSearch=false] Whether to ignore the list of editor-curated pages
  * @param {boolean|string} [descriptionSource=false] Source to get the page description from
@@ -22,7 +22,7 @@ function RelatedPagesGateway(
 	this.currentPage = currentPage;
 	this.useCirrusSearch = useCirrusSearch;
 	this.descriptionSource = descriptionSource;
-	this.editorCuratedPages = ( !onlyUseCirrusSearch && editorCuratedPages ) ? editorCuratedPages : [];
+	this.editorCuratedPages = !onlyUseCirrusSearch ? editorCuratedPages : [];
 
 }
 
