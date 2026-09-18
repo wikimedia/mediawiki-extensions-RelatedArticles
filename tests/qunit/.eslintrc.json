@@ -1,7 +1,6 @@
 {
 	"root": true,
 	"extends": [
-		"../../resources/.eslintrc.json",
-		"wikimedia/qunit"
+		"wikimedia/mediawiki/qunit"
 	]
 }

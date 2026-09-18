@@ -1,127 +1,120 @@
-( function () {
-	const RelatedPagesGateway = require( '../../resources/ext.relatedArticles.readMore/RelatedPagesGateway.js' ),
-		lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ],
-		relatedPages = {
-			query: {
-				pages: [
-					{
-						pageid: 123,
-						title: 'Oh noes',
-						ns: 0,
-						thumbnail: {
-							source: 'http://placehold.it/200x100'
-						}
-					}
-				]
+const RelatedPagesGateway = require( 'ext.relatedArticles.readMore/RelatedPagesGateway.js' );
+const lotsaRelatedPages = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
+const relatedPages = {
+	query: {
+		pages: [
+			{
+				pageid: 123,
+				title: 'Oh noes',
+				ns: 0,
+				thumbnail: {
+					source: 'http://placehold.it/200x100'
+				}
 			}
-		},
-		emptyRelatedPages = {
-			query: {
-				pages: []
+		]
+	}
+};
+const emptyRelatedPages = {
+	query: {
+		pages: []
+	}
+};
+
+QUnit.module( 'ext.relatedArticles.gateway', ( hooks ) => {
+	hooks.beforeEach( function () {
+		this.api = new mw.Api();
+	} );
+
+	QUnit.test( 'getForCurrentPage [Cirrus-only with results]', async function ( assert ) {
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
+		sinon.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
+
+		const results = await gateway.getForCurrentPage( 1 );
+		assert.deepEqual( results, [ {
+			ns: 0,
+			title: 'Oh noes',
+			pageid: 123,
+			thumbnail: {
+				source: 'http://placehold.it/200x100'
 			}
-		};
-
-	QUnit.module( 'ext.relatedArticles.gateway', {
-		beforeEach: function () {
-			this.api = new mw.Api();
-		}
+		} ] );
 	} );
 
-	QUnit.test( 'Returns an array with the results when api responds', function ( assert ) {
+	QUnit.test( 'getForCurrentPage [Cirrus-only empty]', async function ( assert ) {
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
-		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
+		sinon.stub( this.api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
-			assert.true( Array.isArray( results ), 'Results must be an array' );
-			assert.strictEqual( results[ 0 ].title, 'Oh noes' );
-		} );
+		const results = await gateway.getForCurrentPage( 1 );
+		assert.deepEqual( results, [], 'empty array' );
 	} );
 
-	QUnit.test( 'Empty related pages is handled fine.', function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', null, true );
-		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( emptyRelatedPages ) );
+	QUnit.test( 'getForCurrentPage [Editor curated empty and Cirrus empty]', async function ( assert ) {
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', [], false );
+		const spy = sinon.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
-			assert.true( Array.isArray( results ), 'Results must be an array' );
-			assert.strictEqual( results.length, 0 );
-		} );
+		const results = await gateway.getForCurrentPage( 1 );
+		assert.deepEqual( results, [], 'empty array' );
+		assert.false( spy.called, 'No API request is made' );
 	} );
 
-	QUnit.test( 'Empty related pages with no cirrus search is handled fine. No API request.', function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', [], false ),
-			spy = this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
-
-		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
-			assert.true( Array.isArray( results ), 'Results must be an array' );
-			assert.false( spy.called, 'API is not invoked' );
-			assert.strictEqual( results.length, 0 );
-		} );
-	} );
-
-	QUnit.test( 'Related pages from editor curated content', function ( assert ) {
+	QUnit.test( 'getForCurrentPage [Editor curated results]', async function ( assert ) {
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', [ { title: 1 } ], false );
-		this.sandbox.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
+		sinon.stub( this.api, 'get' ).returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
-			assert.strictEqual( results.length, 1,
-				'API still hit despite cirrus being disabled.' );
-		} );
+		const results = await gateway.getForCurrentPage( 1 );
+		assert.strictEqual( results.length, 1, 'API still hit if Cirrus is disabled' );
 	} );
 
-	QUnit.test( 'When limit is higher than number of cards, no limit is enforced.', function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
-			// needed to get page images etc..
-			stub = this.sandbox.stub( this.api, 'get' )
-				.returns( $.Deferred().resolve( relatedPages ) );
+	QUnit.test( 'getForCurrentPage [Fewer cards than limit]', async function ( assert ) {
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true );
+		// needed to get page images etc..
+		const stub = sinon.stub( this.api, 'get' )
+			.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 20 ).then( () => {
-			assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, lotsaRelatedPages.length );
-		} );
+		await gateway.getForCurrentPage( 20 );
+		assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, 6, 'All cards without limit enforced' );
 	} );
 
-	QUnit.test( 'When limit is 2, results are restricted.', function ( assert ) {
-		const gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true ),
-			// needed to get page images etc..
-			stub = this.sandbox.stub( this.api, 'get' )
-				.returns( $.Deferred().resolve( relatedPages ) );
+	QUnit.test( 'getForCurrentPage [More cards than limit]', async function ( assert ) {
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', lotsaRelatedPages, true );
+		// needed to get page images etc..
+		const stub = sinon.stub( this.api, 'get' )
+			.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 2 ).then( () => {
-			assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, 2 );
-		} );
+		await gateway.getForCurrentPage( 2 );
+		assert.strictEqual( stub.args[ 0 ][ 0 ].titles.length, 2, 'Results restricted to limit' );
 	} );
 
-	QUnit.test( 'What if editor curated pages is undefined?', function ( assert ) {
+	// TODO: Change RelatedPagesGateway type to require string[]. We don't need to
+	// support null/undefined, because readMore/index.js defaults to Object.keys({})
+	// even if wgRelatedArticles was undefined for some reason.
+	QUnit.test( 'getForCurrentPage [wgRelatedArticles=undefined]', async function ( assert ) {
 		const gateway = new RelatedPagesGateway( this.api, 'Foo', undefined, true );
 		// needed to get page images etc..
-		this.sandbox.stub( this.api, 'get' )
+		sinon.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( ( results ) => {
-			assert.true( Array.isArray( results ), 'Results must be an array' );
-			assert.strictEqual( results.length, 1, 'API is invoked to source articles.' );
-		} );
+		const results = await gateway.getForCurrentPage( 1 );
+		assert.true( Array.isArray( results ), 'Results must be an array' );
+		assert.strictEqual( results.length, 1, 'API is invoked to source articles' );
 	} );
 
-	QUnit.test( 'Ignore related pages from editor curated content', function ( assert ) {
+	QUnit.test( 'getForCurrentPage [wgRelatedArticlesOnlyUseCirrusSearch=true ignores curated pages]', async function ( assert ) {
 		const wgRelatedArticles = [
-				'Bar',
-				'Baz',
-				'Qux'
-			],
-			gateway = new RelatedPagesGateway( this.api, 'Foo', wgRelatedArticles, true, true );
-
-		const spy = this.sandbox.stub( this.api, 'get' )
+			'Bar',
+			'Baz',
+			'Qux'
+		];
+		const gateway = new RelatedPagesGateway( this.api, 'Foo', wgRelatedArticles, true, true );
+		const spy = sinon.stub( this.api, 'get' )
 			.returns( $.Deferred().resolve( relatedPages ) );
 
-		return gateway.getForCurrentPage( 1 ).then( () => {
-			const parameters = spy.lastCall.args[ 0 ];
-
-			assert.strictEqual(
-				parameters.generator,
-				'search',
-				'it should hit the CirrusSearch API even though wgRelatedArticles is non-empty'
-			);
-		} );
+		await gateway.getForCurrentPage( 1 );
+		const parameters = spy.lastCall.args[ 0 ];
+		assert.strictEqual(
+			parameters.generator,
+			'search',
+			'hit the CirrusSearch API even if wgRelatedArticles is non-empty'
+		);
 	} );
-
-}() );
+} );

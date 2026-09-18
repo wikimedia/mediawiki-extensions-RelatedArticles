@@ -96,12 +96,13 @@
 		}
 	},
 	"QUnitTestModule": {
-		"localBasePath": "",
-		"remoteExtPath": "RelatedArticles",
+		"localBasePath": "tests/qunit/",
+		"remoteExtPath": "RelatedArticles/tests/qunit/",
 		"packageFiles": [
-			"tests/qunit/index.js",
-			"resources/ext.relatedArticles.readMore/RelatedPagesGateway.js",
-			"tests/qunit/RelatedPagesGateway.test.js"
+			"RelatedPagesGateway.test.js"
+		],
+		"dependencies": [
+			"ext.relatedArticles.readMore"
 		]
 	},
 	"callback": "RelatedArticles\\Hooks::onRegistration",
