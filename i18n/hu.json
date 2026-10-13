@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Dorgan",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Dj"
 		]
 	},
+	"relatedarticles-desc": "Kapcsolódó oldalakra mutató hivatkozásokat ad hozzá a lábléchez",
 	"relatedarticles-read-more-heading": "Kapcsolódó lapok"
 }
