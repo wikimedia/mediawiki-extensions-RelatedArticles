@@ -25,7 +25,7 @@
 		"grunt-banana-checker": "0.13.0",
 		"jest": "30.5.2",
 		"jest-environment-jsdom": "30.5.2",
-		"stylelint-config-wikimedia": "0.19.4",
+		"stylelint-config-wikimedia": "0.20.0",
 		"ts-jest": "29.4.1",
 		"typescript": "4.9.5",
 		"wdio-mediawiki": "6.5.2"
